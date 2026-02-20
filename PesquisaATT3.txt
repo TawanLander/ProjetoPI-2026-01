@@ -1,0 +1,18 @@
+Discutir:
+
+1 - Quais problemas o projeto vai resolver?
+
+Ele irá resolver: 
+Desperdício de água em sistemas de irrigação de plantação de soja
+Desperdício de safra devido à afogamento da planta (excesso de água)
+Melhoria na produtividade (irrigando no memento correto, garantindo crescimento adequado da plantação)
+Redução de custos
+Detecção em caso de vazamento
+
+Oque NÃO irá resolver:
+Sistema de irrigação autômático
+O vazamento em si
+
+2 - Quais as principais funcionalidades para o usuário final
+
+3 - Quais serão os benefícios do negócio?

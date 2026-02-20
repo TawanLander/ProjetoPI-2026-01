@@ -1,6 +1,6 @@
 # 🧩 INTEA — Uma Rede Social para a Comunidade Autista
 
-![Banner INTEA](https://static-cdn.jtvnw.net/jtv_user_pictures/77929c41-b8da-4ddf-8f1f-35a8f6d73a59-profile_banner-480.jpeg)  
+![Banner INTEA]([https://static-cdn.jtvnw.net/jtv_user_pictures/77929c41-b8da-4ddf-8f1f-35a8f6d73a59-profile_banner-480.jpeg](https://criticalhits.com.br/anime/zero-two-conheca-a-historia-e-habilidades-da-personagem-de-darling-in-the-franxx/))  
 
 ![Status](https://img.shields.io/badge/Status-🚧_Em_Desenvolvimento-yellow?style=for-the-badge)
 ![Laravel](https://img.shields.io/badge/Laravel-v10-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)

@@ -15,4 +15,18 @@ O vazamento em si
 
 2 - Quais as principais funcionalidades para o usuário final
 
+São elas, as principais funcionalidades da Dashboard para o usuário final:
+- Visualização em gráfico em Gauge Chart da umidade atual do solo;
+- Visualização em gráfico de linhas da variação da umidade do solo nas últimas 24 horas, 7 dias ou últimos 30 dias;
+- Visualização em gráfico de linhas da quantia de vezes que foi irrigado nos últimos 30 dias;
+- Alerta sobre momento de irrigar o solo;
+- Alerta sobre possíveis vazamentos;
+- Alerta sobre umidade excessiva no solo.
+
 3 - Quais serão os benefícios do negócio?
+
+Os benefícios para os negócios que utilizem os produtos serão:
+- Diminuição de custos relacionados a desperdício de água;
+- Marketing positivo relacionando a empresa a sustentabilidade;
+- Diminuição do descarte da safra estragada devido falta/excesso de irrigação;
+- Monitoramento de 30 em 30 minutos da condição atual de umidade do solo.

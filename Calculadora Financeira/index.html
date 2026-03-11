@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="div_pai"> <!--Div PAI (Inclui todas as divs)-->
+        <h1 class="Titulo" style="margin-bottom: -5px;align-items: center;font-size: 1.2em;">Calculadora Financeira</h1> <br> <!--Título Principal-->
+
+        <div id="div_filho1" class="Flex"> <!--Div filho 1 - Para Agrupar os primeiros elementos da página no topo-->
+            <div style="position: absolute;left: 5px;"> <!--Posotion absolute faz FORÇA a div a sair da FLEXBOX e ficar na esquerda-->
+            <!-- Div abaixo de seleção de calculadoras-->
+                <div class="BordaVerde" id="div_escolherCalculadoras"> 
+                    <h1 class="Titulo Linha">Abas</h1> <!--Título da div-->
+                    <button onclick="calculo_implementacao()" class="Button ButCalculadoras">Calculo de Implementação</button> <br> <!--Botão Calculadora Implantação-->
+                    <button onclick="bibliografia()" class="Button ButCalculadoras">Bibliografia</button>
+                </div> <!--Div de seleção de calculadoras-->
+                <div id="div_insatisfacao" style="margin-top: 10px;"> <!--Div para resetar a ABA  de insatisfação caso entre na aba BIBLIOGRAFIAS-->
+                <div class="BordaVerde"> <!--Div para MUDAR os valores BASE-->
+                    <h1 class="Titulo" style="margin:0;">Insatisfeito com</h1>
+                    <h1 class="Titulo Linha" style="margin: 0;margin-bottom: 15px;">os valores base?</h1>
+                    <button onclick="mudar_valores()" class="Button ButCalculadoras">Mudar valores base</button>
+                </div> <!--Fim da div para mudar os valores base-->
+                </div> <!--Fim da div para resetar a aba insatisfação-->
+            </div> <!--Fim da div position absolute-->
+
+            <div style="position: absolute;right: 5px;width: 340px;" id="div_mudarValores"> <!--Div à direita para MUDAR VALORES BASE-->
+                
+            </div> <!--Fim da div dos VALORES BASE-->
+
+            <div class="BordaVerde" style="flex-basis:600px;" id="div_calculadoras"> <!--Div da Calculadora-->
+                <h1 class="Titulo Linha">Cálculo de Produção</h1> <!--Título da Div-->
+                • Quantos metros de largura tem seus talhões? <br>
+                <input type="number" id="ipt_qtdMetrosLargura" placeholder="Metros de Largura" class="Input"> <br>
+                • Quantos metros de comprimento tem seus talhões? <br>
+                <input type="number" id="ipt_qtdMetrosComprimento" placeholder="Metros de Comprimento" class="Input"> <br>
+                • Quantos talhões você tem? <br>
+        <input type="number" id="ipt_qtdTalhoes" placeholder="Quantidade de Talhões" class="Input"> <br>
+                <div class="Informacao"> <!--Div dentro da Produção (box de informaçoes fixas)-->
+                    <h3 class="SubTitulo Linha" style="margin:0;margin-bottom: 10px;">Informações Base</h3>
+                    <span id='span_salvar'> <!--Span para mudar os valores BASE CASO ALTERADOS-->
+                    • Sacas produzidas por hectare plantado: 60 sacas <br>
+                    • Preço de venda da saca de soja: R$120 <br>
+                    • Porcentagem de perdas devido quebra de safra: 18% <br>
+                    • Custo médio da safra por hectare: R$6000 <br>
+                </span>
+                </div> <!--Final da div box de infos-->
+                <br>
+                <button onclick="calc_producao()" class="Button">Calcular</button>
+                <div class="Resultado"> <!--Div box de resultado-->
+                    <h3 class="SubTitulo" style="color:darkred; margin: 0;margin-bottom: 5px;">Perdas Atuais:</h3>
+                    <span id="resultadoProducao">R$0</span>
+                </div> <!--Div box de resultado-->
+            </div> <!--Final da Calculadora-->
+
+            <div style="position: absolute;right: -20px;"> <!--Div para editar os atributos fixos-->
+            </div> <!--Fim da div para editar valores fixos-->
+        </div> <!-- Final da div filho1-->
+        <div id="div_filho2" class="Flex" style="margin-top: 2%">
+            <div class="BordaVerde" style="flex-basis: 400px;">
+                <h1 class="Titulo Linha">Resultados</h1>
+                <h3 class="Subtitulo">• Faturamento •</h3>
+                <div id="div_faturamento" style="color:rgb(31, 57, 136);font-weight: bold;">R$0</div>
+                <h3 class="Subtitulo">• Lucro •</h3>
+                <div id="div_lucro" style="color: darkgreen;font-weight: bold">R$0</div>
+                <h3 class="Subtitulo">• Gastos Atuais •</h3>
+                <div id="div_prejuizo" style="color: darkred;font-weight: bold">R$0</div>
+            </div>
+    </div>
+    </div>
+</body>
+</html>

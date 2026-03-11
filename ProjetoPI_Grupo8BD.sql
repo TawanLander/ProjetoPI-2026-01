@@ -32,6 +32,10 @@ INSERT INTO terreno VALUES -- Inserção de dados na tabela "terreno", simulando
     (DEFAULT, 8, 7500),
     (DEFAULT, 4, 4000),
     (DEFAULT, 7, 5500);
+
+SELECT * FROM terreno; -- Seleciona todos os dados do terreno
+SELECT qtdTalhoes AS 'Quantidade de talhões', tamanhoTerreno AS 'Tamanho do terreno' FROM terreno; -- Seleciona dados nomeados
+SELECT CONCAT('O terreno ', idTerreno, ' possui ', qtdTalhoes, ' talhões e tem uma área de ', tamanhoTerreno, ' metros²') AS 'Informações de terreno' FROM terreno; -- Seleciona dados concatenados
     
 TRUNCATE terreno; -- Elimina todos os dados da tabela
 
@@ -159,19 +163,17 @@ nomeEmpresa VARCHAR(50) UNIQUE NOT NULL, -- Cria uma coluna para armazenar o nom
 cnpj CHAR(14) UNIQUE NOT NULL, -- Cria uma coluna para armazenar o CNPJ da empresa
 emailEmpresa VARCHAR(50) UNIQUE NOT NULL, -- Cria uma coluna para armazenar o e-mail da empresa
 senha VARCHAR(50) NOT NULL, -- Cria uma coluna para armazenar a senha de acesso do cliente/empresa
-endereco VARCHAR(50), -- Cria uma coluna para armazenar o endereço da empresa
-cep CHAR(8), -- Cria uma coluna para armazenar o CEP da empresa
+numero VARCHAR(5), -- Cria uma coluna para armazenar o endereço da empresa
+cep CHAR(8), -- Cria uma coluna para armazenar o CEP da empresas
 qtdTalhoes INT, -- Cria uma coluna para armazenar a quantidade de talhões inserida pelo cliente
-qtdSensores INT, -- Cria uma coluna para armazenar a quantidade de sensores solicitados pelo cliente
-nacional BOOLEAN -- Cria uma coluna para armazenar se a empresa é nacional (1) ou não (0) em valor booleano
+qtdSensores INT -- Cria uma coluna para armazenar a quantidade de sensores solicitados pelo cliente
 );
 
-ALTER TABLE empresa DROP COLUMN nacional; -- Elimina a coluna "nacional"
 ALTER TABLE empresa ADD CONSTRAINT chkEmailEmpresa CHECK(emailEmpresa LIKE '%@%'); -- Adiciona uma restrição que impede que emails inseridos não possuam "@" no endereço
 ALTER TABLE empresa ADD CONSTRAINT chkQtdTalhoesEmpresa CHECK(qtdTalhoes >= 0); -- Adiciona uma restrição que impede que a quantidade de talhões seja menor do que 0
 ALTER TABLE empresa ADD CONSTRAINT chkQtdSensoresEmpresa CHECK(qtdSensores >= 0); -- Adiciona uma restrição que impede que a quantidade de sensores seja menor do que 0
 
-UPDATE empresa SET endereco = 'Haddock Lobo 595, São Paulo, Capital' WHERE idEmpresa = 2; -- Atualiza a coluna de endereço inserindo o endereço da empresa cujo ID é 2
+UPDATE empresa SET numero = '8' WHERE idEmpresa = 2; -- Atualiza a coluna do número inserindo o número da empresa cujo ID é 2
 
 DESCRIBE empresa; -- Descreve a tabela "empresa" e suas propriedades
 
@@ -182,12 +184,10 @@ INSERT INTO empresa VALUES -- Inserção de dados na tabela "empresa", simulando
     (DEFAULT, 'Cerrado Dourado Agropecuária', '23456789000101', 'comercial@cerradodourado.agr.br', 'Cerrado#21', '403', '7870010', 5, 10),
     (DEFAULT, 'Fazenda Sol Nascente', '45678901000123', 'financeiro@fazendasolnascente.agr.br', 'Sol@Nasc33', '163', '78550970', 4, 8),
     (DEFAULT, 'Terra Fértil Soja S.A.', '78901234000156', 'contato@terrafertilsoja.com.br', 'T3rraFert!l', '200', '78455000', 3, 6);
-SELECT idEmpresa AS 'ID', nomeEmpresa AS 'Nome', cnpj AS 'CNPJ', emailEmpresa AS 'E-mail', endereco AS 'Endereço', cep AS 'CEP', qtdTalhoes AS 'Quantidade de talhões', qtdSensores AS 'Quantidade de sensores' FROM empresa;
-SELECT * FROM empresa WHERE qtdTalhoes > 100; -- Retorna dados de empresas cuja a quantidade de talhões seja maior do que 100
-SELECT * FROM empresa WHERE qtdSensores > 500; -- Retorna dados de empresas cuja a quantidade de sensores seja maior do que 500
-SELECT * FROM empresa WHERE emailEmpresa LIKE '%@gmail%'; -- Retorna dados de empresas cujo email seja do domínio gmail
-SELECT * FROM empresa WHERE endereco LIKE '%São Paulo%'; -- Retorna dados de empresas cujo endereço seja na cidade de São Paulo
-SELECT * FROM empresa WHERE emailEmpresa LIKE '%@outlook%'; -- Retoran dados de empresas cujo email seja do domínio outlook
+SELECT idEmpresa AS 'ID', nomeEmpresa AS 'Nome', cnpj AS 'CNPJ', emailEmpresa AS 'E-mail', numero AS 'Número', cep AS 'CEP', qtdTalhoes AS 'Quantidade de talhões', qtdSensores AS 'Quantidade de sensores' FROM empresa;
+SELECT * FROM empresa WHERE qtdTalhoes > 5; -- Retorna dados de empresas cuja a quantidade de talhões seja maior do que 5
+SELECT * FROM empresa WHERE qtdSensores > 10; -- Retorna dados de empresas cuja a quantidade de sensores seja maior do que 10
+SELECT * FROM empresa WHERE emailEmpresa LIKE '%@agro%'; -- Retorna dados de empresas cujo email tenha o nome agro no domínio
 SELECT CONCAT('A empresa ', nomeEmpresa, ' possui ao todo ', qtdTalhoes, ' talhões e ', qtdSensores, ' sensores instalados.') AS 'Resumo empresas' FROM empresa; -- Retorna um breve resumo concatenado dos talhões e sensores que determinada empresa possui
 
 -- Tabela 6
@@ -206,9 +206,9 @@ DESCRIBE ticket; -- Descreve a tabela "ticket" e suas propriedades
 INSERT INTO ticket (assunto, email, tipoTicket) VALUES -- Inserção de dados na tabela "ticket", simulando a entrada de dados na abertura de um ticket
 	('Quero me afiliar a vocês', 'Acho interessante a proposta que vocês trazem, por isso quero estar entrando em contato para que possamos fechar um acordo.','Requisição'),
 	('Problema com sensores', 'Está dificil utilizar tudo sobre o sistema, parece ter alguns problemas ao identificar a umidade em certas partes do terreno.','Problema'),
-	('Dúvida sobre o painel', 'Olá. Como eu posso identificar se há alguma alerta referente à umidade na minha plantação?', 'Dúvida');    
+	('Dúvida sobre o painel', 'Olá. Como eu posso identificar se há alguma alerta referente à umidade na minha plantação?', 'Dúvida'),
+    ('Expansão', 'Bom dia! Pretendo expandir o meu terreno e quero adicionar mais sensores.', 'Requisição');    
     
 SELECT assunto, email FROM ticket WHERE MONTH(horaTicket) >= 03; -- Retorna dados de um ticket cujo mês de criação seja após o mês de Março
-SELECT assunto, horaTicket FROM ticket WHERE email LIKE '%prosojaagroindustrial%'; -- Retorna dados de um ticket cujo email tenha o nome "prosojaagroindustrial"
-SELECT * FROM ticket WHERE assunto LIKE 'aumentar' AND assunto LIKE 'adicionar' AND assunto LIKE 'expandir'; -- Retorna dados de um ticket que contenham palavras referentes à expansão, como aumentar, adicionar ou expandir
+SELECT * FROM ticket WHERE email LIKE '%aumentar%' OR email LIKE '%adicionar%' OR email LIKE '%expandir%'; -- Retorna dados de um ticket que contenham palavras referentes à expansão, como aumentar, adicionar ou expandir
 SELECT CONCAT('Ticket nº', idTicket, '\n\nCriado em: ', horaTicket, '\nTipo: ', tipoTicket, '\nAssunto: ', assunto, '\nMensagem: ', email) AS 'Lista de tickets' FROM ticket; -- Retorna de forma concatenada os dados de um ticket

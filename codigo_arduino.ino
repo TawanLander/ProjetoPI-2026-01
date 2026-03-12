@@ -6,11 +6,10 @@ float porcentagemUmidade = 0;
 
 void setup() {
   Serial.begin(9600);
-
-}
+};
 
 void loop() {
-  valorUmidadeSolo = analogRead(A5);
+  valorUmidadeSolo = analogRead(A0);
 
   int faixa = ValorAr - ValorAgua;
 
@@ -22,10 +21,11 @@ void loop() {
   if (porcentagemUmidade > 100) porcentagemUmidade = 100;
 
   Serial.print("Leitura bruta: ");
-  Serial.print(valorUmidadeSolo);
-  Serial.print(" | Umidade: ");
+  Serial.println(valorUmidadeSolo);
+  Serial.print("Umidade: ");
   Serial.print(porcentagemUmidade);
-  Serial.print("%");
+  Serial.println("%");
+  Serial.println("");
 
   delay(1000);
-}
+};

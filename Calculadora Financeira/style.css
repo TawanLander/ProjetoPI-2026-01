@@ -8,6 +8,7 @@
     border: solid;
     padding: 20px;
     flex-basis: 350px;
+    background-color: #2040263d;
 }
 .Flex{
     display: flex;
@@ -20,8 +21,10 @@
     color: #204026;
     font-weight: bold;
     text-align: center;
+    background-color: #20402602;
 }
 .SubTitulo{
+    background-color: #20402602;
     color: black;
     text-align: center;
     font-weight: bold;
@@ -36,12 +39,7 @@
     margin: 5px;
     padding: 5px;
     text-align: center;
-}
-.Rodape{
-    background-color: #204026;
-    color: white;
-    align-items: center;
-    text-align: center;
+    background-color: #20402600;
 }
 .Button{
     align-items: center;
@@ -50,6 +48,7 @@
     padding: 5px;
     border-radius: 30px;
     border-color: #FCC752;
+    background-color: #fcc6527e;
     transition: 0.5s;
     cursor: pointer;
 }

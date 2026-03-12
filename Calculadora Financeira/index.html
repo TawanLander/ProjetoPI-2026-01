@@ -43,16 +43,16 @@
                     <h3 class="SubTitulo Linha" style="margin:0;margin-bottom: 10px;">Informações Base</h3>
                     <span id='span_salvar'> <!--Span para mudar os valores BASE CASO ALTERADOS-->
                     • Sacas produzidas por hectare plantado: 60 sacas <br>
-                    • Preço de venda da saca de soja: R$120 <br>
+                    • Preço de venda da saca de soja: R$120,00 <br>
                     • Porcentagem de perdas devido quebra de safra: 18% <br>
-                    • Custo médio da safra por hectare: R$6000 <br>
+                    • Custo médio da safra por hectare: R$6000,00 <br>
                 </span>
                 </div> <!--Final da div box de infos-->
                 <br>
                 <button onclick="calc_producao()" class="Button">Calcular</button>
                 <div class="Resultado"> <!--Div box de resultado-->
                     <h3 class="SubTitulo" style="color:darkred; margin: 0;margin-bottom: 5px;">Prejuízos Atuais:</h3>
-                    <span id="resultadoProducao">R$0</span>
+                    <span id="resultadoProducao">R$0,00</span>
                 </div> <!--Div box de resultado-->
             </div> <!--Final da Calculadora-->
 
@@ -63,11 +63,11 @@
             <div class="BordaVerde" style="flex-basis: 400px;">
                 <h1 class="Titulo Linha">Resultados</h1>
                 <h3 class="Subtitulo" style="background-color: #20402602;">• Faturamento •</h3>
-                <div id="div_faturamento" style="color:rgb(31, 57, 136);font-weight: bold;background-color: #20402602;">R$0</div>
+                <div id="div_faturamento" style="color:rgb(31, 57, 136);font-weight: bold;background-color: #20402602;">R$0,00</div>
                 <h3 class="Subtitulo" style="background-color: #20402602;">• Lucro •</h3>
-                <div id="div_lucro" style="color: darkgreen;font-weight: bold;background-color: #20402602;">R$0</div>
+                <div id="div_lucro" style="color: darkgreen;font-weight: bold;background-color: #20402602;">R$0,00</div>
                 <h3 class="Subtitulo" style="background-color: #20402602;">• Despesas Atuais •</h3>
-                <div id="div_prejuizo" style="color: darkred;font-weight: bold;background-color: #20402602;">R$0</div>
+                <div id="div_prejuizo" style="color: darkred;font-weight: bold;background-color: #20402602;">R$0,00</div>
             </div>
     </div>
     </div>
@@ -116,7 +116,7 @@ function calculo_implementacao(){ // Função mudar calculadora para Implementa�
         <button onclick="calc_implementacao()" class="Button">Calcular</button>
         <div class="Resultado" style="border-color: navy;"> <!--Div box de resultados-->
             <h3 class="SubTitulo" style="color:navy; margin: 0;margin-bottom: 5px;">Custo de implementação:</h3>
-            <span id="resultadoProducao">R$0</span>
+            <span id="resultadoProducao">R$0,00</span>
         </div> <!--Final da div box de resultados-->`;
     // Alterando o innerHTML das ABAS
     div_escolherCalculadoras.innerHTML = `
@@ -135,9 +135,9 @@ function calculo_implementacao(){ // Função mudar calculadora para Implementa�
     <div class="BordaVerde" style="flex-basis: 390px;">
         <h1 class="Titulo Linha">Retorno sobre investimento</h1>
         <h3 class="Subtitulo" style="background-color: #20402602;">• Perdas Atuais •</h3>
-            <div id="div_perdasAtuais" style="color: darkred;font-weight: bold;background-color: #20402602;">R$${prejuizo}</div>    
+            <div id="div_perdasAtuais" style="color: darkred;font-weight: bold;background-color: #20402602;">${prejuizo.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</div>    
         <h3 class="Subtitulo" style="background-color: #20402602;">• Economia Total •</h3>
-            <div id="div_economiaTotal" style="color: darkgreen;font-weight: bold;background-color: #20402602;">R$${economia}</div>
+            <div id="div_economiaTotal" style="color: darkgreen;font-weight: bold;background-color: #20402602;">${economia.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</div>
         <h3 class="Subtitulo" style="background-color: #20402602;">• Possível retorno sobre investimento •</h3>
             <div id="div_possivelRetorno" style="color: navy;font-weight: bold;background-color: #20402602;">O possível retorno será em 0 meses. Aproximadamente 0 anos</div>
     </div>`
@@ -158,15 +158,15 @@ function calculo_producao(){ // Função mudar calculadora para Produção
             <h3 class="SubTitulo Linha" style="margin:0;margin-bottom: 10px;">Informações Base</h3>
             <span id='span_salvar'> <!--Span para mudar os valores BASE CASO ALTERADOS-->
             • Sacas produzidas por hectare plantado: ${sacasProduzidas} sacas <br>
-            • Preço de venda da saca de soja: R$${precoSaca} <br>
+            • Preço de venda da saca de soja: ${precoSaca.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} <br>
             • Porcentagem de perdas devido quebra de safra: ${pctgmPerdas}% <br>
-            • Custo médio da safra por hectare: R$${custoMedio} <br></span>
+            • Custo médio da safra por hectare: ${custoMedio.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} <br></span>
         </div> <!--Final da div box de infos-->
         <br>
         <button onclick="calc_producao()" class="Button">Calcular</button>
         <div class="Resultado"> <!--Div box de resultado-->
             <h3 class="SubTitulo" style="color:darkred; margin: 0;margin-bottom: 5px;">Prejuízos Atuais:</h3>
-            <span id="resultadoProducao">R$0</span>
+            <span id="resultadoProducao">R$0,00</span>
         </div> <!--Div box de resultado-->`;
     // Alterando o innerHTML das ABAS
     div_escolherCalculadoras.innerHTML = `
@@ -185,11 +185,11 @@ function calculo_producao(){ // Função mudar calculadora para Produção
         <div class="BordaVerde" style="flex-basis: 400px;">
             <h1 class="Titulo Linha">Resultados</h1>
             <h3 class="Subtitulo" style="background-color: #20402602;">• Faturamento •</h3>
-            <div id="div_faturamento" style="color:rgb(31, 57, 136);font-weight: bold;background-color: #20402602;">R$${faturamento}</div>
+            <div id="div_faturamento" style="color:rgb(31, 57, 136);font-weight: bold;background-color: #20402602;">${faturamento.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</div>
             <h3 class="Subtitulo" style="background-color: #20402602;">• Lucro •</h3>
-            <div id="div_lucro" style="color: darkgreen;font-weight: bold;background-color: #20402602;">R$${lucro}</div>
+            <div id="div_lucro" style="color: darkgreen;font-weight: bold;background-color: #20402602;">${lucro.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</div>
             <h3 class="Subtitulo" style="background-color: #20402602;">• Despesas Atuais •</h3>
-            <div id="div_prejuizo" style="color: darkred;font-weight: bold;background-color: #20402602;">R$${prejuizoTotal}</div>
+            <div id="div_prejuizo" style="color: darkred;font-weight: bold;background-color: #20402602;">${prejuizoTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</div>
         </div>`;
 }
 function bibliografia(){ //Função de mudar a calculadora para a bibliografia
@@ -257,9 +257,9 @@ function salvar(){ // Salva os valores vindos da DIV DE INSATISFAÇÃO nas vari�
         // Alterando o span novamente para os valores salvos
         span_salvar.innerHTML = `
         • Sacas produzidas por hectare plantado: ${sacasProduzidas} sacas <br>
-        • Preço de venda da saca de soja: R$${precoSaca} <br>
+        • Preço de venda da saca de soja: ${precoSaca.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})} <br>
         • Porcentagem de perdas devido quebra de safra: ${pctgmPerdas}% <br>
-        • Custo médio da safra por hectare: R$${custoMedio}`;
+        • Custo médio da safra por hectare: ${custoMedio.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
     }
     if(calculadora_atual == 'implementacao'){ // Salvando na variável de implementação
         distanciaSensor = Number(ipt_distanciaSensor.value);
@@ -281,7 +281,7 @@ function calc_producao(){
     let fatur = qtd_hectaresPlantados * sacasProduzidas * precoSaca;
     let preju = qtd_hectaresPlantados * sacasProduzidas * precoSaca * (pctgmPerdas/100);
     let luc = fatur - preju;
-    resultadoProducao.innerHTML = `R$${preju}`
+    resultadoProducao.innerHTML = `${preju.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`
     
     faturamento = fatur;
     lucro = luc;
@@ -289,9 +289,9 @@ function calc_producao(){
     prejuizoTotal = preju + custoMedio
     economia = prejuizo * 0.2; 
 
-    div_faturamento.innerHTML = `R$${faturamento}`;
-    div_lucro.innerHTML = `R$${lucro}`;
-    div_prejuizo.innerHTML = `R$${prejuizoTotal}`;
+    div_faturamento.innerHTML = `${faturamento.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
+    div_lucro.innerHTML = `${lucro.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
+    div_prejuizo.innerHTML = `${prejuizoTotal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
 
     // Setando as inputs automáticas para quando mudar de calculadora
     vpQtdComprimentoTalhao = qtdComprimentoTalhao;
@@ -325,7 +325,7 @@ function calc_implementacao(){ // Definição das variáveis
 
     let totalFinal = qtdSensores * totalPreco;
     // Mostra na div o custo de implementação
-    resultadoProducao.innerHTML = `R$${totalFinal.toFixed(2)}`;
+    resultadoProducao.innerHTML = `${totalFinal.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}`;
 
     let mes = totalFinal / economia;
 

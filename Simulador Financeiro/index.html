@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="assets/css/index.css" />
+  </head>
+
+  <body id="body">
+    <div class="main-container" id="mainContainer">
+      <div class="form-section">
+        <h1>Life Saver</h1>
+
+        <div class="paragraph-group">
+          <p class="form-description">
+            Bem-vindo(a) a calculadora financeira Life Saver!
+          </p>
+          <p class="form-description">
+            Digite o nome do hospital abaixo para começar:
+          </p>
+        </div>
+
+        <input type="text" id="inputNomeHospital" class="form-input" />
+
+        <div class="button-group">
+          <button class="btn" onclick="exibirCalculadora1()">
+            Corte de despesas
+          </button>
+          <button class="btn" onclick="carregarCalculadora2()">
+            Cálculo de custos
+          </button>
+        </div>
+
+        <div id="divAlert"></div>
+      </div>
+
+      <div class="image-section">
+        <img
+          src="assets/img/medical-team.png"
+          alt=""
+          height="128px"
+          width="128px"
+        />
+        <h2>Life Saver</h2>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  let carregarConteudo = ``;
+
+  let nomeHospital = "";
+
+  function exibirCalculadora1() {
+    nomeHospital = inputNomeHospital.value;
+
+    carregarConteudo = `
+      <style>
+        body,
+        html {
+          height: 100%;
+        }
+        body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          color: #fff;
+          text-align: center;
+          background-image: url(https://img.freepik.com/vetores-premium/fundo-de-ilustracao-vetorial-de-clinica-de-padrao-medico-sem-costura-papel-de-parede-de-saude-apresentacao-de-negocios-de-textura-repetida-bonita_153454-7404.jpg);
+        }
+        .main-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 30%;
+          height: 60%;
+        }
+        .form-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          padding: 60px 0 120px 0;
+          background-color: #d00000;
+          border-radius: 5px;
+        }
+        .paragraph-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        .form-description {
+          margin: 5px;
+        }
+        .form-input {
+          padding: 10px 20px;
+          margin-top: 5px;
+          border-radius: 20px;
+          border: none;
+        }
+        .button-group {
+          display: flex;
+          flex-direction: column;
+          margin-top: 35px;
+          margin-bottom: 30px;
+        }
+        .btn {
+          width: 200px;
+          padding: 10px 20px;
+          margin: 5px;
+          background-color: #fff;
+          color: #bf0603;
+          border-radius: 20px;
+          border: none;
+        }
+        .form-section h1 {
+          margin: 0;
+          margin-bottom: 15px;
+          margin-top: 50px;
+        }
+        .div-mensagem {
+          margin-top: 20px;
+        }
+      </style>
+      <div class="exit">
+        <button onclick="voltar()">Voltar</button>
+      </div>
+      <div class="main-container">
+        <div class="form-section">
+          <h1>Economia com Redução<br />de Complicações</h1>
+          <div class="paragraph-group">
+            <p class="form-description">Número de leitos na UTI:</p>
+            <input class="form-input" id="inputLeitosUTI" type="number" />
+          </div>
+          <div class="paragraph-group">
+            <p class="form-description">
+              Taxa média de complicações por<br />falha de monitoramento (%):
+            </p>
+            <input class="form-input" id="inputTaxaComplicacoes" type="number" />
+          </div>
+          <div class="paragraph-group">
+            <p class="form-description">Custo médio por complicação (R$):</p>
+            <input class="form-input" id="inputCustoComplicacoes" type="number" />
+          </div>
+          <button class="btn" onclick="calcularEconomiaReducaoComplicacoes()">
+            Calcular
+          </button>
+          <div class="div-mensagem" id="divMensagem"></div>
+        </div>
+      </div>
+    `;
+
+    if (nomeHospital === "") {
+      divAlert.innerHTML = `<span style = "background-color: yellow; color: red;">O nome do hospital deve ser preenchido!</span>`;
+    } else {
+      body.innerHTML = carregarConteudo;
+    }
+  }
+
+  function carregarCalculadora2() {
+    nomeHospital = inputNomeHospital.value;
+
+    carregarConteudo = `
+      <style>
+        body,
+        html {
+          min-height: 100%;
+        }
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+          color: #fff;
+          text-align: center;
+          background-image: url(https://img.freepik.com/vetores-premium/fundo-de-ilustracao-vetorial-de-clinica-de-padrao-medico-sem-costura-papel-de-parede-de-saude-apresentacao-de-negocios-de-textura-repetida-bonita_153454-7404.jpg);
+        }
+        .main-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 30%;
+          height: auto;
+          margin-top: 20px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .form-section {
+          height: 550px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          padding: 60px 0 120px 0;
+          background-color: #d00000;
+          border-radius: 5px;
+        }
+        .paragraph-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+        .form-description {
+          margin: 5px;
+        }
+        .form-input {
+          padding: 10px 20px;
+          margin-top: 5px;
+          border-radius: 20px;
+          border: none;
+        }
+        .button-group {
+          display: flex;
+          flex-direction: column;
+          margin-top: 35px;
+          margin-bottom: 30px;
+        }
+        .btn {
+          width: 200px;
+          padding: 10px 20px;
+          margin: 5px;
+          background-color: #fff;
+          color: #bf0603;
+          border-radius: 20px;
+          border: none;
+        }
+        .form-section h1 {
+          margin: 0;
+          margin-bottom: 15px;
+          padding-top: 20px;
+        }
+        .div-mensagem {
+          margin: 20px;
+        }
+      </style>
+      <div class="exit">
+        <button onclick="voltar()">Voltar</button>
+      </div>
+      <div class="main-container">
+        <div class="form-section">
+          <h1>Calculadora de Consumo<br />da Pulseira</h1>
+          <div class="paragraph-group">
+            <p class="form-description">Capacidade da bateria (mAh):</p>
+            <input class="form-input" id="input_bateria" type="number" />
+          </div>
+          <div class="paragraph-group">
+            <p class="form-description">Consumo da pulseira (mA):</p>
+            <input class="form-input" id="input_consumo" type="number" />
+          </div>
+          <div class="paragraph-group">
+            <p class="form-description">Horas de uso por dia:</p>
+            <input class="form-input" id="input_horas" type="number" />
+          </div>
+          <div class="paragraph-group">
+            <p class="form-description">Custo de energia por hora (R$):</p>
+            <input class="form-input" id="input_custo" type="number" />
+          </div>
+          <div class="button-group">
+            <button class="btn" onclick="calcularGuilheme()">Calcular</button>
+          </div>
+          <div class="div-mensagem" id="div_mensagem"></div>
+        </div>
+      </div>
+    `;
+
+    if (nomeHospital === "") {
+      divAlert.innerHTML = `<span style = "background-color: yellow; color: red;">O nome do hospital deve ser preenchido!</span>`;
+    } else {
+      body.innerHTML = carregarConteudo;
+    }
+  }
+
+  function calcularEconomiaReducaoComplicacoes() {
+    let quantidadeLeitos = Number(inputLeitosUTI.value);
+    let taxaComplicacoes = Number(inputTaxaComplicacoes.value) / 100;
+    let custoComplicacoes = Number(inputCustoComplicacoes.value);
+
+    let percentualReducao = 20 / 100;
+
+    let casosEvitados = quantidadeLeitos * taxaComplicacoes * percentualReducao;
+
+    let economiaAnual = casosEvitados * custoComplicacoes;
+
+    divMensagem.innerHTML = `
+            Estimativa de casos evitados <br> para o hospital ${nomeHospital}: ${casosEvitados} <br> <br>
+            Estimativa de economia anual <br> para o hospital ${nomeHospital}: R$ ${economiaAnual}
+        `;
+  }
+
+  function calcularGuilheme() {
+    let bateria = Number(input_bateria.value);
+    let consumo = Number(input_consumo.value);
+    let horas = Number(input_horas.value);
+    let custoHora = Number(input_custo.value);
+
+    let duracao = bateria / consumo;
+    let consumo_diario = consumo * horas;
+    let consumo_mensal = consumo_diario * 30;
+    let custo_diario = horas * custoHora;
+    let custo_mensal = custo_diario * 30;
+
+    div_mensagem.innerHTML = `Duração estimada da bateria: ${duracao} horas <br>
+         Consumo diário: ${consumo_diario} mAh <br>
+         Consumo mensal: ${consumo_mensal} mAh <br>
+         Custo diário de energia: R$ ${custo_diario.toFixed(2)} <br>
+         Custo mensal de energia: R$ ${custo_mensal.toFixed(2)}`;
+  }
+
+  function voltar(){
+    body.innerHTML = `
+      <div class="main-container" id="mainContainer">
+      <div class="form-section">
+        <h1>Life Saver</h1>
+
+        <div class="paragraph-group">
+          <p class="form-description">
+            Bem-vindo(a) a calculadora financeira Life Saver!
+          </p>
+          <p class="form-description">
+            Digite o nome do hospital abaixo para começar:
+          </p>
+        </div>
+
+        <input type="text" id="inputNomeHospital" class="form-input" />
+
+        <div class="button-group">
+          <button class="btn" onclick="exibirCalculadora1()">
+            Corte de despesas
+          </button>
+          <button class="btn" onclick="carregarCalculadora2()">
+            Cálculo de custos
+          </button>
+        </div>
+
+        <div id="divAlert"></div>
+      </div>
+
+      <div class="image-section">
+        <img
+          src="assets/img/medical-team.png"
+          alt=""
+          height="128px"
+          width="128px"
+        />
+        <h2>Life Saver</h2>
+      </div>
+    </div>
+    `;
+  }
+</script>

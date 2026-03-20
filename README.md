@@ -1,2 +1,2 @@
-# ProjetoPI-2026-01-Pt2
+# ProjetoPI-2026-01
 Sprint 2 do Primeiro semestre 

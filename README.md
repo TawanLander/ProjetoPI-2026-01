@@ -1,7 +1,9 @@
 ![Banner SPTECH](https://media.licdn.com/dms/image/v2/D4D3DAQFOlekSjtAe1g/image-scale_191_1128/B4DZc1zAjaHwAg-/0/1748954254399/sptechschool_cover?e=2147483647&v=beta&t=OiWtuPAWgJSTAUC-it1nsGS4YE_La2rgaFCPlAe_Zxo)
 -----
 
-# <img src="https://imgs.search.brave.com/AuuOUhZ9rrgAvXh20fnJEPCAm8tOFzNP1AIxUozSJ5I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/cG5nLXZlY3Rvci8y/MDI0MTAwMS9vdXJt/aWQvcG5ndHJlZS1z/bWlsaW5nLWZhY2Ut/d2l0aC10aHVtYnMt/dXAtZW1vamktcG5n/LWltYWdlXzEzOTk0/MzcxLnBuZw" width="120" align='center'><span style="font-size: 1.1em; font-weight: bold; line-height: 1.25;justify-content:center;text-align:center;">Monitoramento da Temperatura de Pacientes em UTI's</span>
+# <img src="https://imgs.search.brave.com/AuuOUhZ9rrgAvXh20fnJEPCAm8tOFzNP1AIxUozSJ5I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/cG5nLXZlY3Rvci8y/MDI0MTAwMS9vdXJt/aWQvcG5ndHJlZS1z/bWlsaW5nLWZhY2Ut/d2l0aC10aHVtYnMt/dXAtZW1vamktcG5n/LWltYWdlXzEzOTk0/MzcxLnBuZw" width="150" align='center'><span style="font-size: 1.1em; font-weight: bold; line-height: 1.25;justify-content:center;text-align:center;">Life Saver</span>
+
+### <span style='font-size: 1.2em'>➥ Monitoramento da Temperatura de Pacientes em UTI's</span>
 
 <div style="margin-top: 15px;">
     <p style="font-size: 1.1em; margin-bottom: 5px;">

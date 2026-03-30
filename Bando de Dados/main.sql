@@ -2,15 +2,13 @@ CREATE DATABASE LifeSaver;
 USE LifeSaver; 
 
 
-/*Beatriz Iwata Soares da Silva – 01261035
-Ezequiel Eduardo Cruz dos Santos – 01261116
-Gabriel Filgueiras de Campos – 01261020
-Guilherme Camargo de Paula – 01261082
-Gustavo Brun Faustino dos Santos - 01261031
-Gustavo de Souza Assis - 01261071
-Icaro Nunes Marques dos Santos - 01261064
-Kauê de Oliveira Silva - 01261046
-Letícia dos Santos Alves – 01261049*/
+/*Gabriel Ortiz dos Anjos Marsura – 01261144
+Tawan Lander Da Fonseca Rodrigues De Paula Moura – 01261067
+Gustavo de Souza Assis – 01261071
+Vinícius Guimarães Menezes – 01261000
+Leandro Bezerra Mendes – 01261051
+Andressa Lustro - 01261005
+*/
 
 CREATE TABLE Hospital (
 	id_Hospital INT PRIMARY KEY AUTO_INCREMENT NOT NULL,

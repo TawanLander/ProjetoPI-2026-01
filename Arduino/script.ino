@@ -9,9 +9,7 @@ void loop() {
     int valorLeitura = analogRead(PINO_SENSOR_TEMPERATURA);
     temperaturaCelsius = (valorLeitura * 5.0 / 1023.0) / 0.01;
 
-    Serial.print("Temperatura: ");
     Serial.print(temperaturaCelsius);
-    Serial.print(" C");
 
-    delay(2000)
+    delay(5000);
 }

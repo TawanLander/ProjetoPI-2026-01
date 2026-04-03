@@ -80,6 +80,15 @@ body {
 .card-grande {
     width: 400px;
 }
+#container_contato {
+    background-color: white;
+    padding: 25px;
+    border-radius: 20px;
+    width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: 0.3s;
+}
 
 .card:hover {
     transform: translateY(-10px);
@@ -242,15 +251,15 @@ input:focus {
 }
 
 #botao {
-    align-self: center;
-    padding: 12px 25px;
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    padding: 8px 20px;
     background-color: #e20a0a;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px rgb(0, 0, 0);
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
-    width: 35%;
+    text-align: center;
 }

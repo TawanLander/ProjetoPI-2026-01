@@ -177,6 +177,7 @@ Inicio do CSS do Login/Cadastro
     align-items: center;
     justify-content: center;
     width: 50%;
+    margin-left: 100px;
 }
 
 #container #container_campos h3 {

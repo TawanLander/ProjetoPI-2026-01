@@ -26,41 +26,53 @@
 
     <main>
       <div class="pai">
-        <div class="main-lista">
-          <input type="text" class="input" oninput="procurar()" id="ipt-procurar">
-          <nav class="main-nav">
-            <li class="lista">Sala 1</li>
-            <li class="lista">Sala 2</li>
-            <li class="lista">Sala 3</li>
-            <li class="lista">Sala 4</li>
-            <li class="lista">Sala 5</li>
-          </nav>
-        </div>
         <div class="div-dashboard">
         <div class="div-infos">
-          <div class="info">
-            <canvas id="info"></canvas>
+          <div class="info-grande">
+            
+            <div class="info-interna">
+              <b>Nome:</b> <span id="nome_bd">Nome</span> <br>
+              <b>Idade:</b> <span id="idade_bd">Idade</span> <br>
+              <b>Sexo:</b> <span id="sexo_bd">Feminino</span> <br>
+              <b>Telefone:</b> <span id="telefone_bd">11 90901818</span> <br>
+              <b>Tipo Sanguíneo:</b> <span id="sangue_bd">Sim</span> <br>
+              <b>Quarto:</b> <span id="quarto_bd">12</span> <br>
+              
+            </div>
+            <div class="info-interna">
+              <b>Acompanhante:</b> <span id="familiar_bd">Nome mãe</span> <br>
+              <b>⮩ Telefone:</b> <span id="telefone_bd">11 90901818</span> <br> <br>
+              <b>Acompanhante:</b> <span id="familiar_bd">Nome pai</span> <br>
+              <b>⮩ Telefone:</b> <span id="telefone_bd">11 90901818</span> <br>
+            </div>
+
           </div>
           <div class="info">
-            <canvas id="tempalta"></canvas>
+            <h3 class="titulo-temp">Temp. mais alta</h3>
+            <div class="div-temp"><svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#FF0000"><path d="m296-224-56-56 240-240 240 240-56 56-184-183-184 183Zm0-240-56-56 240-240 240 240-56 56-184-183-184 183Z"/></svg>
+            </div> 
+            <span class="div-valor" id="tempalta">34</span>
           </div>
+          
           <div class="info">
-            <canvas id="tempbaixa"></canvas>
-          </div>
+            <h3 class="titulo-temp">Temp. mais baixa</h3>
+            <div class="div-temp"><svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#0000FF"><path d="M480-200 240-440l56-56 184 183 184-183 56 56-240 240Zm0-240L240-680l56-56 184 183 184-183 56 56-240 240Z"/></svg>
+            </div> 
+            <span class="div-valor" id="tempbaixa">21</span>
+          </div> 
           <div class="info">
-            <canvas id="estabilidade"></canvas>
           </div>
           </div>
           <div class="dashboard">
             <canvas id="dashboard"></canvas>
           </div>
         </div>
-      </div>
+      </div> 
     </main>
 
     <footer>© 2026 Temperatura nas UTIs | Todos os direitos reservados</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="source/script.js"></script>
+    <script src="sources/script.js"></script>
   </body>
 </html>

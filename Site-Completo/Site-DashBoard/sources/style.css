@@ -101,34 +101,27 @@ ul {
     align-items: center;
 }
 
-main .main-lista {
-    width: 12.5dvw;
-    border-right: 3px solid black;
-    height: 90dvh;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 main .div-dashboard {
     display: flex;
     flex-direction: column;
-    width: 87.5dvw;
+    width: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
     gap: 50px;
     margin: 50px;
+    min-height: 100%;
 }
 
 main .div-infos {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     text-align: center;
-    width: 80%;
+    width: 85%;
     justify-content: space-between;
+    height: 15dvh;
 }
 
 main nav {
@@ -144,48 +137,86 @@ main .pai {
     align-items: center;
 }
 
-main .dashboard {
-    width: 80%;
-    height: 60dvh;
-    background-image: linear-gradient(to bottom, rgb(255, 190, 190) 0%, white 5%, white 95%, rgb(196, 205, 255) 100%);
-}
 
 .info,
-.dashboard {
-    justify-content: center;
+.dashboard,
+.info-grande {
+    position: relative;
+    justify-content: start;
     align-items: center;
-    text-align: center;
+    text-align: start;
     border: 2px solid black;
     border-radius: 20px;
     box-shadow: 0 0 5px black;
-}
-.info{
-    width: 15%;
-}
-.info:nth-child(1){
-    width: 45%;
-}
-
-main .input {
-    background-color: whitesmoke;
-    border: 2px solid black;
-    border-radius: 10px;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    padding: 10px 20px;
-    width: 90%;
-    margin-top: 7.5px;
-    transition: all 0.5s ease;
-    font-weight: 500;
-}
-
-.input:focus,
-.input:hover {
+    padding: 20px;
+    height: 100%;
+    font-weight: 550;
     background-color: white;
-    box-shadow: 0 1px 2px black;
 }
 
-@view-transition{
+.info {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+    "texto texto"
+    "icone temp";
+    font-size: large;
+    width: 18%;
+    min-height: 100%;
+
+}
+.titulo-temp{
+    grid-area: texto;
+    font-size: 1.55em;
+}
+.div-temp{
+    grid-area: icone;
+}
+.div-valor{
+    grid-area: temp;
+    padding-right: 25px;
+    font-size: 3.5em;
+}
+
+main .dashboard {
+    width: 85%;
+    height: 60dvh;
+    background-image: linear-gradient(to bottom, rgb(255, 190, 190) 0%, white 5%, white 95%, rgb(196, 205, 255) 100%);
+    box-shadow: 0 5px 15px black;
+}
+
+.info:nth-child(2) {
+    color: #FF0000
+}
+
+.info:nth-child(3) {
+    color: #0000FF
+}
+
+.info-grande {
+    width: 42%;
+    min-height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: large;
+}
+
+@view-transition {
     navigation: auto;
+}
+
+.info-interna {
+    width: 50%;
+}
+.info img {
+    width: 100%;
+    height: 100%;
+}
+.info:last-child{
+    padding: 10px;
+    background-image: url(./imgs/gauge.png);
+    background-size: cover;
 }

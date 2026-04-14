@@ -16,24 +16,19 @@
 
         <div id="container_campos">
             <h3>CADASTRO <br></h3>
-            <br><br>
-                <input type="text" id="ipt__nomeInst" placeholder="Nome da instituição">
-                <br><br>
-            
-                <input type="text" id="ipt_cnpjInst" placeholder="CNPJ da instituição">
-                <br><br>
+                <input type="text" id="ipt_idInst" placeholder="Identificador da Instituição" oninput="verificarCodigo()">
+                <div class="erro sumir" id="erro-idInst">Erro! O Id não pertence a nenhuma instituição.</div>
+                <input type="text" id="ipt_nome" placeholder="Nome" oninput="verififcarNome()">
 
-                <input type="text" id="input_emailInst" placeholder="Email da instituição">
-                <br><br>
+                <input type="text" id="ipt_emai" placeholder="Email" oninput="verififcarEmail()">
             
-                <button onclick="window.location.href='./cadastro-pt2.html'" id="botao">AVANÇAR</button>
-                <br><br>
+                <button onclick="guardarValores()" id="botao">AVANÇAR</button>
 
                 <div id="mensagem"></div>
-                <br><br>
 
-                <span>Já possui uma conta? <a href="../Site-Login/selecaoLogin.html">Logar</a></span>
+                <span>Já possui uma conta? <a href="../Site-Login/login.html">Logar</a></span>
         </div>
 
 </body>
 </html>
+<script src="./sources/script.js"></script>

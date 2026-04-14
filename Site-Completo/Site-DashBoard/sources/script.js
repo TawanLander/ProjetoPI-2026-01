@@ -26,6 +26,8 @@ var sensorDigital = new Chart(document.getElementById('dashboard').getContext('2
         }]
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
             x: {
                 beginAtZero: false,
@@ -37,8 +39,7 @@ var sensorDigital = new Chart(document.getElementById('dashboard').getContext('2
                 },
                 type: 'linear',
                 min: 10,
-                max: 40
-            }
+            },
         }
     }
 });

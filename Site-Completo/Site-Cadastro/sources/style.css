@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    
+
 }
 
 #container_header img {
@@ -45,10 +45,10 @@ body {
     align-items: center;
     gap: 150px;
     height: 400px;
-    background: linear-gradient(to top,#6f5cff, #6ea8ff,#8bbcff);
+    background: linear-gradient(to top, #6f5cff, #6ea8ff, #8bbcff);
 }
 
-#container_banner  h1 {
+#container_banner h1 {
     color: white;
     font-size: 100px;
 }
@@ -83,7 +83,7 @@ body {
 #footer {
     margin-top: 50px;
     padding: 40px 20px 20px;
-    background: linear-gradient( #8bbcff,#6ea8ff,#6f5cff);
+    background: linear-gradient(#8bbcff, #6ea8ff, #6f5cff);
     color: white;
 }
 
@@ -139,7 +139,7 @@ body {
     text-align: center;
     margin-top: 30px;
     padding-top: 10px;
-    border-top: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
     font-size: 14px;
 }
 
@@ -163,7 +163,7 @@ Inicio do CSS do Login/Cadastro
     width: 80vh;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to top,#6f5cff, #6ea8ff,#8bbcff);
+    background: linear-gradient(to top, #6f5cff, #6ea8ff, #8bbcff);
 }
 
 #container #logo img {
@@ -178,8 +178,11 @@ Inicio do CSS do Login/Cadastro
     justify-content: center;
     width: 50%;
     margin-left: 100px;
+    gap: 20px;
 }
-
+#container #container_campos span {
+    margin-top: -25px;
+}
 #container #container_campos h3 {
     text-align: center;
     color: red;
@@ -215,6 +218,7 @@ input:focus {
 }
 
 #botao {
+    margin-top: 15px;
     align-self: center;
     padding: 12px 25px;
     background-color: #e20a0a;
@@ -227,6 +231,16 @@ input:focus {
     cursor: pointer;
     width: 35%;
 }
-@view-transition{
+
+@view-transition {
     navigation: auto;
+}
+
+.erro{
+    color: #e20a0a;
+    font-size: 15px;
+    margin-top: -12px;
+}
+.sumir{
+    display: none;
 }

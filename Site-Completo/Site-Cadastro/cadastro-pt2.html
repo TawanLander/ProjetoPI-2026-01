@@ -16,40 +16,19 @@
 
         <div id="container_campos">
             <h3>CADASTRO <br></h3>
-            <br><br>
             
                 <input type="text" id="input_senha" placeholder="Senha">
-                <br><br>
             
                 <input type="text" id="input_repetirSenha" placeholder="Repetir senha">
-                <br><br><br><br><br><br><br><br>
             
                 <button onclick="cadastrar()" id="botao">CADASTRAR</button>
-                <br><br>
 
                 <div id="mensagem"></div>
-                <br><br>
 
-                <span>Já possui uma conta? <a href="../Site-Login/selecaoLogin.html">Logar</a></span>
+                <span>Já possui uma conta? <a href="../Site-Login/login.html">Logar</a></span>
         </div>
 
 </body>
 </html>
 
-<script>
-    function cadastrar(){
-        let senha = input_senha.value;
-        let repetirSenha = input_repetirSenha.value;
-
-        if(senha.length > 8 && senha.includes('@') && repetirSenha == senha){
-            alert(`Usuário logado com sucesso`)
-            div_mensagem.innerHTML = `Cadastro realizado com sucesso!`
-        }
-        else if(senha.length < 8 || !senha.includes(`@`)){
-            alert(`Sua senha deve conter pelo menos 8 caracteres e @`)
-        }
-        else if(senha != repetirSenha){
-            alert (`As senhas não coincidem`)
-        }
-    }
-</script>
+<script src="./sources/script.js"></script>

@@ -169,7 +169,7 @@ main .pai {
 
 .titulo-temp {
     grid-area: texto;
-    font-size: 1.4em;
+    font-size: 1.5rem;
 }
 
 .div-temp {
@@ -180,7 +180,7 @@ main .pai {
     grid-area: temp;
     padding-right: 25px;
     align-self: center;
-    font-size: 3.5em;
+    font-size: 4rem;
 }
 
 main .dashboard {

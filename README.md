@@ -7,7 +7,7 @@
 
 <div style="margin-top: 15px;">
     <p style="font-size: 1.1em; margin-bottom: 5px;">
-        <b>👉 Projeto realizado pelos integrantes:</b>
+        <b>Projeto realizado pelos integrantes:</b>
     </p>
     <p style="font-size: 1.1em; line-height: 1.5; margin-left: 0;">
         <b>Andressa</b> Lustro <br>
@@ -19,15 +19,15 @@
     </p>
 </div>
 
-# <span style="font-size: 1.1em">🔌 | Situação do Projeto </span>
+# <span style="font-size: 1.1em"> | Situação do Projeto </span>
 ![status](https://img.shields.io/badge/Em_Desenvolvimento-yellow?style=for-the-badge) 
 
-# <span style="font-size: 1.1em">❤️ | Tema do Projeto </span>
-<span style ="font-size: 1.1em;text-align: justify">👉 O projeto tem como <b>principal objetivo</b> usar <b>sensores</b>, prototipados em arduino, junto ao banco de dados <b>mysql</b> para: <br>
+# <span style="font-size: 1.1em"> | Tema do Projeto </span>
+<span style ="font-size: 1.1em;text-align: justify"> O projeto tem como <b>principal objetivo</b> usar <b>sensores</b>, prototipados em arduino, junto ao banco de dados <b>mysql</b> para: <br>
 Desenvolver uma <b>dashboard</b> dos dados de <b>temperatura corporal</b> coletados em <b>ambientes hospitalares</b> de, por meio de um website que será feito com <b>HTML</b> e <b>Javascript</b> e terá seu protótipo feito com <b>Figma</b>. Para então <b>Facilitar a logística</b> de pequenos e médios hospitais em relação ao manuseio de pacientes.
 </span>
 
-# <span style='font-size: 1.1em'>🤔 | Contexto </span>
+# <span style='font-size: 1.1em'> | Contexto </span>
 <span style ="font-size: 1.1em;text-align: justify"> A <b>ThermoTrak</b> é um projeto que busca solucionar a falta de monitoramento contínuo da temperatura em pacientes de UTI, um problema agravado pela sobrecarga da equipe de enfermagem e pelo controle manual. Pequenas variações de temperatura podem indicar complicações graves, como infecções, tornando essencial uma identificação rápida. A proposta consiste em um sistema com sensores IoT integrados a uma pulseira, que monitora a temperatura em tempo real e envia os dados para uma plataforma digital. O sistema gera alertas automáticos quando há alterações fora do normal, permitindo intervenções mais rápidas. Com isso, o ThermoTrak contribui para aumentar a segurança dos pacientes, otimizar o trabalho da equipe de saúde e reduzir riscos e custos operacionais nas UTIs.</span>
 
 # <span style="font-size: 1.1em"> </> | Linguagens e Tecnologias</span>

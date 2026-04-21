@@ -26,7 +26,9 @@ CREATE TABLE Hospital (
     email VARCHAR(50) UNIQUE NOT NULL,
     CONSTRAINT chkEmail CHECK (email LIKE '%@%' AND email LIKE '%.com%'),
     senha VARCHAR(50) NOT NULL,
-    telefone VARCHAR(15)
+    telefone VARCHAR(15),
+	fkEndereco INT,
+	FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
 
 CREATE TABLE Quarto (
@@ -61,10 +63,7 @@ CREATE TABLE Paciente (
     cpf CHAR(11) NOT NULL,
     fkEnfermeiro INT,
     CONSTRAINT fkPacienteEnfermeiro
-        FOREIGN KEY (fkEnfermeiro) REFERENCES Enfermeiro(idEnfermeiro),
-	fkPulseira INT,
-    CONSTRAINT fkPacientePulseira
-		FOREIGN KEY (fkPulseira) REFERENCES Pulseira(idPulseira)
+        FOREIGN KEY (fkEnfermeiro) REFERENCES Enfermeiro(idEnfermeiro)
 );
 
 CREATE TABLE Cama (
@@ -84,7 +83,7 @@ CREATE TABLE Pulseira (
     idPulseira INT PRIMARY KEY AUTO_INCREMENT,
     intervaloMedicao INT NOT NULL,
     statusPul VARCHAR(20),
-    fkPaciente INT,
+    fkPaciente INT UNIQUE,
     CONSTRAINT fkPulseiraPaciente
 		FOREIGN KEY (fkPaciente) REFERENCES Paciente(idPaciente)
 );
@@ -109,7 +108,7 @@ CREATE TABLE Alertas (
 		FOREIGN KEY (fkRegistro) REFERENCES RegistroTemperatura(idRegistro),
 	fkPulseira INT,
     CONSTRAINT fkAlertaPulseira
-		FOREIGN KEY (fkPulseira) REFERENCES Temperatura(idTemperatura)
+		FOREIGN KEY (fkPulseira) REFERENCES Pulseira(idPulseira)
 );
 
 CREATE TABLE Acompanhante (

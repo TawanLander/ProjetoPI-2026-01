@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Calculadora de Plantão</title>
+
+<link rel="stylesheet" href="./sources/style.css">
+<script src="./sources//script.js"></script>
+</head>
+ <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home"
+    />
+
+<body>
+
+<div class="c_geral">
+<div class="sidebar">
+        <div class="logo">
+          <img src="../imgs/TechVita.png" />
+        </div>
+        <div class="navbar">
+          <a href="#">
+            <div class="nav">
+              <span class="material-symbols-outlined"> home </span>
+              <span class="link" onclick="window.location.href='../Site-Institucional/index.html'">Home</span>
+            </div>
+          </a>
+          <a href="#">
+            <div class="nav">
+              <span class="material-symbols-outlined"> home </span>
+              <span class="link">Profile</span>
+            </div>
+          </a>
+          <a href="#">
+            <div class="nav">
+              <span class="material-symbols-outlined"> home </span>
+              <span class="link">Logout</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="card">
+
+    
+
+
+    <h3>Calculadora de plantão</h3>
+
+    <div class="inputs">
+        <div class="laps">
+            <span>Horas trabalhadas por enfermeiro por dia</span>
+            <input id="ipt_horas" type="number">
+        </div>
+        <div class="laps">
+            <span>Valor da hora de cada enfermeiro</span>
+            <input id="ipt_valorHora" type="number">
+        </div>
+        <div class="laps">
+            <span>Quantidade de enfermeiros</span>
+            <input id="ipt_qtdEnfermeiros" type="number">
+        </div>
+        <div class="laps">
+            <span>Tempo medio de verificacao de temperatura por paciente em minutos</span>
+            <input id="ipt_tempo" type="number">
+        </div>
+        
+        
+        
+
+    </div>
+
+    <button onclick="calcular()">CALCULAR</button>
+
+    <div class="resultado">
+        <div class="resultados">
+            <label for="">Total de gasto por mes</label>
+            <div id="total">R$ 0.00</div>
+        </div>
+        <div class="resultados">
+            <label for="">Total com economia de produtividade</label>
+            <div id="totalC">R$ 0.00</div>
+        </div>
+    
+     </div>
+     <div id="div_diferenca"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</body>
+</html>

@@ -16,16 +16,16 @@
         <img src="../imgs/TechVita.png" />
       </div>
       <div class="navbar">
-        <a href="../Site-Institucional/index.html">
+        <a href="../Site-Pacientes/pacientes.html">
           <div class="nav">
-            <span class="material-symbols-outlined"> home </span>
-            <span class="link">Home</span>
+            <span class="material-symbols-outlined"> line_start_arrow_notch </span>
+            <span class="link">Voltar</span>
           </div>
         </a>
         <a href="#">
           <div class="nav">
-            <span class="material-symbols-outlined"> account_circle </span>
-            <span class="link">Profile</span>
+            <span class="material-symbols-outlined"> home </span>
+            <span class="link">Home</span>
           </div>
         </a>
         <a href="#">
@@ -65,41 +65,33 @@
         </label>
         <label>
           Telefone do Paciente:
-          <input
-            type="number"
-            placeholder="Somemte Números"
-            id="ipt-telefone"
-          />
+          <input type="number" placeholder="Somemte Números" id="ipt-telefone"/>
         </label>
         <label>
           Tipo Sanguíneo:
-          <input type="text" maxlength="3" id="ipt-sangue" />
+          <input type="text" maxlength="3" id="ipt-sangue"/>
         </label>
         <label>
           Acompanhante:
-          <input type="text" id="ipt-acompanhante1" />
+          <input type="text" id="ipt-acompanhante1"/>
         </label>
         <label>
           Telefone do Acompanhante:
-          <input
-            type="number"
-            placeholder="Somemte Números"
-            id="ipt-telefoneAcompanhante1"
-          />
+          <input type="number" placeholder="Somemte Números" id="ipt-telefoneAcompanhante1"/>
         </label>
         <label>
           Acompanhante:
-          <input type="text" id="ipt-acompanhante2" />
+          <input type="text" id="ipt-acompanhante2"/>
         </label>
         <label>
           Telefone do Acompanhante:
-          <input
-            type="number"
-            placeholder="Somemte Números"
-            id="ipt-telefoneAcompanhante2"
-          />
+          <input type="number" placeholder="Somemte Números" id="ipt-telefoneAcompanhante2"/>
         </label>
-      </div>
+    </div>
+    <div id="erro" class="erro sumir">
+        Erro! Pulseira já em uso!
+        <button onclick="desvincularPaciente()">Desvincular Paciente</button>
+    </div>
     </div>
   </body>
 </html>

@@ -86,10 +86,12 @@ img {
     text-align: center;
     gap: 30px;
 }
-.card{
+
+.card {
     width: 50%;
 }
-.info{
+
+.info {
     width: 50%;
     gap: 15px;
     display: flex;
@@ -104,19 +106,21 @@ h1 {
     font-weight: 800;
     margin-bottom: 20px;
 }
-select{
+
+select {
     width: 70%;
     padding: 6px 2.5px;
     outline: none;
     font-size: large;
     border-radius: 10px;
 }
-label{
+
+label {
     text-align: start;
     width: 70%;
 }
 
-input{
+input {
     font-size: large;
     text-align: center;
     display: block;
@@ -128,10 +132,26 @@ input{
     border-radius: 10px;
 }
 
-input:hover{
+input:hover {
     border: 2px solid black;
 }
 
-.sumir{
+.sumir {
     display: none;
+}
+
+.erro{
+    color: red;
+    font-size: x-large;
+}
+
+button{
+    padding: 6px 2.5px;
+    justify-self: center;
+    display: block;
+    width: 70%;    
+    margin: 7px;
+    border: 2px solid black;
+    border-radius: 10px;
+    cursor: pointer;
 }

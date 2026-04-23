@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Pacientes</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <link rel="stylesheet" href="./sources/style-pacientes.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo">
+        <img src="../imgs/TechVita.png" />
+      </div>
+      <div class="navbar">
+        <a href="../Site-Institucional/index.html">
+          <div class="nav">
+            <span class="material-symbols-outlined"> home </span>
+            <span class="link">Home</span>
+          </div>
+        </a>
+        <a href="#">
+          <div class="nav">
+            <span class="material-symbols-outlined"> account_circle </span>
+            <span class="link">Profile</span>
+          </div>
+        </a>
+        <a href="#">
+          <div class="nav">
+            <span class="material-symbols-outlined"> logout </span>
+            <span class="link">Logout</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <h1>Selecione a pulseira para começar!</h1>
+        <select id="select-pulseiras" onchange="verificarPulseira()">
+          <option hidden selected disabled>Selecione uma Pulseira</option>
+          <option>Pulseira 1</option>
+          <option>Pulseira 2</option>
+          <option>Pulseira 3</option>
+          <option>Pulseira 4</option>
+          <option>Pulseira 5</option>
+        </select>
+      </div>
+
+      <div id="info" class="info sumir">
+        <label>
+          Nome:
+          <input type="text" id="ipt-nome" />
+        </label>
+        <label>
+          Gênero:
+          <input type="text" id="ipt-genero" />
+        </label>
+        <label>
+          Data de Nascimento:
+          <input type="date" id="ipt-dtNascimento" />
+        </label>
+        <label>
+          Telefone do Paciente:
+          <input
+            type="number"
+            placeholder="Somemte Números"
+            id="ipt-telefone"
+          />
+        </label>
+        <label>
+          Tipo Sanguíneo:
+          <input type="text" maxlength="3" id="ipt-sangue" />
+        </label>
+        <label>
+          Acompanhante:
+          <input type="text" id="ipt-acompanhante1" />
+        </label>
+        <label>
+          Telefone do Acompanhante:
+          <input
+            type="number"
+            placeholder="Somemte Números"
+            id="ipt-telefoneAcompanhante1"
+          />
+        </label>
+        <label>
+          Acompanhante:
+          <input type="text" id="ipt-acompanhante2" />
+        </label>
+        <label>
+          Telefone do Acompanhante:
+          <input
+            type="number"
+            placeholder="Somemte Números"
+            id="ipt-telefoneAcompanhante2"
+          />
+        </label>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="./sources/pacientes.js" defer></script>

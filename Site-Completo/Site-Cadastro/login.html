@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./sources/style.css">
+    <link rel="stylesheet" href="./sources/style-login.css">
     <link rel="icon" href="#" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
@@ -15,23 +15,22 @@
         </div>
         <div id="container_campos">
             <h3>LOGIN <br> Enfermeiro</h3>
-            <br><br>
-            
-                <input type="text" id="ipt_login" placeholder="Login">
-                <br><br>
-            
-                <input type="text" id="ipt_senha" placeholder="Senha">
-                <br><br>
+                <div>
+                    <input type="text" id="ipt_email" placeholder="Login" oninput="verificarEmail()">
+                    <div class="erro sumir" id="erro-email">Erro! Verifique a digitação do email.</div>
+                </div>
+                <div>
+                    <input type="text" id="input_senha" placeholder="Senha" oninput="verificarSenha(2)">
+                    <div class="erro sumir" id="erro-senha"></div>
+                </div>
             
                 <button onclick="/*logar()*/window.location='../Site-Pacientes/pacientes.html'" id="botao">Entrar</button>
-                <br><br>
 
                 <div id="mensagem"></div>
-                <br><br>
 
-                <span>Ainda nao tem uma conta? <a href="../Site-Cadastro/cadastro.html" onclick="cadastro()">Cadastrar</a></span>
+                <span>Ainda nao tem uma conta? <a href="./cadastro.html" onclick="cadastro()">Cadastrar</a></span>
         </div>
     </div>
-    
 </body>
 </html>
+<script src="./sources/script.js"></script>

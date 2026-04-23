@@ -17,18 +17,20 @@
         <div id="container_campos">
             <h3>CADASTRO <br></h3>
             
-                <input type="text" id="input_senha" placeholder="Senha">
+                <input type="text" id="input_senha" placeholder="Senha" oninput="verificarSenha(2)">
+                <div class="erro sumir" id="erro-senha"></div>
             
-                <input type="text" id="input_repetirSenha" placeholder="Repetir senha">
+                <input type="text" id="input_repetirSenha" placeholder="Repetir senha" oninput="verificarSenha(1)">
+                <div class="erro sumir" id="erro-repetirSenha">As senha devem coincidir!</div>
             
                 <button onclick="cadastrar()" id="botao">CADASTRAR</button>
 
                 <div id="mensagem"></div>
 
-                <span>Já possui uma conta? <a href="../Site-Login/login.html">Logar</a></span>
+                <span>Já possui uma conta? <a href="./login.html">Logar</a></span>
         </div>
 
 </body>
 </html>
 
-<script src="./sources/script.js"></script>
+<script src="./sources/script.js" defer></script>

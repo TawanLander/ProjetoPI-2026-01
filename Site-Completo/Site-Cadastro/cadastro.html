@@ -18,17 +18,17 @@
             <h3>CADASTRO <br></h3>
                 <input type="text" id="ipt_idInst" placeholder="Identificador da Instituição" oninput="verificarCodigo()">
                 <div class="erro sumir" id="erro-idInst">Erro! O Id não pertence a nenhuma instituição.</div>
-                <input type="text" id="ipt_nome" placeholder="Nome" oninput="verififcarNome()">
+                <input type="text" id="ipt_nome" placeholder="Nome" oninput="verificarNome()">
 
-                <input type="text" id="ipt_emai" placeholder="Email" oninput="verififcarEmail()">
-            
+                <input type="text" id="ipt_email" placeholder="Email" oninput="verificarEmail()">
+                <div class="erro sumir" id="erro-email">Erro! Verifique a digitação do email.</div>
                 <button onclick="guardarValores()" id="botao">AVANÇAR</button>
 
                 <div id="mensagem"></div>
 
-                <span>Já possui uma conta? <a href="../Site-Login/login.html">Logar</a></span>
+                <span>Já possui uma conta? <a href="./login.html">Logar</a></span>
         </div>
 
 </body>
 </html>
-<script src="./sources/script.js"></script>
+<script src="./sources/script.js" defer></script>

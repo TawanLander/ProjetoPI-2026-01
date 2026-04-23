@@ -1,75 +1,127 @@
-CREATE DATABASE LifeSaver;
-USE LifeSaver; 
+CREATE DATABASE PI2UTI;
+USE PI2UTI;
 
-
-/*Gabriel Ortiz dos Anjos Marsura – 01261144
-Tawan Lander Da Fonseca Rodrigues De Paula Moura – 01261067
-Gustavo de Souza Assis – 01261071
-Vinícius Guimarães Menezes – 01261000
-Leandro Bezerra Mendes – 01261051
+/*
 Andressa Lustro - 01261005
+Gabriel Ortiz dos Anjos Marsura – 01261144
+Gustavo de Souza Assis – 01261071
+Leandro Bezerra Mendes – 01261051
+Tawan Lander Da Fonseca Rodrigues De Paula Moura – 01261067
+Vinícius Guimarães Menezes – 01261000
 */
 
+CREATE TABLE Endereco (
+    idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+    logradouro VARCHAR(45) NOT NULL,
+    numero VARCHAR(5) NOT NULL,
+    bairro VARCHAR(45) NOT NULL,
+    cep VARCHAR(10) NOT NULL,
+    complemento VARCHAR(30)
+);
+
 CREATE TABLE Hospital (
-	id_Hospital INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    razaoSocial_Hospital VARCHAR(100) NOT NULL,
-    endereco_Hospital VARCHAR(100) NOT NULL,
-    email_Hospital VARCHAR(50) UNIQUE NOT NULL,
-    senha_Hospital VARCHAR(20) NOT NULL,
-    qtdPulseira_Hospital INT NOT NULL,
-    CONSTRAINT chkEmail CHECK (email_Hospital LIKE '%@%')
+    idHospital INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    endereco VARCHAR(100) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    CONSTRAINT chkEmail CHECK (email LIKE '%@%' AND email LIKE '%.com%'),
+    senha VARCHAR(50) NOT NULL,
+    telefone VARCHAR(15),
+	fkEndereco INT,
+	FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
+);
+
+CREATE TABLE Quarto (
+	idQuarto INT PRIMARY KEY AUTO_INCREMENT,
+    ala VARCHAR(5),
+    qtdCamas INT NOT NULL,
+    fkHospital INT,
+    CONSTRAINT fkQuartoHospital
+    FOREIGN KEY (fkHospital) REFERENCES Hospital(idHospital)
 );
 
 CREATE TABLE Enfermeiro (
-	id_Enfermeiro INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome_Enfermeiro VARCHAR(50) NOT NULL,
-    numeroCracha_Enfermeiro INT NOT NULL,
-    senha_Enfermeiro VARCHAR(20) NOT NULL,
-    cargo_Enfermeiro VARCHAR(50) NOT NULL,
-    CONSTRAINT chkEnfermeiro CHECK (cargo_enfermeiro IN('Enfermeiro', 'Enfermeiro-Chefe'))
+    idEnfermeiro INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    numeroCracha INT NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    CONSTRAINT chkEmail CHECK (email LIKE '%@%' AND email LIKE '%.com%'),
+    senha VARCHAR(50) NOT NULL,
+    cargo VARCHAR(30) NOT NULL,
+    CONSTRAINT chkCargo CHECK (cargo IN ('Enfermeiro', 'Gerente')),
+    fkHospital INT,
+    CONSTRAINT fkEnfermeiroHospital
+        FOREIGN KEY (fkHospital) REFERENCES Hospital(idHospital)
 );
 
 CREATE TABLE Paciente (
-	id_Paciente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome_Paciente VARCHAR(50) NOT NULL,
-    nomeEnfermeiro_Paciente VARCHAR(50) NOT NULL,
-    dataNascimento_Paciente DATE NOT NULL,
-    cpf_Paciente CHAR(15) NOT NULL,
-    numeroQuarto_Paciente INT NOT NULL,
-    idPulseira_Paciente INT NOT NULL
+    idPaciente INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    dataNascimento DATE NOT NULL,
+    tipoSanguineo VARCHAR(3) NOT NULL,
+    sexo CHAR(1) NOT NULL,
+    cpf CHAR(11) NOT NULL,
+    fkEnfermeiro INT,
+    CONSTRAINT fkPacienteEnfermeiro
+        FOREIGN KEY (fkEnfermeiro) REFERENCES Enfermeiro(idEnfermeiro)
+);
+
+CREATE TABLE Cama (
+	idCama INT PRIMARY KEY AUTO_INCREMENT,
+    fkQuarto INT,
+    CONSTRAINT fkCamaQuarto
+		FOREIGN KEY (fkQuarto) REFERENCES Quarto(idQuarto),
+	fkHospital INT,
+    CONSTRAINT fkCamaHospital
+		FOREIGN KEY (fkHospital) REFERENCES Hospital(idHospital),
+	fkPaciente INT,
+    CONSTRAINT fkCamaPaciente
+		FOREIGN KEY (fkPaciente) REFERENCES Paciente(idPaciente)
 );
 
 CREATE TABLE Pulseira (
-	numero_Pulseira INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    intervaloMedicao_Pulseira INT NOT NULL
+    idPulseira INT PRIMARY KEY AUTO_INCREMENT,
+    intervaloMedicao INT NOT NULL,
+    statusPul VARCHAR(20),
+    fkPaciente INT UNIQUE,
+    CONSTRAINT fkPulseiraPaciente
+		FOREIGN KEY (fkPaciente) REFERENCES Paciente(idPaciente)
 );
 
 CREATE TABLE RegistroTemperatura (
-	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    temperatura_RegistroTemperatura INT NOT NULL,
-    data_RegistroTemperatura DATE NOT NULL,
-    hora_RegistroTemperatura TIME NOT NULL,
-    nome_Paciente VARCHAR(50) NOT NULL,
-    numero_Pulseira INT NOT NULL
+    idRegistro INT PRIMARY KEY AUTO_INCREMENT,
+    temperatura DECIMAL(4,1) NOT NULL,
+    dataRegistro DATE NOT NULL,
+    horaRegistro TIME NOT NULL,
+    fkPulseira INT,
+    CONSTRAINT fkRegistroPulseira
+        FOREIGN KEY (fkPulseira) REFERENCES Pulseira(idPulseira),
+    CONSTRAINT chkTemp CHECK (temperatura BETWEEN 30 AND 45)
 );
 
-CREATE TABLE EntradaSaidaPaciente (
-		id_EntradaSaidaPaciente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-        dataEntrada_Paciente DATE NOT NULL,
-        horaEntrada_Paciente TIME NOT NULL,
-        dataSaida_Paciente DATE NOT NULL,
-		horaSaida_Paciente TIME NOT NULL
+CREATE TABLE Alertas (
+	idAlerta INT PRIMARY KEY AUTO_INCREMENT,
+    tempMax FLOAT NOT NULL,
+    tempMin FLOAT NOT NULL,
+    fkRegistro INT,
+    CONSTRAINT fkAlertaRegistro
+		FOREIGN KEY (fkRegistro) REFERENCES RegistroTemperatura(idRegistro),
+	fkPulseira INT,
+    CONSTRAINT fkAlertaPulseira
+		FOREIGN KEY (fkPulseira) REFERENCES Pulseira(idPulseira)
 );
 
-CREATE TABLE Leito (
-	id_Leito INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    numeroQuarto_Leito INT NOT NULL,
-    cama_Leito VARCHAR(50) NOT NULL
+CREATE TABLE Acompanhante (
+	idAcompanhante INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50),
+    telefone VARCHAR(13),
+    fkPaciente INT,
+    CONSTRAINT fkAcompanhantePaciente
+    FOREIGN KEY (fkPaciente) REfERENCES Paciente(idPaciente)
 );
 
-ALTER TABLE Hospital ADD COLUMN telefone_Hospital VARCHAR(15);
-
-ALTER TABLE Enfermeiro MODIFY COLUMN senha_Enfermeiro VARCHAR(50);
-
-ALTER TABLE RegistroTemperatura ADD CONSTRAINT chkTemperatura
-	CHECK (temperatura_RegistroTemperatura BETWEEN 30 AND 45);
+CREATE TABLE Contato (
+	nome VARCHAR(50),
+    email VARCHAR(50),
+    mensagem VARCHAR(250)
+);

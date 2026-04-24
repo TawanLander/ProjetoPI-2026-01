@@ -4,73 +4,118 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechVita - DashBoard</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
     <link rel="stylesheet" href="./sources/style.css" />
-    <link rel="icon" href="https://imgs.search.brave.com/UsZdzcgzetWNrKE34zhFobRvljzQ3FPOM-w8JJddvKM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudmV4ZWxzLmNv/bS9tZWRpYS91c2Vy/cy8zLzE5OTk3MC9p/c29sYXRlZC9wcmV2/aWV3L2M0NjVmYTc0/Yzg5NGI0ZWJiMTU5/MDAzZjg0NWYxNzJk/LWljb25lLWRlLXRl/cm1vbWV0cm8tYWx0/by5wbmc">
+    <link rel="icon" href="../logo.png" />
   </head>
   <body>
-    <header>
-      <div class="logo"><span>TechVita</span><span>Soluções</span></div>
-      <div class="header-lista">
-        <nav class="header-nav">
-          <ul>
-            <li>
-              <a href="../Site-Pacientes/pacientes.html">Voltar</a>
-            </li>
-            <li>
-              <a href="">Conta</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
     <main>
       <div class="pai">
+        <div class="sidebar">
+          <div class="logo">
+            <img src="../imgs/TechVita.png" />
+          </div>
+          <div class="navbar">
+            <a href="../Site-Pacientes/pacientes.html">
+              <div class="nav">
+                <span class="material-symbols-outlined"> line_start_arrow_notch </span>
+                <span class="link">Voltar</span>
+              </div>
+            </a>
+            <a href="../Site-Cadastro/pacientes_cadastro.html">
+              <div class="nav">
+                <span class="material-symbols-outlined"> add </span>
+                <span class="link">Novo Paciente</span>
+              </div>
+            </a>
+            <a href="#">
+              <div class="nav">
+                <span class="material-symbols-outlined"> Logout </span>
+                <span class="link">Sair</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <div class="div-dashboard">
-        <div class="div-infos">
-          <div class="info-grande">
-            
-            <div class="info-interna">
-              <b>Nome:</b> <span id="nome_bd">Nome</span> <br>
-              <b>Idade:</b> <span id="idade_bd">Idade</span> <br>
-              <b>Sexo:</b> <span id="sexo_bd">Feminino</span> <br>
-              <b>Telefone:</b> <span id="telefone_bd">11 90901818</span> <br>
-              <b>Tipo Sanguíneo:</b> <span id="sangue_bd">Sim</span> <br>
-              <b>Quarto:</b> <span id="quarto_bd">12</span> <br>
-              
+          <div class="div-infos">
+            <div class="info-grande">
+              <div class="info-interna">
+                <b>Nome:</b> <span id="nome_bd">Nome</span> <br />
+                <b>Idade:</b> <span id="idade_bd">Idade</span> <br />
+                <b>Sexo:</b> <span id="sexo_bd">Feminino</span> <br />
+                <b>Telefone:</b> <span id="telefone_bd">11 90901818</span>
+                <br />
+                <b>Tipo Sanguíneo:</b> <span id="sangue_bd">Sim</span> <br />
+                <b>Quarto:</b> <span id="quarto_bd">12</span> <br />
+              </div>
+              <div class="info-interna">
+                <b>Acompanhante:</b> <span id="familiar_bd">Nome mãe</span>
+                <br />
+                <b>⮩ Telefone:</b> <span id="telefone_bd">11 90901818</span>
+                <br />
+                <br />
+                <b>Acompanhante:</b> <span id="familiar_bd">Nome pai</span>
+                <br />
+                <b>⮩ Telefone:</b> <span id="telefone_bd">11 90901818</span>
+                <br />
+              </div>
             </div>
-            <div class="info-interna">
-              <b>Acompanhante:</b> <span id="familiar_bd">Nome mãe</span> <br>
-              <b>⮩ Telefone:</b> <span id="telefone_bd">11 90901818</span> <br> <br>
-              <b>Acompanhante:</b> <span id="familiar_bd">Nome pai</span> <br>
-              <b>⮩ Telefone:</b> <span id="telefone_bd">11 90901818</span> <br>
+            <div class="info">
+              <h3 class="titulo-temp">Temp. mais alta</h3>
+              <div class="div-temp">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="80px"
+                  viewBox="0 -960 960 960"
+                  width="80px"
+                  fill="#FF0000"
+                >
+                  <path
+                    d="m296-224-56-56 240-240 240 240-56 56-184-183-184 183Zm0-240-56-56 240-240 240 240-56 56-184-183-184 183Z"
+                  />
+                </svg>
+              </div>
+              <span class="div-valor" id="tempalta">38°</span>
             </div>
 
-          </div>
-          <div class="info">
-            <h3 class="titulo-temp">Temp. mais alta</h3>
-            <div class="div-temp"><svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#FF0000"><path d="m296-224-56-56 240-240 240 240-56 56-184-183-184 183Zm0-240-56-56 240-240 240 240-56 56-184-183-184 183Z"/></svg>
-            </div> 
-            <span class="div-valor" id="tempalta">38°</span>
-          </div>
-          
-          <div class="info">
-            <h3 class="titulo-temp">Temp. mais baixa</h3>
-            <div class="div-temp"><svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#0000FF"><path d="M480-200 240-440l56-56 184 183 184-183 56 56-240 240Zm0-240L240-680l56-56 184 183 184-183 56 56-240 240Z"/></svg>
-            </div> 
-            <span class="div-valor" id="tempbaixa">34°</span>
-          </div> 
-          <div class="info">
-            <div class="grafico"> < 34° <br> Atenção! </div>
-            <div class="grafico"> Estável </div>
-            <div class="grafico"> > 36.5° <br> Atenção!</div>
-          </div>
+            <div class="info">
+              <h3 class="titulo-temp">Temp. mais baixa</h3>
+              <div class="div-temp">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="80px"
+                  viewBox="0 -960 960 960"
+                  width="80px"
+                  fill="#0000FF"
+                >
+                  <path
+                    d="M480-200 240-440l56-56 184 183 184-183 56 56-240 240Zm0-240L240-680l56-56 184 183 184-183 56 56-240 240Z"
+                  />
+                </svg>
+              </div>
+              <span class="div-valor" id="tempbaixa">34°</span>
+            </div>
+            <div class="info">
+              <div class="grafico">
+                < 34° <br />
+                Atenção!
+              </div>
+              <div class="grafico">Estável</div>
+              <div class="grafico">
+                > 36.5° <br />
+                Atenção!
+              </div>
+            </div>
           </div>
           <div class="dashboard">
             <canvas id="dashboard"></canvas>
           </div>
         </div>
-      </div> 
+      </div>
     </main>
 
     <footer>© 2026 Temperatura nas UTIs | Todos os direitos reservados</footer>

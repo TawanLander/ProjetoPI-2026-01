@@ -59,7 +59,7 @@ img {
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     margin-top: 20%;
     width: 100%;
     height: 100%;
@@ -154,4 +154,8 @@ button{
     border: 2px solid black;
     border-radius: 10px;
     cursor: pointer;
+}
+
+@view-transition{
+    navigation: auto;
 }

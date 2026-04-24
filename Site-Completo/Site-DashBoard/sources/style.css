@@ -14,20 +14,10 @@ body {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    background-color: whitesmoke;
-}
-
-header {
-    height: 7.5dvh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-bottom: 3px solid black;
 }
 
 main {
-    height: 90dvh;
+    height: 97.5dvh;
     width: 100dvw;
 }
 
@@ -39,51 +29,6 @@ footer {
     display: flex;
     text-align: center;
     justify-content: center;
-}
-
-header .logo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 12.5dvw;
-    height: 7.5dvh;
-    background: linear-gradient(135deg, #0000FF 0%, purple 50%, #FF0000 100%);
-    background-clip: text;
-    color: transparent;
-}
-
-header .logo span:nth-child(1) {
-    font-size: xx-large;
-    font-weight: 700;
-}
-
-header .logo span:nth-child(2) {
-    font-size: large;
-    font-weight: 700;
-}
-
-header .header-lista {
-    width: 87.5dvw;
-    height: 7.5dvh;
-    text-align: right;
-    padding-right: 50px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-header nav {
-    display: flex;
-    align-items: center;
-}
-
-a {
-    font-style: none;
-    font-size: large;
-    text-decoration: none;
-    color: black;
-    font-weight: 700;
 }
 
 li {
@@ -109,7 +54,6 @@ main .div-dashboard {
     align-items: center;
     text-align: center;
     gap: 50px;
-    margin: 50px;
     min-height: 100%;
 }
 
@@ -132,7 +76,7 @@ main .pai {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 90dvh;
+    height: 97.5dvh;
     justify-content: center;
     align-items: center;
 }
@@ -245,4 +189,68 @@ main .dashboard {
     background-color: #FF0000;
     border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 100vh;
+    border-right: 2px solid #eeeeee;
+    overflow: visible; 
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20%;
+    width: 100%;
+}
+
+.navbar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+}
+
+.nav {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20%;
+    width: 100%;
+    height: 100%;
+    padding-left: 10%;
+    transition: 0.5s;
+}
+
+.nav:hover {
+    background-color: rgb(232, 232, 232);
+}
+
+.c_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    width: 100%;
+    padding: 10%;
+}
+
+img {
+    object-fit: cover;
+}
+
+.logo img {
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    height: auto;
+    margin-top: 30px;
 }

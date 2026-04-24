@@ -49,7 +49,10 @@
     <div class="inputs">
         <div class="laps">
             <span>Horas trabalhadas por enfermeiro por dia</span>
-            <input id="ipt_horas" type="number">
+            <select id="ipt_horas">
+                <option value="8">8 horas</option>
+                <option value="12">12 horas</option>
+            </select>
         </div>
         <div class="laps">
             <span>Valor da hora de cada enfermeiro</span>
@@ -58,6 +61,10 @@
         <div class="laps">
             <span>Quantidade de enfermeiros</span>
             <input id="ipt_qtdEnfermeiros" type="number">
+        </div>
+        <div class="laps">
+            <span>Intervalo de tempo entre as verificações em minutos</span>
+            <input id="ipt_intervalo" type="number">
         </div>
         <div class="laps">
             <span>Tempo medio de verificacao de temperatura por paciente em minutos</span>
@@ -83,8 +90,16 @@
         </div>
         </div>
         <div class="f">
-            <h4>Você vai economizar em horas de trabalho</h4>
-            <span id="div_diferenca">R$00.00</span>
+            <div class="resu" style="border-top: 2px solid black; padding-top: 5px;">
+                <div class="resultados">
+                    <h5>Horas de trabalho livres no mês</h5>
+                    <span id="div_hLivre">R$00.00</span>
+                </div>
+                <div class="resultados" >
+                    <h5>Valor economizado em horas de trabalho no mês</h5>
+                    <span id="div_dEco">R$00.00</span>
+                </div>
+            </div>
         </div>
      </div>
      

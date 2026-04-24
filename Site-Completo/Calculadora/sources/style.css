@@ -81,13 +81,15 @@ a {
       gap: 15px;
       width: 100%;
     }
-    input{
-      border: 1px solid rgb(235, 235, 235);
+    input,
+    select {
+      border: 2px solid rgb(239, 239, 239);
       box-shadow: 0 2px 1px rgba(174, 174, 174, 0.2);
       text-align: start;
       padding: 10px;
       border-radius: 24px;
-      border: 2px solid rgb(239, 239, 239);
+      outline: none;
+      box-sizing: border-box;
     }
     input:focus{
       

@@ -9,7 +9,7 @@ function calcular() {
     let totalComDesconto = totalConta - tempoEconomia;
     total.innerHTML = "R$ " + totalConta.toFixed(2);
     totalC.innerHTML = "R$ " + totalComDesconto.toFixed(2);
-    div_diferenca.innerHTML = totalConta - totalComDesconto;
+    div_diferenca.innerText = "R$ " + (totalConta - totalComDesconto);
 
     
 }

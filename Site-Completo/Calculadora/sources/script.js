@@ -10,7 +10,7 @@ function calcular() {
 
     let tempoPerdidoDia = tempo + intervalo;
 
-    let horasPerdidasMes = (tempoPerdidoDia * qtdEnfermeiros * 30) / 60;
+    let horasPerdidasMes = (tempoPerdidoDia * qtdEnfermeiros) / 60;
 
    let valorPerdido = horasPerdidasMes * valorHora;
 
@@ -19,6 +19,6 @@ function calcular() {
     total.innerHTML = "R$ " + totalConta.toFixed(2);
     totalC.innerHTML = "R$ " + totalComDesconto.toFixed(2);
 
-    div_hLivre.innerText = `${horasPerdidasMes} horas livres no mês`;
+    div_hLivre.innerText = `${horasPerdidasMes.toFixed(0)} horas livres no mês`;
     div_dEco.innerText = `R$ ${valorPerdido.toFixed(2)} de produtividade`;
 }

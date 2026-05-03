@@ -26,40 +26,6 @@ img {
   height: auto;
 }
 
-
-#container_header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 2px solid #eeeeee;
-
-}
-
-#container_header img {
-  width: 150px;
-  margin-left: 20px;
-
-}
-
-#container_header #navbar {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  margin-right: 20px;
-}
-
-#container_header #navbar li a:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-#container_header #navbar li a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold
-}
-
-
 .sidebar {
   display: flex;
 
@@ -196,4 +162,18 @@ img {
 
 @view-transition {
   navigation: auto;
+}
+
+.informacao{
+  font-weight: bold;
+  font-size: 16px;
+  color: #ff3b3b;
+}
+
+.red{
+  background-color: hsl(0, 100%, 89%) !important;
+}
+
+.blue{
+  background-color: #bbc6ff !important;
 }

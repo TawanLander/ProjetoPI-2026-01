@@ -1,6 +1,7 @@
 const Info = document.getElementById('info');
 const TempAlta = document.getElementById('tempalta');
 const TempBaixa = document.getElementById('tempbaixa');
+const TempAtual = document.getElementById('tempatual');
 const Estabilidade = document.getElementById('estabilidade');
 const Dashboard = document.getElementById('dashboard');
 

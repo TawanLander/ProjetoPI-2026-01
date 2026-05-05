@@ -11,9 +11,7 @@ const SERVIDOR_PORTA = 3300;
 const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
-const serial = async (
-    valoresSensorDigital,
-) => {
+const serial = async valoresSensorDigital => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(

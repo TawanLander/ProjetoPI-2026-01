@@ -214,6 +214,7 @@ img {
   font-size: 28px;
   font-weight: bold;
   color: #222;
+  text-align: center;
 }
 
 .kpi-red {
@@ -240,7 +241,7 @@ img {
 
 .kpi-green {
   background-color: #d4f5e2;
-  border-color: #97c459;
+  background: #39d400;
 }
 .kpi-green .kpi-label { 
   color: #3b6d11; 

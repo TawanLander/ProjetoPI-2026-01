@@ -51,29 +51,30 @@
                 <b>Quarto:</b> <span id="quarto_bd">12</span> <br />
               </div>
             </div>
+            
+            <div class="info-legenda">
+              <div class="grafico">
+                < 35° <br />
+                Atenção!
+              </div>
+              <div class="grafico">Estável</div>
+              <div class="grafico">
+                > 36.9° <br />
+                Atenção!
+              </div>
+            </div>
+
             <div class="info-alertas">
               <h3 class="titulo-alertas">Alertas nas ultimas 24hrs</h3>
                 <div class="estado">
                   <span class="div-alerta" id="alertas">4</span>
               </div>
             </div>
-            <div class="info-alertas">
+            <div class="info-alertas" id="div_tempAtual">
               <h3 class="titulo-estado">Estado Atual</h3>
                 <div class="estado">
                   <span class="div-estado" id="estado">Presta atenção!</span> 
                   <br> <center>corno</center>
-              </div>
-            </div>
-            
-            <div class="info-legenda">
-              <div class="grafico">
-                < 34° <br />
-                Atenção!
-              </div>
-              <div class="grafico">Estável</div>
-              <div class="grafico">
-                > 36.5° <br />
-                Atenção!
               </div>
             </div>
           </div>
@@ -151,3 +152,20 @@
     <script src="sources/script.js"></script>
   </body>
 </html>
+
+<script>
+  // Verificar temperatura (Temporário)
+  let tempAtual = document.getElementById("tempatual");
+  let temperatura = parseFloat(tempAtual.innerText);
+
+  if (temperatura < 35) {
+    div_tempAtual.style.backgroundColor="#3b5bff"
+  } else if (temperatura > 36.9) {
+    div_tempAtual.style.backgroundColor="#ff3b3b"
+  } else {
+    div_tempAtual.style.backgroundColor="#39d400"
+  }
+
+
+
+</script>

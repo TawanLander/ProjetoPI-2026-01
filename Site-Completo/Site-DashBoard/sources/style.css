@@ -66,6 +66,7 @@ main .div-infos {
     width: 85%;
     justify-content: space-between;
     height: 15dvh;
+    gap: 25px;
 }
 
 main nav {
@@ -87,7 +88,6 @@ main .pai {
 .info-alertas {
     position: relative;
     justify-content: start;
-    align-items: center;
     text-align: start;
     border: 1px solid black;
     border-radius: 20px;
@@ -101,7 +101,7 @@ main .pai {
 .container-info-dash {
     width: 85%;
     display: flex;
-    gap: 50px;
+    gap: 40px;
 }
 .container-info-dash .dashboard {
     width: 76%;
@@ -112,11 +112,10 @@ main .pai {
     display: flex;
     flex-direction: column;
     height: fit-content;
-    gap: 45px;
+    gap: 40px;
 }
 
 .container-info-dash .info-lateral .info {
-    width: 300px;
     padding: 20px;
     justify-items: center;
 }
@@ -158,7 +157,7 @@ main .pai {
         "texto texto"
         "icone temp";
     font-size: large;
-    width: 18%;
+    width: 104%;
     min-height: 100%;
 }
 
@@ -166,6 +165,7 @@ main .pai {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 22%;
     min-height: 100%;
 }

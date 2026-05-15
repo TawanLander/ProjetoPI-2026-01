@@ -8,10 +8,10 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = true;
+const inserir = true;
 
 // função para comunicação serial
-const serial = async valoresSensorDigital => {
+const serial = async valoresSensor => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
@@ -52,10 +52,10 @@ const serial = async valoresSensorDigital => {
 
         // armazena os valores dos sensores nos arrays correspondentes
 
-        valoresSensorDigital.push(sensorDigital);
+        valoresSensor.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
-        if (HABILITAR_OPERACAO_INSERIR) {
+        if (inserir) {
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
@@ -76,7 +76,7 @@ const serial = async valoresSensorDigital => {
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorDigital
+    valoresSensor
 ) => {
     const app = express();
 
@@ -95,7 +95,7 @@ const servidor = (
     // define os endpoints da API para cada tipo de sensor
 
     app.get('/sensores/digital', (_, response) => {
-        return response.json(valoresSensorDigital);
+        return response.json(valoresSensor);
     });
 }
 
@@ -103,15 +103,15 @@ const servidor = (
 (async () => {
     // arrays para armazenar os valores dos sensores
 
-    const valoresSensorDigital = [];
+    const valoresSensor = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorDigital
+        valoresSensor
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorDigital
+        valoresSensor
     );
 })();

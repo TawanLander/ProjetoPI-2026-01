@@ -1,25 +1,25 @@
 const bd = require('../database/config');
 
 function cadastrar(){
-    let query = ''
+    let query = 'insert into pacientes () values ()'
 
     return bd.executar(query);
 }
 
 function remover(){
-    let query = ''
+    let query = 'delete from pacientes where idPacientes = ?'
 
     return bd.executar(query);
 }
 
 function listar(){
-    let query = ''
+    let query = 'select * from pacientes'
 
     return bd.executar(query);
 }
 
 function atualizar(){
-    let query = ''
+    let query = 'update pacientes set ? = ? where idPaciente = ?'
 
     return bd.executar(query);
 }

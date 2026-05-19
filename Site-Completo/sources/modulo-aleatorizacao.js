@@ -1,6 +1,6 @@
 function definirEstado() {
 
-    let estadoDoPaciente = Math.round(Math.random() * 5 + 1); // 1 2 3 4 5
+    let estadoDoPaciente = Math.round(Math.random() * 4 + 1); // 1 2 3 4 5
     console.log('Estado: ', estadoDoPaciente)
 
     if (estadoDoPaciente === 1) return 'abaixo'
@@ -15,7 +15,7 @@ function aleatorizarTemperatura() {
     let estado;
     setInterval(() => {
         estado = definirEstado();
-    }, 1000 * 30);
+    }, 1000 * 60 * 20); // 20 minutos
 
     if (estado === 'abaixo') {
         simulacao = simulacao * 5 + 30;
@@ -38,7 +38,6 @@ function aleatorizarValorDoSensor(valor) {
 
     let soma = valor + simulacao;
     let subtracao = valor - simulacao;
-    console.log(operacao)
 
     if (operacao < 0.5) {
         if (ultimoNúmero + 2 < soma) {

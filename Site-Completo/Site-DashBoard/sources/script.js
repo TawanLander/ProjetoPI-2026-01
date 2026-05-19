@@ -48,33 +48,36 @@ var sensorDigital = new Chart(document.getElementById('dashboard').getContext('2
 var paginacao = {};
 var tempo = {};
 
-function obterDados(grafico, endpoint) {
-    fetch('http://localhost:3300/sensores/' + endpoint)
-        .then(response => response.json())
-        .then(valores => {
-            if (paginacao[endpoint] == null) {
-                paginacao[endpoint] = 0;
-            }
-            if (tempo[endpoint] == null) {
-                tempo[endpoint] = 0;
-            }
-
-            var ultimaPaginacao = paginacao[endpoint];
-            paginacao[endpoint] = valores.length;
-            valores = valores.slice(ultimaPaginacao);
-
-            valores.forEach((valor) => {
-                if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                    grafico.data.labels.shift();
-                    grafico.data.datasets[0].data.shift();
+async function obterDados(grafico, idSensor) {
+    // fetch('http://localhost:3300/sensores/' + endpoint)
+    try {
+        const resposta = await fetch(`../../API WEB DATA VIZ/src/routes/dashboardPaciente.js/${idSensor}`);
+            
+            const valores = await resposta.json();
+                if (paginacao[idSensor] == null) {
+                    paginacao[idSensor] = 0;
                 }
-
-                grafico.data.labels.push(tempo[endpoint]++);
-                grafico.data.datasets[0].data.push(parseFloat(valor));
-                grafico.update();
-            });
-        })
-        .catch(error => console.error('Erro ao obter dados:', error));
+                if (tempo[idSensor] == null) {
+                    tempo[idSensor] = 0;
+                }
+    
+                var ultimaPaginacao = paginacao[idSensor];
+                paginacao[idSensor] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+    
+                valores.forEach((temp) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+    
+                    grafico.data.labels.push(tempo[idSensor]++);
+                    grafico.data.datasets[0].data.push(parseFloat(temp.valor));
+                    grafico.update();
+                });
+            }
+            catch (error) { console.error('Erro ao obter dados:', error)};
+        
 }
 
 setInterval(() => {

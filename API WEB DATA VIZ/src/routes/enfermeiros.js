@@ -7,7 +7,7 @@ router.post("/cadastrar", (req, res) => {
     controller.cadastrar(req, res);
 });
 
-router.post("/autenticar", (req, res) => {
+router.post("/logar", (req, res) => {
     controller.autenticar(req, res);
 });
 

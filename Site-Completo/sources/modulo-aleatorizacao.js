@@ -1,7 +1,6 @@
 function definirEstado() {
 
     let estadoDoPaciente = Math.round(Math.random() * 4 + 1); // 1 2 3 4 5
-    console.log('Estado: ', estadoDoPaciente)
 
     if (estadoDoPaciente === 1) return 'abaixo'
 

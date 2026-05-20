@@ -9,119 +9,75 @@ Leandro Bezerra Mendes – 01261051
 Tawan Lander Da Fonseca Rodrigues De Paula Moura – 01261067
 Vinícius Guimarães Menezes – 01261000
 */
-
-CREATE TABLE Endereco (
-    idEndereco INT PRIMARY KEY AUTO_INCREMENT,
-    logradouro VARCHAR(45) NOT NULL,
-    numero VARCHAR(5) NOT NULL,
-    bairro VARCHAR(45) NOT NULL,
-    cep VARCHAR(10) NOT NULL,
-    complemento VARCHAR(30)
+CREATE TABLE contato (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(60) NOT NULL,
+email VARCHAR(150) NOT NULL,
+mensagem VARCHAR(250) NOT NULL
 );
 
-CREATE TABLE Hospital (
-    idHospital INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    endereco VARCHAR(100) NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL,
-    CONSTRAINT chkEmail CHECK (email LIKE '%@%' AND email LIKE '%.com%'),
-    senha VARCHAR(50) NOT NULL,
-    telefone VARCHAR(15),
-	fkEndereco INT,
-	FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
+CREATE TABLE endereco (
+id INT PRIMARY KEY AUTO_INCREMENT,
+logradouro VARCHAR(100) NOT NULL,
+numero VARCHAR(5) NOT NULL,
+bairro VARCHAR(50) NOT NULL,
+cep VARCHAR(10) NOT NULL,
+complemento VARCHAR(100)
 );
 
-CREATE TABLE Quarto (
-	idQuarto INT PRIMARY KEY AUTO_INCREMENT,
-    ala VARCHAR(5),
-    qtdCamas INT NOT NULL,
-    fkHospital INT,
-    CONSTRAINT fkQuartoHospital
-    FOREIGN KEY (fkHospital) REFERENCES Hospital(idHospital)
+CREATE TABLE hospital (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(60) NOT NULL,
+email VARCHAR(150) NOT NULL,
+senha VARCHAR(20) NOT NULL,
+telefone VARCHAR(15) NOT NULL,
+cnpj CHAR(15) NOT NULL,
+fkEndereco INT NOT NULL,
+CONSTRAINT fk_endereco FOREIGN KEY (fkEndereco) REFERENCES endereco(id)
 );
 
-CREATE TABLE Enfermeiro (
-    idEnfermeiro INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50) NOT NULL,
-    numeroCracha INT NOT NULL,
-    email VARCHAR(50) UNIQUE NOT NULL,
-    CONSTRAINT chkEmail CHECK (email LIKE '%@%' AND email LIKE '%.com%'),
-    senha VARCHAR(50) NOT NULL,
-    cargo VARCHAR(30) NOT NULL,
-    CONSTRAINT chkCargo CHECK (cargo IN ('Enfermeiro', 'Gerente')),
-    fkHospital INT,
-    CONSTRAINT fkEnfermeiroHospital
-        FOREIGN KEY (fkHospital) REFERENCES Hospital(idHospital)
+CREATE TABLE enfermeiro (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(60) NOT NULL,
+cracha VARCHAR(60),
+email VARCHAR(150) NOT NULL,
+senha VARCHAR(20) NOT NULL,
+fkHospital INT NOT NULL,
+CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
-CREATE TABLE Paciente (
-    idPaciente INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50) NOT NULL,
-    dataNascimento DATE NOT NULL,
-    tipoSanguineo VARCHAR(3) NOT NULL,
-    sexo CHAR(1) NOT NULL,
-    cpf CHAR(11) NOT NULL,
-    fkEnfermeiro INT,
-    CONSTRAINT fkPacienteEnfermeiro
-        FOREIGN KEY (fkEnfermeiro) REFERENCES Enfermeiro(idEnfermeiro)
+CREATE TABLE pulseira (
+id INT PRIMARY KEY AUTO_INCREMENT,
+intervaloMedicao INT,
+statusPul VARCHAR(20)
 );
 
-CREATE TABLE Cama (
-	idCama INT PRIMARY KEY AUTO_INCREMENT,
-    fkQuarto INT,
-    CONSTRAINT fkCamaQuarto
-		FOREIGN KEY (fkQuarto) REFERENCES Quarto(idQuarto),
-	fkHospital INT,
-    CONSTRAINT fkCamaHospital
-		FOREIGN KEY (fkHospital) REFERENCES Hospital(idHospital),
-	fkPaciente INT,
-    CONSTRAINT fkCamaPaciente
-		FOREIGN KEY (fkPaciente) REFERENCES Paciente(idPaciente)
+CREATE TABLE paciente (
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(60) NOT NULL,
+dtNascimento DATE NOT NULL,
+cpf VARCHAR(14) NOT NULL,
+fkEnfermeiro INT NOT NULL,
+CONSTRAINT fk_enfermeiro FOREIGN KEY (fkEnfermeiro) REFERENCES paciente(id),
+fkPulseira INT NOT NULL,
+CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
 
-CREATE TABLE Pulseira (
-    idPulseira INT PRIMARY KEY AUTO_INCREMENT,
-    intervaloMedicao INT NOT NULL,
-    statusPul VARCHAR(20),
-    fkPaciente INT UNIQUE,
-    CONSTRAINT fkPulseiraPaciente
-		FOREIGN KEY (fkPaciente) REFERENCES Paciente(idPaciente)
+CREATE TABLE registroTemperatura (
+id INT PRIMARY KEY AUTO_INCREMENT,
+temperatura DECIMAL(4,1),
+dtRegistro DATE,
+horaRegistro TIME,
+fkPulseira INT,
+CONSTRAINT fk_pulseira_temperatura FOREIGN KEY (FkPulseira) REFERENCES pulseira(id)
 );
 
-CREATE TABLE RegistroTemperatura (
-    idRegistro INT PRIMARY KEY AUTO_INCREMENT,
-    temperatura DECIMAL(4,1) NOT NULL,
-    dataRegistro DATE NOT NULL,
-    horaRegistro TIME NOT NULL,
-    fkPulseira INT,
-    CONSTRAINT fkRegistroPulseira
-        FOREIGN KEY (fkPulseira) REFERENCES Pulseira(idPulseira),
-    CONSTRAINT chkTemp CHECK (temperatura BETWEEN 30 AND 45)
-);
-
-CREATE TABLE Alertas (
-	idAlerta INT PRIMARY KEY AUTO_INCREMENT,
-    tempMax FLOAT NOT NULL,
-    tempMin FLOAT NOT NULL,
-    fkRegistro INT,
-    CONSTRAINT fkAlertaRegistro
-		FOREIGN KEY (fkRegistro) REFERENCES RegistroTemperatura(idRegistro),
-	fkPulseira INT,
-    CONSTRAINT fkAlertaPulseira
-		FOREIGN KEY (fkPulseira) REFERENCES Pulseira(idPulseira)
-);
-
-CREATE TABLE Acompanhante (
-	idAcompanhante INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50),
-    telefone VARCHAR(13),
-    fkPaciente INT,
-    CONSTRAINT fkAcompanhantePaciente
-    FOREIGN KEY (fkPaciente) REfERENCES Paciente(idPaciente)
-);
-
-CREATE TABLE Contato (
-	nome VARCHAR(50),
-    email VARCHAR(50),
-    mensagem VARCHAR(250)
+CREATE TABLE alertas (
+id INT PRIMARY KEY AUTO_INCREMENT,
+tempMax FLOAT,
+tempMIn FLOAT,
+fkRegistro INT,
+CONSTRAINT fk_registro FOREIGN KEY (fkRegistro) REFERENCES registroTemperatura(id),
+fkPulseira INT,
+CONSTRAINT fk_pulseira_registroTemperatura FOREIGN KEY (fkPulseira) REFERENCES registroTemperatura(fkPulseira)
 );

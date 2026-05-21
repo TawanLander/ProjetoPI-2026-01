@@ -24,7 +24,7 @@
                 <div class="erro sumir" id="erro-email">Erro! Verifique a digitação do email.</div>
                 <button onclick="guardarValores()" id="botao">AVANÇAR</button>
 
-                <div id="mensagem"></div>
+                <div id="mensagem"></div><br>
 
                 <span>Já possui uma conta? <a href="./login.html">Logar</a></span>
         </div>
@@ -40,16 +40,18 @@
         let email = ipt_email.value;
 
         if(!passouNome || !passouCodigo || !passouEmail) {
+            mensagem.innerHTML = `Por favor preencha todos os campos!`
             return false
         }
 
-        
+        else{
             sessionStorage.setItem('dadosUser', JSON.stringify({
                 codigo, 
                 nome, 
                 email
             })
         )
+        }
 
 
 

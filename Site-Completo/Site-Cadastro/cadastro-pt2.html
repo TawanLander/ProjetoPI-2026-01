@@ -53,22 +53,27 @@
         let codigo = dados.codigo;
         let nome = dados.nome;
         let email = dados.email;
+        let repetirSenha = input_repetirSenha.value
 
-        sessionStorage.removeItem('dadosUser')
+        
 
+        if(senha == repetirSenha){
+        passouSenha = true
         const cadastrarUsuario = await fetch('/enfermeiros/cadastrar', {
             method: "POST",
             headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        cpfServer: cpfVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        nomeServer: nome,
+        emailServer: email,
+        senhaServer: senha,
+        idEmpresaVincularServer: 'EI$B928*%$'
       }),
         })
+        }
+        
+        sessionStorage.removeItem('dadosUser')
 
     }
 

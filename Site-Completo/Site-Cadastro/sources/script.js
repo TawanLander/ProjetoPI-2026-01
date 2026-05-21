@@ -47,6 +47,30 @@ function verificarEmail() {
     }
 }
 
+function verificarNome() {
+    let nomeValor = nome.value;
+
+    let separar = nomeValor.split(' ');
+
+    let nomeFormatado = '';
+
+    for (let i = 0; i < separar.length; ++i) {
+        nomeFormatado += `${separar[i].slice(0, 1).toUpperCase() + separar[i].slice(1).toLowerCase()} `
+    }
+}
+
+function addClass (e, ...c){
+    e.classList.add(...c)
+}
+function removeClass (e, ...c){
+    e.classList.remove(...c)
+}
+
+function addErro(e, err){
+    e.innerHTML = err;
+    removeClass(e, 'sumir');
+}
+
 function verificarSenha(tipo) {
     let senhaValor = senha.value;
     if (tipo != 1) {
@@ -75,28 +99,4 @@ function verificarSenha(tipo) {
             }
         }
     }
-}
-
-function verificarNome() {
-    let nomeValor = nome.value;
-
-    let separar = nomeValor.split(' ');
-
-    let nomeFormatado = '';
-
-    for (let i = 0; i < separar.length; ++i) {
-        nomeFormatado += `${separar[i].slice(0, 1).toUpperCase() + separar[i].slice(1).toLowerCase()} `
-    }
-}
-
-function addClass (e, ...c){
-    e.classList.add(...c)
-}
-function removeClass (e, ...c){
-    e.classList.remove(...c)
-}
-
-function addErro(e, err){
-    e.innerHTML = err;
-    removeClass(e, 'sumir');
 }

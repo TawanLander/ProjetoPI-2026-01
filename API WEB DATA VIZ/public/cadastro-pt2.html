@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechVita - Cadastro</title>
+    <link rel="stylesheet" href="./css/cadastro-pt2.css">
+    <link rel="icon" href="#" />
+    <link rel="icon" href="./assets/icon/logo.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+<body>
+    <div id="container">
+        <div id="logo">
+            <img src="./assets/imgs/TechVita.png">
+        </div>
+
+        <div id="container_campos">
+            <h3>CADASTRO <br></h3>
+            
+                <input type="text" id="input_senha" placeholder="Senha" oninput="verificarSenha(2)">
+                <div class="erro sumir" id="erro-senha"></div>
+            
+                <input type="text" id="input_repetirSenha" placeholder="Repetir senha" oninput="verificarSenha(1)">
+                <div class="erro sumir" id="erro-repetirSenha">As senha devem coincidir!</div>
+            
+                <button onclick="cadastrar()" id="botao">CADASTRAR</button>
+
+                <div id="mensagem"></div>
+
+                <span>Já possui uma conta? <a href="./login.html">Logar</a></span>
+        </div>
+
+</body>
+</html>
+
+<script src="./sources/script.js" defer></script>
+
+<script>
+    let passouSenha = false;
+    const senha = document.getElementById('input_senha');
+    const senhaRepetir = document.getElementById('input_repetirSenha');
+    const erroSenha = document.getElementById('erro-senha');
+    const erroSenhaRepetir = document.getElementById('erro-repetirSenha');
+
+    async function cadastrar(){
+        if(!passouSenha){
+            return false;
+        }
+
+        let senha = input_senha.value;
+        let dados = JSON.parse(sessionStorage.getItem('dadosUser'));
+        let codigo = dados.codigo;
+        let nome = dados.nome;
+        let email = dados.email;
+        let repetirSenha = input_repetirSenha.value
+
+        
+
+        if(senha == repetirSenha){
+        passouSenha = true
+        const cadastrarUsuario = await fetch('/enfermeiros/cadastrar', {
+            method: "POST",
+            headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nome,
+        emailServer: email,
+        senhaServer: senha,
+        idEmpresaVincularServer: 'EI$B928*%$'
+      }),
+        })
+        }
+        
+        sessionStorage.removeItem('dadosUser')
+
+    }
+
+    function addClass (e, ...c){
+    e.classList.add(...c)
+}
+function removeClass (e, ...c){
+    e.classList.remove(...c)
+}
+
+function addErro(e, err){
+    e.innerHTML = err;
+    removeClass(e, 'sumir');
+}
+
+function verificarSenha(tipo) {
+    let senhaValor = senha.value;
+    if (tipo != 1) {
+        if (senhaValor.length > 0) {
+            if (senhaValor.length < 10) {
+                addErro(erroSenha, `Senha menor que 10 dígitos!`)
+                passouSenha = false;
+            } else if (senhaValor.toLowerCase() === senhaValor || senhaValor.toUpperCase() === senhaValor) {
+                addErro(erroSenha, `Senha precisa contar ao menos uma letra maiúscula ou minúscula!`);
+                passouSenha = false;
+            } else if (!/[!@#$%&*.]/.test(senhaValor)) {
+                addErro(erroSenha, `Senha precisa conter algarismos especiais!`);
+                passouSenha = false;
+            } else if (senhaValor.includes(' ')) {
+                addErro(erroSenha, `Senha não pode conter espaço!`);
+                passouSenha = false;
+            } else if (!/[123456789]/.test(senhaValor)) {
+                addErro(erroSenha, 'Senha precisa conter algum número')
+                passouSenha = false;
+            } else {
+                addClass(erroSenha, 'sumir')
+                passouSenha = true;
+            }
+        }
+    } else {
+        let senhaRepetirValor = senhaRepetir.value;
+        if (senhaRepetirValor.length > 0) {
+            if (senhaRepetirValor != senhaValor && senhaRepetirValor.length >= senhaValor.length) {
+                removeClass(erroSenhaRepetir, 'sumir');
+                passouSenha = false;
+            } else {
+                addClass(erroSenhaRepetir, 'sumir');
+                passouSenha = true;
+            }
+        }
+    }
+}
+</script>

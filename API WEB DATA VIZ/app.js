@@ -20,7 +20,7 @@ const pacientesRouter = require("./src/routes/pacientes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../Site-Completo")));
+app.use(express.static(path.join(__dirname, "/Site-Completo")));
 
 app.use(cors());
 

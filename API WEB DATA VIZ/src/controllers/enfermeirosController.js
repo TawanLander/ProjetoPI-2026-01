@@ -33,8 +33,6 @@ function cadastrar(req, res) {
     const nome = req.body.nome;
     const email = req.body.email;
     const senha = req.body.senha;
-    const cpf = req.body.cpf;
-    const fkEmpresa = req.body.fkEmpresa;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -43,13 +41,9 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
-    } else if (cpf == undefined) {
-        res.status(400).send("Seu cpf está undefined!");
-    } else {
+    } 
 
-        model.cadastrar(nome, email, senha, fkEmpresa, cpf)
+        model.cadastrar(nome, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -65,7 +59,7 @@ function cadastrar(req, res) {
                 }
             );
     }
-}
+
 
 function remover(req, res){
     model.remover(idEnfermeiro).then(r => {

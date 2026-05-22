@@ -7,10 +7,10 @@ function autenticar(email, senha) {
     return bd.executar(instrucaoSql);
 }
 
-function cadastrar(nome, email, senha, fkEmpresa, cpf) {
+function cadastrar(nome, email, senha) {
 
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha, fk_empresa, cpf) VALUES ('${nome}', '${email}', '${senha}', '${fkEmpresa}', '${cpf}');
+        INSERT INTO enfermeiro (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
     `;
     return bd.executar(instrucaoSql);
 }

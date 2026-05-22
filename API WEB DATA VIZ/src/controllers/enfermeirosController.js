@@ -5,27 +5,27 @@ function autenticar(req, res) {
     const senha = req.body.senha;
 
     if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        return res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
-    } else {
-
-    model.autenticar(email, senha)
-        .then(() => {
-            res.json({
-                id: resultadoAutenticar[0].id,
-                email: resultadoAutenticar[0].email,
-                nome: resultadoAutenticar[0].nome,
-                senha: resultadoAutenticar[0].senha,
-                cpf: resultadoAutenticar[0].cpf,
-        })
-            }).catch(erro => {
-                console.log(erro);
-                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            });
+        return res.status(400).send("Sua senha está indefinida!");
     }
 
+    model.autenticar(email, senha)
+        .then(function(resultado) { 
+            if (resultado.length === 0) {
+                return res.status(401).send("Email ou senha incorretos!");
+            }
+            res.json({
+                id: resultado[0].id,
+                email: resultado[0].email,
+                nome: resultado[0].nome
+            });
+        })
+        .catch(function(erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
 function cadastrar(req, res) {

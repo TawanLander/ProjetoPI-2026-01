@@ -1,18 +1,26 @@
 async function login() {
-    let email = "";
-    let senha = "";
+    let email = document.getElementById('ipt_email').value;
+    let senha = document.getElementById('input_senha').value;
     const fetchLogin = await fetch("/enfermeiros/autenticar", {
         "method" : "POST",
         headers: {
-            "Content-Type" : "aplication/json",
+            "Content-Type" : "application/json",
         },
-        body :  JSON.stringify (
+        body :  JSON.stringify ({
             email,
             senha ,
-        )
+    })
     })
 
 
 
-    if (!fetchLogin.ok) return false; 
+    if (!fetchLogin.ok) {
+    document.getElementById('mensagem').innerHTML = "Email ou senha incorretos!";
+    return false; 
+    }
+    else{
+        let dados = await fetchLogin.json();
+        sessionStorage.setItem('enfermeiro', JSON.stringify(dados));
+        window.location.href = '../Site-Pacientes/pacientes.html';
+    }
 }

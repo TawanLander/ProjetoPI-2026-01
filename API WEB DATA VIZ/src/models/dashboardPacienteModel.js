@@ -3,9 +3,9 @@ const database = require("../database/config");
 function obterTemp(idPaciente) {
 
     const instrucaoSql = `
-        SELECT nome, temperatura
-        FROM paciente
-        WHERE idPaciente = ${idPaciente};
+        SELECT id, temperatura, horaRegistro
+        FROM registroTemperatura
+        WHERE id = ${idPaciente};
     `;
 
     return database.executar(instrucaoSql);

@@ -1,24 +1,25 @@
 const bd = require('../database/config');
 
-function cadastrar(){
-    let query = 'insert into pacientes () values ()'
+function cadastrar(nome, dtNascimento, cpf, fkEnfermeiro, fkPulseira) {
+    var instrucaoSql = `
+        insert into paciente (nome, dtNascimento, cpf, fkEnfermeiro, fkPulseira) values = '(${nome}, ${dtNascimento}, ${cpf}, ${fkEnfermeiro}, ${fkPulseira}.; )';
+    `;
+    return bd.executar(query);
+}
+
+function remover(idPaciente) {
+    var instrucaoSql = 'delete from paciente where id = ()';
 
     return bd.executar(query);
 }
 
-function remover(){
-    let query = 'delete from pacientes where idPacientes = ?'
+function listar() {
+    let query = 'select * from paciente'
 
     return bd.executar(query);
 }
 
-function listar(){
-    let query = 'select * from pacientes'
-
-    return bd.executar(query);
-}
-
-function atualizar(){
+function atualizar() {
     let query = 'update pacientes set ? = ? where idPaciente = ?'
 
     return bd.executar(query);

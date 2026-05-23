@@ -3,6 +3,6 @@ const router = express.Router();
 
 const controller = require('../controllers/dashboardPacienteController');
 
-router.get('dashboardPaciente/obterTemp', (req,res) => {
+router.get('/obterTemp/:idPaciente', (req,res) => {
     controller.obterTemp(req,res);
 });

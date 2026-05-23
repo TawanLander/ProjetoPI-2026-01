@@ -1,3 +1,6 @@
+const parametros = new URLSearchParams(window.location.search);
+
+const idPaciente = parametros.get("id");
 const Info = document.getElementById('info');
 const TempAlta = document.getElementById('tempalta');
 const TempBaixa = document.getElementById('tempbaixa');
@@ -51,7 +54,7 @@ var tempo = {};
 async function obterDados(grafico, idSensor) {
     // fetch('http://localhost:3300/sensores/' + endpoint)
     try {
-        const resposta = await fetch(`../../API WEB DATA VIZ/src/routes/dashboardPaciente.js/${idSensor}`);
+        const resposta = await fetch(`http://localhost:3000/dashboardPaciente/obterTemp/${idSensor}`);
             
             const valores = await resposta.json();
                 if (paginacao[idSensor] == null) {
@@ -72,7 +75,7 @@ async function obterDados(grafico, idSensor) {
                     }
     
                     grafico.data.labels.push(tempo[idSensor]++);
-                    grafico.data.datasets[0].data.push(parseFloat(temp.valor));
+                    grafico.data.datasets[0].data.push(parseFloat(temp.temperatura));
                     grafico.update();
                 });
             }
@@ -81,5 +84,5 @@ async function obterDados(grafico, idSensor) {
 }
 
 setInterval(() => {
-    obterDados(sensorDigital, 'digital');
+    obterDados(sensorDigital, idPaciente);
 }, 1000);

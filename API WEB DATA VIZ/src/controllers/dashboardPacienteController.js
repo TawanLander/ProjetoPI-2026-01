@@ -1,18 +1,23 @@
 const model = require("../models/dashboardPacienteModel");
 
-async function obterTemp(req, res) {
+function obterTemp(req, res) {
+
     const idPaciente = req.params.idPaciente;
 
-    try {
-        const resultado = await model.obterDados(idPaciente);
+    model.obterTemp(idPaciente)
+        .then(function(resultado) {
 
-        res.json(resultado);
+            res.json(resultado);
 
-    } catch (erro) {
-        res.status(500).json(erro);
-    }
+        }).catch(function(erro) {
+
+            console.log(erro);
+            res.status(500).json(erro);
+
+        });
+
 }
 
 module.exports = {
     obterTemp
-};
+}

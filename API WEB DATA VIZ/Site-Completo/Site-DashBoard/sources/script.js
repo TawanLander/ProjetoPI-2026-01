@@ -56,7 +56,7 @@ async function obterDados(grafico, idSensor) {
     try {
         const resposta = await fetch(`http://localhost:3000/dashboardPaciente/obterTemp/${idSensor}`);
             
-            const valores = await resposta.json();
+            let valores = await resposta.json();
                 if (paginacao[idSensor] == null) {
                     paginacao[idSensor] = 0;
                 }
@@ -69,6 +69,7 @@ async function obterDados(grafico, idSensor) {
                 valores = valores.slice(ultimaPaginacao);
     
                 valores.forEach((temp) => {
+                    document.getElementById('nome_bd').innerHTML = temp.nome;
                     if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
                         grafico.data.labels.shift();
                         grafico.data.datasets[0].data.shift();

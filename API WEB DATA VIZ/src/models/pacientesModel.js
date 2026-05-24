@@ -4,30 +4,42 @@ function cadastrar(nome, dtNascimento, cpf, fkEnfermeiro, fkPulseira) {
     var instrucaoSql = `
         insert into paciente (nome, dtNascimento, cpf, fkEnfermeiro, fkPulseira) values = '(${nome}, ${dtNascimento}, ${cpf}, ${fkEnfermeiro}, ${fkPulseira}.; )';
     `;
-    return bd.executar(query);
+    return bd.executar(instrucaoSql);
 }
 
 function remover(idPaciente) {
-    var instrucaoSql = 'delete from paciente where id = ()';
+    var instrucaoSql = `delete from paciente where ${idPaciente} = ()`;
 
-    return bd.executar(query);
+    return bd.executar(instrucaoSql);
 }
 
 function listar() {
-    let query = 'select * from paciente'
+    let instrucaoSql = `select * from paciente`
 
-    return bd.executar(query);
+    return bd.executar(instrucaoSql);
 }
 
 function atualizar() {
-    let query = 'update pacientes set ? = ? where idPaciente = ?'
+    let instrucaoSql = `update pacientes set ? = ? where idPaciente = ?`
 
-    return bd.executar(query);
+    return bd.executar(instrucaoSql);
+}
+
+function obterTemp(idPaciente) {
+
+    const instrucaoSql = `
+        SELECT id, temperatura, horaRegistro
+        FROM registroTemperatura
+        WHERE id = ${idPaciente};
+    `;
+
+    return bd.executar(instrucaoSql);
 }
 
 module.exports = {
     cadastrar,
     remover,
     listar,
+    obterTemp,
     atualizar
 }

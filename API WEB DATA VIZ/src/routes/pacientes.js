@@ -19,4 +19,8 @@ router.post('/atualizar', (req, res) => {
     controller.atualizar(req, res);
 });
 
+router.get('/obterTemp/:idPaciente', (req,res) => {
+    controller.obterTemp(req,res);
+});
+
 module.exports = router

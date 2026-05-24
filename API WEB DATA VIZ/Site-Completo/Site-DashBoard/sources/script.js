@@ -54,7 +54,7 @@ var tempo = {};
 async function obterDados(grafico, idSensor) {
     // fetch('http://localhost:3300/sensores/' + endpoint)
     try {
-        const resposta = await fetch(`http://localhost:3000/dashboardPaciente/obterTemp/${idSensor}`);
+        const resposta = await fetch(`http://localhost:3000/pacientes/obterTemp/${idSensor}`);
             
             let valores = await resposta.json();
                 if (paginacao[idSensor] == null) {

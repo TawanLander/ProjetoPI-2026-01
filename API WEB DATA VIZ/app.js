@@ -17,7 +17,6 @@ const app = express();
 const enfermeirosRouter = require("./src/routes/enfermeiros");
 const empresasRouter = require("./src/routes/empresas");
 const pacientesRouter = require("./src/routes/pacientes");
-const dashboardPacienteRouter = require("./src/routes/dashboardPaciente");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,7 +27,6 @@ app.use(cors());
 app.use("/enfermeiros", enfermeirosRouter);
 app.use("/empresas", empresasRouter);
 app.use('/pacientes', pacientesRouter);
-app.use('/dashboardPaciente', dashboardPacienteRouter);
 
 app.listen(PORTA_APP, () => {
     console.log(`

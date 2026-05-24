@@ -1,10 +1,10 @@
-window.onload = function () {
+// window.onload = function () {
 
-    if (!sessionStorage.ID_USUARIO) {
-        window.location.href = "./login.html";
-        return;
-    }
-}
+//     if (!sessionStorage.ID_USUARIO) {
+//         window.location.href = "../../Site-Cadastro/login.html";
+//         return;
+//     }
+// }
 
 const parametros = new URLSearchParams(window.location.search);
 

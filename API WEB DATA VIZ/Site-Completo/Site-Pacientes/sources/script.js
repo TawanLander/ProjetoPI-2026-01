@@ -1,3 +1,11 @@
+window.onload = function () {
+
+    if (!sessionStorage.ID_USUARIO) {
+        window.location.href = "./login.html";
+        return;
+    }
+}
+
 const c_cards = document.getElementById('c_cards');
 
 window.onload = async () => {

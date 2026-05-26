@@ -32,6 +32,7 @@ email VARCHAR(150) NOT NULL,
 senha VARCHAR(20) NOT NULL,
 telefone VARCHAR(15) NOT NULL,
 cnpj CHAR(15) NOT NULL,
+codigoHospital INT NOT NULL,
 fkEndereco INT NOT NULL,
 CONSTRAINT fk_endereco FOREIGN KEY (fkEndereco) REFERENCES endereco(id)
 );
@@ -46,21 +47,19 @@ fkHospital INT NOT NULL,
 CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
-CREATE TABLE pulseira (
-id INT PRIMARY KEY AUTO_INCREMENT,
-intervaloMedicao INT,
-statusPul VARCHAR(20)
-);
-
 CREATE TABLE paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 dtNascimento DATE NOT NULL,
 cpf VARCHAR(14) NOT NULL,
 fkEnfermeiro INT NOT NULL,
-CONSTRAINT fk_enfermeiro FOREIGN KEY (fkEnfermeiro) REFERENCES paciente(id),
-fkPulseira INT NOT NULL,
-CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
+CONSTRAINT fk_enfermeiro FOREIGN KEY (fkEnfermeiro) REFERENCES enfermeiro(id)
+);
+
+CREATE TABLE pulseira (
+id INT PRIMARY KEY AUTO_INCREMENT,
+intervaloMedicao INT,
+statusPul VARCHAR(20)
 );
 
 CREATE TABLE registroTemperatura (
@@ -69,15 +68,19 @@ temperatura DECIMAL(4,1),
 dtRegistro DATE,
 horaRegistro TIME,
 fkPulseira INT,
-CONSTRAINT fk_pulseira_temperatura FOREIGN KEY (FkPulseira) REFERENCES pulseira(id)
+CONSTRAINT fk_pulseira_temperatura FOREIGN KEY (fkPulseira) REFERENCES pulseira(id),
+fkpaciente_id INT,
+CONSTRAINT fk_Paciente_id FOREIGN KEY (fkpaciente_id) REFERENCES paciente(id)
 );
 
 CREATE TABLE alertas (
-id INT PRIMARY KEY AUTO_INCREMENT,
-tempMax FLOAT,
-tempMIn FLOAT,
-fkRegistro INT,
-CONSTRAINT fk_registro FOREIGN KEY (fkRegistro) REFERENCES registroTemperatura(id),
-fkPulseira INT,
-CONSTRAINT fk_pulseira_registroTemperatura FOREIGN KEY (fkPulseira) REFERENCES registroTemperatura(fkPulseira)
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pulseira_id INT NOT NULL,
+    registroTemperatura_id INT NOT NULL,
+    paciente_id INT NOT NULL,
+    tempMax FLOAT NOT NULL,
+    tempMin FLOAT NOT NULL,
+    CONSTRAINT fk_alerta_pulseira FOREIGN KEY (pulseira_id) REFERENCES pulseira(id),
+    CONSTRAINT fk_alerta_registro FOREIGN KEY (registroTemperatura_id) REFERENCES registroTemperatura(id),
+    CONSTRAINT fk_alerta_paciente FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );

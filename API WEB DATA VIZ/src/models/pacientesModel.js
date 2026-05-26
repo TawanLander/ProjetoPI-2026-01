@@ -36,10 +36,29 @@ function obterTemp(idPaciente) {
     return bd.executar(instrucaoSql);
 }
 
+async function trazerPulseiras() {
+    try {
+        const query = `
+        select
+        
+        `
+
+        const resultado = await bd.executar(query);
+
+        if (!resultado) return false;
+
+        return resultado;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     cadastrar,
     remover,
     listar,
     obterTemp,
-    atualizar
+    atualizar,
+    trazerPulseiras
 }

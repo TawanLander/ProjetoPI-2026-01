@@ -2,25 +2,24 @@ async function login() {
     let email = document.getElementById('ipt_email').value;
     let senha = document.getElementById('input_senha').value;
     const fetchLogin = await fetch("/enfermeiros/autenticar", {
-        "method" : "POST",
+        "method": "POST",
         headers: {
-            "Content-Type" : "application/json",
+            "Content-Type": "application/json",
         },
-        body :  JSON.stringify ({
+        body: JSON.stringify({
             email,
-            senha ,
-    })
-    })
-
-
+            senha,
+        })
+    });
 
     if (!fetchLogin.ok) {
-    document.getElementById('mensagem').innerHTML = "Email ou senha incorretos!";
-    return false; 
+        document.getElementById('mensagem').innerHTML = "Email ou senha incorretos!";
+        return false;
     }
-    else{
-        let dados = await fetchLogin.json();
-        sessionStorage.setItem('enfermeiro', JSON.stringify(dados));
-        window.location.href = '../Site-Pacientes/pacientes.html';
-    }
+    
+    // Não precisa de else por causa do return acima;
+    let dados = await fetchLogin.json();
+    sessionStorage.setItem('enfermeiro', JSON.stringify(dados));
+    window.location.href = '../Site-Pacientes/pacientes.html';
+
 }

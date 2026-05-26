@@ -13,3 +13,10 @@ function verificarPulseira() {
         erro.classList.remove('sumir')
     }
 }
+
+async function trazerPulseiras() {
+    let id = sessionStorage.getItem('enfermeiro').id;
+
+    const resultado = await fetch('/pacientes/trazerPulseiras');
+
+}

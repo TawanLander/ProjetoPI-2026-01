@@ -55,7 +55,19 @@ function obterTemp(req, res) {
             res.status(500).json(erro);
 
         });
+}
 
+async function trazerPulseiras(req, res) {
+    try {
+        const resultado = await model.trazerPulseiras();
+    
+        if(!resultado) return res.status(400).send(false);
+    
+        return res.status(200).send(resultado.json());
+    }
+    catch(error) {
+        console.log(error);
+    }
 }
 
 module.exports = {
@@ -63,5 +75,6 @@ module.exports = {
     remover,
     listar,
     obterTemp,
-    atualizar
+    atualizar,
+    trazerPulseiras
 }

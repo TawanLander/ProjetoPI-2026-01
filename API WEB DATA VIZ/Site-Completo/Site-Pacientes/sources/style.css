@@ -247,12 +247,12 @@ img {
 
 .kpi-green {
   background-color: #d4f5e2;
-  background: #39d400;
+  background: #99f459;
 }
 .kpi-green .kpi-label { 
-  color: #3b6d11; 
+  color: #3a6919; 
 }
 
 .kpi-green .kpi-valor { 
-  color: #27500a; 
+  color: #3a6919; 
 }

@@ -30,9 +30,13 @@ async function cadastrar(req, res) {
     const titulo = req.body.titulo;
     const desc = req.body.desc;
 
-    if(titulo === undefined || desc === undefined) return false;
+    if(titulo === undefined || desc === undefined) return res.status(400).send(false);
 
-    model.cadastrar(titulo, desc);
+    const resultado = await model.cadastrar(titulo, desc);
+
+    if(!resultado) return res.status(400).send(false);
+
+    return res.status(200).json(resultado);
 }
 
 

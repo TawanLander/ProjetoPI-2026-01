@@ -38,10 +38,7 @@ function obterTemp(idPaciente) {
 
 async function trazerPulseiras() {
     try {
-        const query = `
-        select
-        
-        `
+        const query = `select id from pulseira where fkPaciente is null;`
 
         const resultado = await bd.executar(query);
 

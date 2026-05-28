@@ -17,6 +17,7 @@ const app = express();
 const enfermeirosRouter = require("./src/routes/enfermeiros");
 const empresasRouter = require("./src/routes/empresas");
 const pacientesRouter = require("./src/routes/pacientes");
+const iaRouter = require("./src/routes/ia");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,6 +28,7 @@ app.use(cors());
 app.use("/enfermeiros", enfermeirosRouter);
 app.use("/empresas", empresasRouter);
 app.use('/pacientes', pacientesRouter);
+app.use('/ia', iaRouter);
 
 app.listen(PORTA_APP, () => {
     console.log(`
@@ -37,7 +39,5 @@ app.listen(PORTA_APP, () => {
        ##     ########  ########  ##    ##            ###      ##     ##     ##    ##
     \n\n\n                                                                                                 
     Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://${HOST_APP}:${PORTA_APP} :. \n\n
-    Você está rodando sua aplicação em ambiente de .:${process.env.AMBIENTE_PROCESSO}:. \n\n
-    \tSe .:desenvolvimento:. você está se conectando ao banco local. \n
-    \tSe .:producao:. você está se conectando ao banco remoto.\n\n`);
+    Você está em ${process.env.AMBIENTE_PROCESSO}`);
 });

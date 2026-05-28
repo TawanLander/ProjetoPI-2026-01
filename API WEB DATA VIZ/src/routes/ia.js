@@ -15,4 +15,8 @@ router.post("/perguntar", async (req, res) => {
     }
 });
 
+router.post('/cadastrar', async (req, res) => {
+    controller.cadastrar(req, res);
+})
+
 module.exports = router

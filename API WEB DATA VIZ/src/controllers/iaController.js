@@ -26,7 +26,17 @@ async function gerarResposta(mensagem) {
     }
 }
 
+async function cadastrar(req, res) {
+    const titulo = req.body.titulo;
+    const desc = req.body.desc;
+
+    if(titulo === undefined || desc === undefined) return false;
+
+    model.cadastrar(titulo, desc);
+}
+
 
 module.exports = {
-    gerarResposta
+    gerarResposta,
+    cadastrar
 }

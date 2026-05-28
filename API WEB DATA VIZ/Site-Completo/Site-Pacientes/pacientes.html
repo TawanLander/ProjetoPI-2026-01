@@ -60,9 +60,27 @@
 
 
       <div class="c_cards" id="c_cards">
-       
+
+      </div>
+      
+      <div class="botaoSuporte" onclick="suporte()">
+      <button><img src="../imgs/TechVita.png" alt=""></button>
+    </div>
+
+    <div class="mensagemPopUp closed">
+      <div class="stylePopUp">
+        <h1>Digite qual o seu problema:</h1><br>
+        <label for="textoChamado">Qual o seu problema?</label>
+        <textarea id="textoChamado" maxlength="75"></textarea><br>
+        <label for="descChamado">Descreva o seu chamado</label>
+        <textarea id="descChamado" maxlength="500"></textarea>
+        <button onclick="enviarChamado()">Enviar chamado</button><br><br>
+        <div id="div_mensagem"></div>
       </div>
     </div>
+    </div>
+
+    
   </body>
 </html>
 
@@ -76,6 +94,38 @@
    document.querySelector('#Kpi4').innerHTML = document.querySelectorAll('.atual').length
 
 
+   function suporte(){
+    document.querySelector('.mensagemPopUp').classList.toggle('closed', false);
 
+    document.querySelector('.botaoSuporte').classList.toggle('closed', true);
+   }
+
+   async function enviarChamado() {
+    let problema = document.getElementById('textoChamado').value
+    let descricao = document.getElementById('descChamado').value
+    const chamado = await fetch('/ia/cadastrar', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        descricao: descricao,
+        problema: problema
+      })
+      }
+    )
+
+    if(!chamado.ok) return alert('ERRO, Tente novamente!')
+  
    
+    div_mensagem.innerHTML = `Chamado registrado com sucesso!`
+    setTimeout(() => {
+      document.querySelector('mensagemPopUp').style = 'display: none;'
+    }, 15000)
+    
+  
+  }
+
+    
+
 </script>

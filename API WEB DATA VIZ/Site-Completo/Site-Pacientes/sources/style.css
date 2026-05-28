@@ -256,3 +256,38 @@ img {
 .kpi-green .kpi-valor { 
   color: #3a6919; 
 }
+
+.botaoSuporte{
+  display: flex;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  border-radius: 50%;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.mensagemPopUp{
+  width: auto;
+  height: auto;
+  display: flex;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 250px;
+  height: 300px;
+  background-color: #0c447c;
+  border-radius: 10px;
+}
+
+.stylePopUp{
+  transition: all 0.2s ease-in-out;
+}
+
+.closed{
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+

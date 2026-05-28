@@ -32,15 +32,18 @@ email VARCHAR(150) NOT NULL,
 senha VARCHAR(20) NOT NULL,
 telefone VARCHAR(15) NOT NULL,
 cnpj CHAR(15) NOT NULL,
-codigoHospital INT NOT NULL,
-fkEndereco INT NOT NULL,
-CONSTRAINT fk_endereco FOREIGN KEY (fkEndereco) REFERENCES endereco(id)
+codigoHospital INT NOT NULL
+);
+
+create table link_endereços (
+hospital_id int,
+endereco_id int,
+primary key (hospital_id, endereco_id)
 );
 
 CREATE TABLE enfermeiro (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
-cracha VARCHAR(60),
 email VARCHAR(150) NOT NULL,
 senha VARCHAR(20) NOT NULL,
 fkHospital INT NOT NULL,
@@ -53,13 +56,17 @@ nome VARCHAR(60) NOT NULL,
 dtNascimento DATE NOT NULL,
 cpf VARCHAR(14) NOT NULL,
 fkEnfermeiro INT NOT NULL,
-CONSTRAINT fk_enfermeiro FOREIGN KEY (fkEnfermeiro) REFERENCES enfermeiro(id)
+CONSTRAINT fk_enfermeiro FOREIGN KEY (fkEnfermeiro) REFERENCES enfermeiro(id),
+fkPulseira INT NOT NULL,
+CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES enfermeiro(id)
 );
 
 CREATE TABLE pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,
 intervaloMedicao INT,
-statusPul VARCHAR(20)
+statusPul VARCHAR(20),
+fkHospital INT NOT NULL,
+CONSTRAINT fk_hospital_pulseira FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
 CREATE TABLE registroTemperatura (
@@ -69,8 +76,8 @@ dtRegistro DATE,
 horaRegistro TIME,
 fkPulseira INT,
 CONSTRAINT fk_pulseira_temperatura FOREIGN KEY (fkPulseira) REFERENCES pulseira(id),
-fkpaciente_id INT,
-CONSTRAINT fk_Paciente_id FOREIGN KEY (fkpaciente_id) REFERENCES paciente(id)
+fkHospital INT,
+CONSTRAINT fk_hospital_id FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
 CREATE TABLE alertas (

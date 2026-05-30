@@ -91,3 +91,17 @@ CREATE TABLE alertas (
     CONSTRAINT fk_alerta_registro FOREIGN KEY (registroTemperatura_id) REFERENCES registroTemperatura(id),
     CONSTRAINT fk_alerta_paciente FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
+
+CREATE TABLE chamados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(75) NOT NULL,
+    descc VARCHAR(500) NOT NULL,
+    statuss TINYINT NOT NULL DEFAULT 0,
+    dthr DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE ia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dthr DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    resposta VARCHAR(1000) NOT NULL
+);

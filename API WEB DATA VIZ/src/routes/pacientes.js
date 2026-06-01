@@ -23,7 +23,7 @@ router.get('/obterTemp/:idPaciente', (req,res) => {
     controller.obterTemp(req,res);
 });
 
-router.get('/trazerPulseiras', (req, res) => {
+router.post('/trazerPulseiras', (req, res) => {
     controller.trazerPulseiras(req, res);
 });
 

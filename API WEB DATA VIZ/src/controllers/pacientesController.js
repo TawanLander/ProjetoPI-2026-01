@@ -1,13 +1,20 @@
 const model = require('../models/pacientesModel');
 
-function cadastrar(req, res) {
-    model.cadastrar().then(r => {
+async function cadastrar(req, res) {
+    let nome = req.body.nome;
+    let genero = req.body.genero;
+    let dtNascimento = req.body.dtNascimento;
+    let pulseira = req.body.id;
 
-        if (r.ok) return res.json(r);
+    if(nome === undefined) return res.status(400).send('Nome undefined');
+    if(genero === undefined) return res.status(400).send('Genero undefined');
+    if(dtNascimento === undefined) return res.status(400).send('Data Nascimento undefined');
+    if(pulseira === undefined) return res.status(400).send('Pulseira undefined');
 
-    }).catch(e => {
-        return res.status(400).send(`Erro! ${e}`);
-    });
+    const resultado = await model.cadastrar(nome, dtNascimento, genero, pulseira);
+    if(!resultado) return res.status(400).send(false)
+
+    return res.status(200).send(true);
 }
 
 function remover(req, res) {
@@ -68,7 +75,7 @@ async function trazerPulseiras(req, res) {
     
         if(!resultado) return res.status(400).send(false);
     
-        return res.status(200).send(resultado.json());
+        return res.status(200).send(resultado);
     }
     catch(error) {
         console.log(error);

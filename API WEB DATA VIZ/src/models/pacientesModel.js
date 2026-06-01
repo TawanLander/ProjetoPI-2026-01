@@ -1,14 +1,14 @@
 const bd = require('../database/config');
 
-function cadastrar(nome, dtNascimento, cpf, fkEnfermeiro, fkPulseira) {
+function cadastrar(nome, dtNascimento, genero, fkPulseira) {
     var instrucaoSql = `
-        insert into paciente (nome, dtNascimento, cpf, fkEnfermeiro, fkPulseira) values = '(${nome}, ${dtNascimento}, ${cpf}, ${fkEnfermeiro}, ${fkPulseira}.; )';
+        insert into paciente (nome, dtNascimento, genero, fkPulseira) values ('${nome}', '${dtNascimento}', '${genero}', ${fkPulseira + 1});
     `;
     return bd.executar(instrucaoSql);
 }
 
 function remover(idPaciente) {
-    var instrucaoSql = `delete from paciente where ${idPaciente} = ()`;
+    var instrucaoSql = `delete from paciente where ${idPaciente} = id`;
 
     return bd.executar(instrucaoSql);
 }
@@ -50,15 +50,25 @@ async function trazerPulseiras(idEnfermeiro, idHospital) {
         const rMax = await bd.executar(queryMax);
         if (!rMax) return false;
 
-        let maxId = rMax.length > 0 ? rMax[0].maiorID : 0
+        let maxId = rMax.length > 0 && rMax[0].maiorID != null ? rMax[0].maiorID : 0
 
         let query = `
-        select * 
+        select 
+            pulseira.id as id, 
+            pulseira.intervaloMedicao as intervalo, 
+            pulseira.statusPul as stts, 
+            pulseira.fkHospital as hospital,  
+        case 
+            when paciente.fkPulseira is null then 'Livre'
+            else 'Alocada'
+        end as 'situacao'
             from pulseira
                 join hospital 
                     on pulseira.fkHospital = hospital.id
                 join enfermeiro 
                     on enfermeiro.fkHospital = hospital.id
+                left join paciente
+                    on pulseira.id = paciente.fkPulseira
             where enfermeiro.id = ${idEnfermeiro} and hospital.id = ${idHospital}`
 
         const pulseiras = await bd.executar(query)

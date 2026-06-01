@@ -15,28 +15,63 @@ async function pegarDados() {
   });
 
   let r = await resultado.json();
-  
+
+  console.log(r)
   pegarQtdPulseiras(r[0]);
   pulseiras = r[1];
 }
 
 function pegarQtdPulseiras(maxId) {
-  if (!maxId) return false;
-
   let msg = "";
 
   for (let i = 0; i < maxId; ++i) {
     msg += `<option>${i + 1}</option>`;
   }
 
-  document.getElementById("slct-pulseiras").innerHTML = msg;
+  document.getElementById("slct-pulseiras").innerHTML += msg;
 }
 
 async function verificarPulseira() {
   const selecionada = Number(document.getElementById("slct-pulseiras").value) - 1;
   if (isNaN(selecionada)) return false;
 
+  sessionStorage.setItem('paciente-selecionado', selecionada);
+
   let pulseira = pulseiras[selecionada];
 
+  if (pulseira.situacao === 'Alocada') {
+    document.getElementById('erro').classList.remove('sumir');
+    document.getElementById('info').classList.add('sumir');
 
+    return;
+  }
+  document.getElementById('erro').classList.add('sumir');
+  document.getElementById('info').classList.remove('sumir');
+
+
+}
+
+async function desvincularPaciente() {
+  let id = sessionStorage.getItem('paciente-selecionado');
+
+}
+
+async function cadastrarPaciente() {
+  let id = sessionStorage.getItem('paciente-selecionado');
+  let nome = document.getElementById('ipt-nome').value;
+  let genero = document.getElementById('slct-genero').value;
+  let dtNascimento = document.getElementById('ipt-dtNascimento').value;
+  if(nome === '' || dtNascimento === '') return false;
+
+  const cadastro = await fetch('/pacientes/cadastrar', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({nome, genero, dtNascimento, id}),
+  });
+
+  const resultado = await cadastro.text();
+
+  console.log(resultado)
 }

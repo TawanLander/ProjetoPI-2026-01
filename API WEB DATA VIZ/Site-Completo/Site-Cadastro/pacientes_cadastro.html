@@ -18,7 +18,9 @@
       <div class="navbar">
         <a href="../Site-Pacientes/pacientes.html">
           <div class="nav">
-            <span class="material-symbols-outlined"> line_start_arrow_notch </span>
+            <span class="material-symbols-outlined">
+              line_start_arrow_notch
+            </span>
             <span class="link">Voltar</span>
           </div>
         </a>
@@ -46,23 +48,28 @@
       </div>
 
       <div id="info" class="info sumir">
+        <h1>Cadastre o novo paciente</h1>
         <label>
           Nome:
           <input type="text" id="ipt-nome" />
         </label>
         <label>
           Gênero:
-          <input type="text" id="ipt-genero" />
+          <select id="slct-genero">
+            <option>Masculino</option>
+            <option>Feminino</option>
+          </select>
         </label>
         <label>
           Data de Nascimento:
           <input type="date" id="ipt-dtNascimento" />
         </label>
-    </div>
-    <div id="erro" class="erro sumir">
+        <button onclick="cadastrarPaciente()">Cadastrar Novo Paciente</button>
+      </div>
+      <div id="erro" class="erro sumir">
         Erro! Pulseira já em uso!
         <button onclick="desvincularPaciente()">Desvincular Paciente</button>
-    </div>
+      </div>
     </div>
   </body>
 </html>

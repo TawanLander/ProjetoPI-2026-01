@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechVita - Chamados</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+    <link rel="stylesheet" href="./sources/style.css">
+    <link rel="icon" href="../logo.png">
+  </head>
+
+  <body>
+    <main>
+      <div class="pai">
+        <div class="sidebar">
+          <div class="logo">
+            <img src="../imgs/TechVita.png" />
+          </div>
+
+          <div class="navbar">
+            <a href="../Site-Pacientes/pacientes.html">
+              <div class="nav">
+                <span class="material-symbols-outlined">
+                  line_start_arrow_notch
+                </span>
+                <span class="link">Voltar</span>
+              </div>
+            </a>
+
+            <a href="./chamados.html">
+              <div class="nav">
+                <span class="material-symbols-outlined"> support_agent </span>
+
+                <span class="link"> Chamados </span>
+              </div>
+            </a>
+
+            <a href="./historico_chamados.html">
+              <div class="nav">
+                <span class="material-symbols-outlined"> history </span>
+
+                <span class="link"> Histórico </span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="div-suporte">
+          <div class="topo">
+            <h1>Chamados Abertos</h1>
+
+            <div id="input">
+              <input type="text" class="prompt" placeholder="Pesquisar chamado...">
+            </div>
+          </div>
+
+          <div class="c_cards">
+            <div class="card-chamado urgente">
+              <div class="card-top">
+                <span class="status"> URGENTE </span>
+
+                <span class="material-symbols-outlined icone"> warning </span>
+              </div>
+
+              <h2>Sensor offline</h2>
+
+              <p>Sensor da UTI 03 parou de enviar temperatura.</p>
+
+              <div class="infos">
+                <div class="info">
+                  <span>ID:</span>
+                  <p>#001</p>
+                </div>
+
+                <div class="info">
+                  <span>Responsável:</span>
+                  <p>Gustavo</p>
+                </div>
+
+                <div class="info">
+                  <span>Abertura:</span>
+                  <p>16/04/2026</p>
+                </div>
+              </div>
+
+              <button class="botao">Ver detalhes</button>
+            </div>
+
+            <div class="card-chamado andamento">
+              <div class="card-top">
+                <span class="status"> EM ANDAMENTO </span>
+
+                <span class="material-symbols-outlined icone">
+                  pending_actions
+                </span>
+              </div>
+
+              <h2>Falha no sistema</h2>
+
+              <p>Dashboard apresentando lentidão no carregamento.</p>
+
+              <div class="infos">
+                <div class="info">
+                  <span>ID:</span>
+                  <p>#002</p>
+                </div>
+
+                <div class="info">
+                  <span>Responsável:</span>
+                  <p>Gabriel</p>
+                </div>
+
+                <div class="info">
+                  <span>Abertura:</span>
+                  <p>03/05/2026</p>
+                </div>
+              </div>
+
+              <button class="botao">Ver detalhes</button>
+            </div>
+
+            <div class="card-chamado aberto">
+              <div class="card-top">
+                <span class="status"> ABERTO </span>
+
+                <span class="material-symbols-outlined icone">
+                  mark_email_unread
+                </span>
+              </div>
+
+              <h2>Atualização pendente</h2>
+
+              <p>Novo firmware disponível para os sensores.</p>
+
+              <div class="infos">
+                <div class="info">
+                  <span>ID:</span>
+                  <p>#003</p>
+                </div>
+
+                <div class="info">
+                  <span>Responsável:</span>
+                  <p>Tawan</p>
+                </div>
+
+                <div class="info">
+                  <span>Abertura:</span>
+                  <p>19/05/2026</p>
+                </div>
+              </div>
+
+              <button class="botao">Ver detalhes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>© 2026 Temperatura nas UTIs | Todos os direitos reservados</footer>
+  </body>
+</html>

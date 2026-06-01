@@ -21,5 +21,4 @@ async function login() {
     let dados = await fetchLogin.json();
     sessionStorage.setItem('enfermeiro', JSON.stringify(dados));
     window.location.href = '../Site-Pacientes/pacientes.html';
-
 }

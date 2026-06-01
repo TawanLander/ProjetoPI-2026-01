@@ -18,7 +18,8 @@ function autenticar(req, res) {
             res.json({
                 id: resultado[0].id,
                 email: resultado[0].email,
-                nome: resultado[0].nome
+                nome: resultado[0].nome,
+                idHospital: resultado[0].idHospital
             });
         })
         .catch(function(erro) {

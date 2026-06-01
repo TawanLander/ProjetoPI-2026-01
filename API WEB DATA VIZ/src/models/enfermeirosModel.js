@@ -2,7 +2,11 @@ const bd = require("../database/config")
 
 function autenticar(email, senha) {
     var instrucaoSql = `
-        SELECT id, nome, email  FROM enfermeiro WHERE email = '${email}' AND senha = '${senha}';
+        SELECT enfermeiro.id, enfermeiro.nome, enfermeiro.email, hospital.id as idHospital
+            FROM enfermeiro 
+                JOIN hospital
+                    ON enfermeiro.fkHospital = hospital.id
+            WHERE enfermeiro.email = '${email}' AND enfermeiro.senha = '${senha}';
     `;
     return bd.executar(instrucaoSql);
 }

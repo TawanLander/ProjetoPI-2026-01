@@ -25,5 +25,6 @@ router.get('/obterTemp/:idPaciente', (req,res) => {
 
 router.get('/trazerPulseiras', (req, res) => {
     controller.trazerPulseiras(req, res);
-})
+});
+
 module.exports = router

@@ -58,8 +58,13 @@ function obterTemp(req, res) {
 }
 
 async function trazerPulseiras(req, res) {
+    const idEnfermeiro = req.body.id;
+    const idHospital = req.body.idHospital;
+    if(idEnfermeiro === undefined) return res.status(400).send('Id Undefined');
+    if(idHospital === undefined) return res.status(400).send('Id Hospital Undefined');
+
     try {
-        const resultado = await model.trazerPulseiras();
+        const resultado = await model.trazerPulseiras(idEnfermeiro, idHospital);
     
         if(!resultado) return res.status(400).send(false);
     

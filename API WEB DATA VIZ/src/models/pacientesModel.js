@@ -36,15 +36,35 @@ function obterTemp(idPaciente) {
     return bd.executar(instrucaoSql);
 }
 
-async function trazerPulseiras() {
+async function trazerPulseiras(idEnfermeiro, idHospital) {
     try {
-        const query = `select id from pulseira where fkPaciente is null;`
+        let queryMax = `
+        select max(pulseira.id) as maiorID
+            from pulseira 
+                join hospital 
+                    on pulseira.fkHospital = hospital.id
+                join enfermeiro 
+                    on enfermeiro.fkHospital = hospital.id
+            where enfermeiro.id = ${idEnfermeiro} and hospital.id = ${idHospital}`
 
-        const resultado = await bd.executar(query);
+        const rMax = await bd.executar(queryMax);
+        if (!rMax) return false;
 
-        if (!resultado) return false;
+        let maxId = rMax.length > 0 ? rMax[0].maiorID : 0
 
-        return resultado;
+        let query = `
+        select * 
+            from pulseira
+                join hospital 
+                    on pulseira.fkHospital = hospital.id
+                join enfermeiro 
+                    on enfermeiro.fkHospital = hospital.id
+            where enfermeiro.id = ${idEnfermeiro} and hospital.id = ${idHospital}`
+
+        const pulseiras = await bd.executar(query)
+        if(!pulseiras) return 0;
+
+        return [maxId, pulseiras];
     }
     catch (error) {
         console.log(error);

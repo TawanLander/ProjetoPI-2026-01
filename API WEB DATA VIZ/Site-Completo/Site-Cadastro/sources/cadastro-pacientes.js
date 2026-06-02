@@ -43,6 +43,11 @@ async function verificarPulseira() {
     document.getElementById('erro').classList.remove('sumir');
     document.getElementById('info').classList.add('sumir');
 
+    document.getElementById('span-nome').textContent = pulseira.pacienteNome;
+    document.getElementById('span-genero').textContent = pulseira.pacienteGenero;
+    let dtNasc = new Date(pulseira.pacienteDtNasc);
+    document.getElementById('span-nascimento').textContent = dtNasc.toLocaleDateString('pt-BR');
+
     return;
   }
   document.getElementById('erro').classList.add('sumir');

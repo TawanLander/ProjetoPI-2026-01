@@ -67,7 +67,14 @@
         <button onclick="cadastrarPaciente()">Cadastrar Novo Paciente</button>
       </div>
       <div id="erro" class="erro sumir">
-        Erro! Pulseira já em uso!
+        <p>Erro! Pulseira já em uso!</p><br>
+
+        <div id="dados-paciente" class="dados-paciente">
+          <p><strong>Paciente vinculado:</strong></p><br>
+          <p>Nome: <span id="span-nome"></span></p><br>
+          <p>Gênero: <span id="span-genero"></span></p><br>
+          <p>Nascimento: <span id="span-nascimento"></span></p><br>
+        </div>
         <button onclick="desvincularPaciente()">Desvincular Paciente</button>
       </div>
     </div>

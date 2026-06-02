@@ -54,6 +54,7 @@ CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 
 insert into enfermeiro values (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
 
+
 CREATE TABLE paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,

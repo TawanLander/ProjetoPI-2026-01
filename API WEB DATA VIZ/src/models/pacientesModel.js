@@ -61,7 +61,11 @@ async function trazerPulseiras(idEnfermeiro, idHospital) {
         case 
             when paciente.fkPulseira is null then 'Livre'
             else 'Alocada'
-        end as 'situacao'
+        end as 'situacao',
+        paciente.id AS pacienteId,  
+        paciente.nome AS pacienteNome,      
+        paciente.genero AS pacienteGenero,  
+        paciente.dtNascimento AS pacienteDtNasc
             from pulseira
                 join hospital 
                     on pulseira.fkHospital = hospital.id

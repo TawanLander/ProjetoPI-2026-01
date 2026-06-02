@@ -35,6 +35,8 @@ cnpj CHAR(15) NOT NULL,
 codigoHospital INT NOT NULL
 );
 
+insert into hospital values (1, 'Casa de Saúde', 'casa@saude.com', '1234', '1191918787', '123123123123123', 0917);
+
 create table link_endereços (
 hospital_id int,
 endereco_id int,
@@ -50,16 +52,18 @@ fkHospital INT NOT NULL,
 CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
+insert into enfermeiro values (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
+
 CREATE TABLE paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 dtNascimento DATE NOT NULL,
-cpf VARCHAR(14) NOT NULL,
-fkEnfermeiro INT NOT NULL,
-CONSTRAINT fk_enfermeiro FOREIGN KEY (fkEnfermeiro) REFERENCES enfermeiro(id),
+genero VARCHAR(20) NOT NULL,
 fkPulseira INT NOT NULL,
-CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES enfermeiro(id)
+CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
+
+insert into paciente values (1, 'Teste', '2007-04-02', '12389176525', 1, 2);
 
 CREATE TABLE pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -68,6 +72,10 @@ statusPul VARCHAR(20),
 fkHospital INT NOT NULL,
 CONSTRAINT fk_hospital_pulseira FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
+
+insert into pulseira (id, fkHospital) values (1, 1);
+insert into pulseira (id, fkHospital) values (2, 1);
+insert into pulseira (id, fkHospital) values (3, 1);
 
 CREATE TABLE registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,

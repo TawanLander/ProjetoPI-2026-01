@@ -17,14 +17,17 @@ async function cadastrar(req, res) {
     return res.status(200).send(true);
 }
 
-function remover(req, res) {
-    model.remover().then(r => {
+async function remover(req, res) {
+    const idPulseira = req.body.id;
+    if (idPulseira === undefined) return res.status(400).send('Id Pulseira Undefined');
 
-        if (r.ok) return res.json(r);
-
-    }).catch(e => {
-        return res.status(400).send(`Erro! ${e}`);
-    });
+    try {
+        const resultado = await model.remover(idPulseira);
+        if (!resultado) return res.status(400).send(false);
+        return res.status(200).send(true);
+    } catch(e) {
+        return res.status(500).send(`Erro! ${e}`);
+    }
 }
 
 function listar(req, res) {

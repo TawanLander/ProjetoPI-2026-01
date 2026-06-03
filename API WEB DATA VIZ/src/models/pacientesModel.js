@@ -7,9 +7,11 @@ function cadastrar(nome, dtNascimento, genero, fkPulseira) {
     return bd.executar(instrucaoSql);
 }
 
-function remover(idPaciente) {
-    var instrucaoSql = `delete from paciente where ${idPaciente} = id`;
-
+function remover(idPulseira) {
+    let instrucaoSql = `
+    DELETE FROM paciente WHERE fkPulseira = ${idPulseira + 1}
+    `;
+    
     return bd.executar(instrucaoSql);
 }
 

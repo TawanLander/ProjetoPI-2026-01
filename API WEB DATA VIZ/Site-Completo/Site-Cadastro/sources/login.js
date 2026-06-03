@@ -20,5 +20,8 @@ async function login() {
     // Não precisa de else por causa do return acima;
     let dados = await fetchLogin.json();
     sessionStorage.setItem('enfermeiro', JSON.stringify(dados));
-    window.location.href = '../Site-Pacientes/pacientes.html';
+    
+    setTimeout(() => {
+        window.location.href = '../Site-Pacientes/pacientes.html'
+    }, 1000);
 }

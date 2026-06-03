@@ -1,5 +1,3 @@
-USE PI2UTI;
-
 SELECT 
     hospital.nome AS NomeHospital
 FROM hospital;
@@ -11,6 +9,14 @@ SELECT
 FROM usuarios
 JOIN hospital ON usuarios.fkHospital = hospital.id
 JOIN nivelAcesso ON usuarios.fkNivelAcesso = nivelAcesso.idNivelAcesso;
+
+SELECT
+    usuarios.nome AS NomeUsuario,
+    nivelAcesso.tipo AS NivelAcesso,
+    hospital.nome AS NomeHospital
+FROM usuarios
+JOIN hospital ON usuarios.fkHospital = hospital.id
+LEFT JOIN nivelAcesso ON usuarios.fkNivelAcesso = nivelAcesso.idNivelAcesso;
 
 SELECT 
     paciente.nome AS NomePaciente,

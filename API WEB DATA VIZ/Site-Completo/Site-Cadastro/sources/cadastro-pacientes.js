@@ -78,5 +78,17 @@ async function cadastrarPaciente() {
 
   const resultado = await cadastro.text();
 
+  if (resultado === 'true') {
+        const numeroPulseira = Number(id) + 1;
+
+        document.getElementById('msg-sucesso').innerHTML = 
+            `Paciente ${nome} cadastrado com sucesso! <br> Pulseira ${numeroPulseira} agora está em uso`;
+        document.getElementById('info').classList.add('sumir');
+        document.getElementById('sucesso').classList.remove('sumir');
+
+    } else {
+        alert('Erro ao cadastrar paciente!');
+    }
+
   console.log(resultado)
 }

@@ -73,10 +73,8 @@ async function desvincularPaciente() {
     if (resultado === 'true') {
         pulseiras[Number(id)].situacao = 'Livre';
         pulseiras[Number(id)].pacienteNome = null;
-
         document.getElementById('erro').classList.add('sumir');
         document.getElementById('info').classList.remove('sumir');
-
         document.getElementById('ipt-nome').value = '';
         document.getElementById('ipt-dtNascimento').value = '';
 

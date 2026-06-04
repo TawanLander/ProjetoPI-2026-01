@@ -7,9 +7,7 @@ INSERT INTO hospital (nome, email, senha, telefone, cnpj, codigoHospital) VALUES
 ('TechVita', 'tcontato@techvita.com', '123456', '(11)99999-9999', '42781563000197', 1001);
 
 INSERT INTO nivelAcesso (tipo) VALUES 
-('N1'),
-('N2'),
-('N3');
+('N1'), ('N2'), ('N3');
 
 INSERT INTO usuarios (nome, email, senha, fkHospital, fkNivelAcesso) VALUES 
 ('Carlos Silva', 'carlos.silva@techvita.com', '123456', 1, 2),

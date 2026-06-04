@@ -1,5 +1,4 @@
-DROP DATABASE PI2UTI;
-
+-- DROP DATABASE PI2UTI;
 CREATE DATABASE PI2UTI;
 USE PI2UTI;
 
@@ -24,7 +23,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 logradouro VARCHAR(100),
 numero VARCHAR(5),
 bairro VARCHAR(50),
-cep VARCHAR(10),
+cep CHAR(10),
 complemento VARCHAR(100)
 );
 
@@ -32,15 +31,25 @@ CREATE TABLE hospital (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 email VARCHAR(150),
-senha VARCHAR(20),
+senha VARCHAR(250),
 telefone VARCHAR(15),
 cnpj CHAR(15),
 codigoHospital INT
 );
 
+CREATE TABLE hospitalEndereco (
+fkHospital INT,
+fkEndereco INT,
+PRIMARY KEY (fkHospital, fkEndereco),
+CONSTRAINT fk_hospitalEndereco_hospital
+FOREIGN KEY (fkHospital) REFERENCES hospital(id),
+CONSTRAINT fk_hospitalEndereco_endereco
+FOREIGN KEY (fkEndereco) REFERENCES endereco(id)
+);
+
 CREATE TABLE nivelAcesso (
 idNivelAcesso INT PRIMARY KEY AUTO_INCREMENT,
-tipo VARCHAR(45),
+tipo CHAR(2),
 CONSTRAINT chkTipo
 CHECK (tipo in('N1', 'N2', 'N3'))
 );
@@ -49,7 +58,7 @@ CREATE TABLE usuarios (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 email VARCHAR(150),
-senha VARCHAR(20),
+senha VARCHAR(250),
 fkHospital INT,
 fkNivelAcesso INT,
 CONSTRAINT fk_usuario_hospital
@@ -62,6 +71,7 @@ CREATE TABLE pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,
 intervaloMedicao INT,
 statusPul VARCHAR(20),
+CONSTRAINT chkPulseira CHECK (statusPul in('Ativa', 'Manutenção', 'Inativa')),
 fkHospital INT,
 CONSTRAINT fk_pulseira_hospital
 FOREIGN KEY (fkHospital) REFERENCES hospital(id)
@@ -71,7 +81,7 @@ CREATE TABLE paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 dataNascimento DATE,
-cpf VARCHAR(11),
+cpf CHAR(11),
 fkEnfermeiro INT,
 fkPulseira INT,
 CONSTRAINT fk_paciente_enfermeiro

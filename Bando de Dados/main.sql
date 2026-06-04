@@ -82,6 +82,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 dataNascimento DATE,
 cpf CHAR(11),
+statusPaciente TINYINT,
 fkEnfermeiro INT,
 fkPulseira INT,
 CONSTRAINT fk_paciente_enfermeiro

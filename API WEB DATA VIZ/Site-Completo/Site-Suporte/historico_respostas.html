@@ -1,96 +1,189 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechVita</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-    />
-    <link rel="stylesheet" href="./sources/style.css" />
-  </head>
-  <script src="./sources/historico.js" defer></script>
-  <body onload="buscar()">
-    <main>
-      
-      <div class="pai">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechVita - Histórico</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
+
+    <link rel="stylesheet" href="./sources/style.css">
+    <link rel="icon" href="../logo.png">
+</head>
+
+<body onload="buscar()">
+
+<div id="container_header">
+    <img src="../imgs/TechVita.png">
+
+    <ul id="navbar">
+        <li>
+            <a href="../Institucional/index.html">Início</a>
+        </li>
+
+        <li>
+            <a href="../Site-Pacientes/pacientes.html">Pacientes</a>
+        </li>
+
+        <li>
+            <a href="./ia.html">IA</a>
+        </li>
+
+        <li>
+            <a href="./chamados.html">Suporte</a>
+        </li>
+    </ul>
+</div>
+
+<main>
+
+    <div class="pai">
+
         <div class="sidebar">
-          <div class="logo">
-            <img src="../imgs/TechVita.png" />
-          </div>
 
-          <div class="navbar">
-            <a href="./chamados.html">
-              <div class="nav">
-                <span class="material-symbols-outlined"> support_agent </span>
+            <div class="logo"></div>
 
-                <span class="link"> Chamados </span>
-              </div>
-            </a>
+            <div class="navbar">
 
-            <a href="./historico_chamados.html">
-              <div class="nav">
-                <span class="material-symbols-outlined"> history </span>
+                <a href="../Site-Pacientes/pacientes.html">
+                    <div class="nav">
+                        <span class="material-symbols-outlined">
+                            line_start_arrow_notch
+                        </span>
 
-                <span class="link"> Histórico </span>
-              </div>
-            </a>
-          </div>
+                        <span class="link">Voltar</span>
+                    </div>
+                </a>
+
+                <a href="./ia.html">
+                    <div class="nav">
+                        <span class="material-symbols-outlined">
+                            robot
+                        </span>
+
+                        <span class="link">IA</span>
+                    </div>
+                </a>
+
+                <a href="./chamados.html">
+                    <div class="nav">
+                        <span class="material-symbols-outlined">
+                            support_agent
+                        </span>
+
+                        <span class="link">Chamados</span>
+                    </div>
+                </a>
+
+                <a href="./historico_chamados.html">
+                    <div class="nav ativo">
+                        <span class="material-symbols-outlined">
+                            history
+                        </span>
+
+                        <span class="link">Histórico</span>
+                    </div>
+                </a>
+
+            </div>
+
         </div>
 
         <div class="div-suporte">
-          <div class="topo">
-            <h1>Histórico de Respostas</h1>
 
-            <input
-              type="text"
-              class="prompt"
-              placeholder="Pesquisar histórico..."
-            />
-          </div>
+            <div class="topo">
 
-          <div class="historico">
-            <div class="linha">
-              <div>
-                <h3>
-                  <span id="id_chamado">#001</span> -
-                  <span id="titulo_chamado">Sensor offline</span>
-                </h3>
-                <p>Resolvido por <span id="agente">Gustavo</span></p>
-              </div>
+                <h1>Histórico de Respostas</h1>
 
-              <span class="status-finalizado"> FINALIZADO </span>
+                <input
+                    type="text"
+                    class="prompt"
+                    placeholder="Pesquisar histórico..."
+                >
+
             </div>
 
-            <div class="linha">
-              <div>
-                <h3>
-                  <span id="id_chamado">#002</span> -
-                  <span id="titulo_chamado">Erro no dashboard</span>
-                </h3>
-                <p>Resolvido por <span id="agente">Gabriel</span></p>
-              </div>
+            <div class="historico">
 
-              <span class="status-finalizado">FINALIZADO</span>
+                <div class="linha">
+
+                    <div>
+                        <h3>#001 - Sensor Offline</h3>
+                        <p>Resolvido por Gustavo</p>
+                    </div>
+
+                    <span class="status-finalizado">
+                        FINALIZADO
+                    </span>
+
+                </div>
+
+                <div class="linha">
+
+                    <div>
+                        <h3>#002 - Erro no Dashboard</h3>
+                        <p>Resolvido por Gabriel</p>
+                    </div>
+
+                    <span class="status-finalizado">
+                        FINALIZADO
+                    </span>
+
+                </div>
+
+                <div class="linha">
+
+                    <div>
+                        <h3>#003 - Atualização Firmware</h3>
+                        <p>Resolvido por Tawan</p>
+                    </div>
+
+                    <span class="status-finalizado">
+                        FINALIZADO
+                    </span>
+
+                </div>
+
             </div>
 
-            <div class="linha">
-              <div>
-                <h3>
-                  <span id="id_chamado">#003</span> -
-                  <span id="titulo_chamado">Atualização firmware</span>
-                </h3>
-                <p>Resolvido por <span id="agente">Tawan</span></p>
-              </div>
-
-              <span class="status-finalizado"> FINALIZADO </span>
-            </div>
-          </div>
         </div>
-      </div>
-    </main>
 
-    <footer>© 2026 Temperatura nas UTIs | Todos os direitos reservados</footer>
-  </body>
+    </div>
+
+</main>
+
+<footer id="footer">
+
+    <div id="footer_container">
+
+        <div id="footer_infos">
+            <img src="../imgs/TechVita.png">
+
+            <p>
+                Líder em soluções tecnológicas Hospitalares.
+            </p>
+        </div>
+
+        <div id="footer_infos">
+
+            <h3>Contato</h3>
+
+            <p>📧 contato@techvita.com</p>
+
+            <p>📞 (11) 99999-9999</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 TechVita Solutions
+    </div>
+
+</footer>
+
+<script src="./sources/historico.js"></script>
+
+</body>
 </html>

@@ -59,8 +59,8 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 email VARCHAR(150),
 senha VARCHAR(250),
-fkHospital INT,
-fkNivelAcesso INT,
+fkHospital INT DEFAULT NULL,
+fkNivelAcesso INT DEFAULT NULL,
 CONSTRAINT fk_usuario_hospital
 FOREIGN KEY (fkHospital) REFERENCES hospital(id),
 CONSTRAINT fk_usuario_nivel
@@ -84,7 +84,7 @@ dataNascimento DATE,
 cpf CHAR(11),
 statusPaciente TINYINT,
 fkEnfermeiro INT,
-fkPulseira INT,
+fkPulseira INT DEFAULT NULL,
 CONSTRAINT fk_paciente_enfermeiro
 FOREIGN KEY (fkEnfermeiro) REFERENCES usuarios(id),
 CONSTRAINT fk_paciente_pulseira

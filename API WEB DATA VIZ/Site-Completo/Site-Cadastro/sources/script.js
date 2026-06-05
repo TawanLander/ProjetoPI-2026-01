@@ -14,30 +14,100 @@ function addErro(e, err){
 }
 
 //    CADASTRO - ETAPA 1
-let identificador = 'EI$B928*%$';
+
+const CODIGO_SUPORTEN1 = "SUPN1";
+const CODIGO_SUPORTEN2 = "SUPN2";
+const CODIGO_SUPORTEN3 = "SUPN3";
+
 
 let passouCodigo = false;
 let passouEmail = false;
 let passouNome = false;
 
-function verificarCodigo(){
+let idHospital = null;
+let nivelAcesso = null;
 
-    const idInst = document.getElementById('ipt_idInst');
+async function verificarCodigo() {
+
+    const idInst = document.getElementById('ipt_idInst').value;
+
     const erroIdInst = document.getElementById('erro-idInst');
 
-    if(!idInst || !erroIdInst) return;
+    if (!idInst || !erroIdInst) return;
 
-    if(idInst.value.length === 0){
-        addClass(erroIdInst,'sumir');
+    // CAMPO VAZIO
+    if (idInst.length === 0) {
+
+        addClass(erroIdInst, 'sumir');
+
         passouCodigo = false;
 
-    } else if(idInst.value !== identificador){
-        removeClass(erroIdInst,'sumir');
-        passouCodigo = false;
+        return;
+    }
 
-    } else{
-        addClass(erroIdInst,'sumir');
+    if (idInst === CODIGO_SUPORTEN1) {
+
+        addClass(erroIdInst, 'sumir');
+
         passouCodigo = true;
+
+        nivelAcesso = 1;
+
+        idHospital = null;
+
+        return;
+    }
+
+    if (idInst === CODIGO_SUPORTEN2) {
+
+        addClass(erroIdInst, 'sumir');
+
+        passouCodigo = true;
+
+        nivelAcesso = 2;
+
+        idHospital = null;
+
+        return;
+    }
+
+    // SUPORTE N3
+    if (idInst === CODIGO_SUPORTEN3) {
+
+        addClass(erroIdInst, 'sumir');
+
+        passouCodigo = true;
+
+        nivelAcesso = 3;
+
+        idHospital = null;
+
+        return;
+    }
+
+    const resultado = await fetch("/enfermeiros/verificarCodigo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            codigoHospital: idInst
+        }),
+    });
+
+    let r = await resultado.json();
+    console.log(r);
+
+    if (r.length === 0) {
+        removeClass(erroIdInst, 'sumir');
+        passouCodigo = false;
+
+    } else {
+
+        addClass(erroIdInst, 'sumir');
+        passouCodigo = true;
+        idHospital = r[0].id;
+        nivelAcesso = null;
     }
 }
 
@@ -110,7 +180,9 @@ function guardarValores(){
         JSON.stringify({
             codigo,
             nome,
-            email
+            email,
+            idHospital,
+            nivelAcesso
         })
     );
 
@@ -195,7 +267,7 @@ function verificarSenha(tipo){
 
 async function cadastrar(){
 
-    if(!passouSenha) return;
+    // if(!passouSenha) return;
 
     const dados =
         JSON.parse(
@@ -223,7 +295,9 @@ async function cadastrar(){
 
             nomeServer:dados.nome,
             emailServer:dados.email,
-            senhaServer:senha
+            senhaServer:senha,
+            hospitalServer:dados.idHospital,
+            nivelServer:dados.nivelAcesso
 
         })
 

@@ -9,9 +9,11 @@ function cadastrar(nome, dtNascimento, genero, fkPulseira) {
 
 function remover(idPulseira) {
     let instrucaoSql = `
-    DELETE FROM paciente WHERE fkPulseira = ${idPulseira + 1}
+    UPDATE paciente
+    SET fkPulseira = NULL, statusPaciente = 0
+    WHERE fkPulseira = ${idPulseira + 1};
     `;
-    
+    // NOTA: Essa query ja esta atualizada para a nova modelagem, não precisa mexer denovo quando for reajustar as querys!!!
     return bd.executar(instrucaoSql);
 }
 

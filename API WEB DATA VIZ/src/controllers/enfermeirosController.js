@@ -19,7 +19,8 @@ function autenticar(req, res) {
                 id: resultado[0].id,
                 email: resultado[0].email,
                 nome: resultado[0].nome,
-                idHospital: resultado[0].idHospital
+                idHospital: resultado[0].idHospital,
+                cargo: resultado[0].cargo
             });
         })
         .catch(function(erro) {

@@ -22,6 +22,10 @@ async function login() {
     sessionStorage.setItem('enfermeiro', JSON.stringify(dados));
     
     setTimeout(() => {
-        window.location.href = '../Site-Pacientes/pacientes.html'
+        if(dados.cargo === 0){
+            window.location.href = '../Site-Pacientes/pacientes.html'
+        } else {
+            window.location.href = '../Site-Suporte/chamados.html'
+        }
     }, 1000);
 }

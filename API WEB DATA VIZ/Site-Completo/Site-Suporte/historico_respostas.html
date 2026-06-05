@@ -1,19 +1,22 @@
 <!doctype html>
 <html lang="pt-br">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TechVita</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
-    <link rel="stylesheet" href="./sources/style.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <link rel="stylesheet" href="./sources/style.css" />
   </head>
-
-  <body>
+  <script src="./sources/historico.js" defer></script>
+  <body onload="buscar()">
     <main>
       <div class="pai">
         <div class="sidebar">
           <div class="logo">
-            <img src="../imgs/TechVita.png">
+            <img src="../imgs/TechVita.png" />
           </div>
 
           <div class="navbar">
@@ -37,15 +40,22 @@
 
         <div class="div-suporte">
           <div class="topo">
-            <h1>Histórico de Chamados</h1>
+            <h1>Histórico de Respostas</h1>
 
-            <input type="text" class="prompt" placeholder="Pesquisar histórico...">
+            <input
+              type="text"
+              class="prompt"
+              placeholder="Pesquisar histórico..."
+            />
           </div>
 
           <div class="historico">
             <div class="linha">
               <div>
-                <h3><span id="id_chamado">#001</span> - <span id="titulo_chamado">Sensor offline</span></h3>
+                <h3>
+                  <span id="id_chamado">#001</span> -
+                  <span id="titulo_chamado">Sensor offline</span>
+                </h3>
                 <p>Resolvido por <span id="agente">Gustavo</span></p>
               </div>
 
@@ -54,7 +64,10 @@
 
             <div class="linha">
               <div>
-                <h3><span id="id_chamado">#002</span> - <span id="titulo_chamado">Erro no dashboard</span></h3>
+                <h3>
+                  <span id="id_chamado">#002</span> -
+                  <span id="titulo_chamado">Erro no dashboard</span>
+                </h3>
                 <p>Resolvido por <span id="agente">Gabriel</span></p>
               </div>
 
@@ -63,7 +76,10 @@
 
             <div class="linha">
               <div>
-                <h3><span id="id_chamado">#003</span> - <span id="titulo_chamado">Atualização firmware</span></h3>
+                <h3>
+                  <span id="id_chamado">#003</span> -
+                  <span id="titulo_chamado">Atualização firmware</span>
+                </h3>
                 <p>Resolvido por <span id="agente">Tawan</span></p>
               </div>
 

@@ -1,9 +1,9 @@
 const bd = require('../database/config');
 
-function cadastrar(nome, dtNascimento, fkEnfermeiro, fkPulseira) {
+function cadastrar(nome, dtNascimento, genero, fkEnfermeiro, fkPulseira) {
     var instrucaoSql = `
-        insert into paciente (nome, dataNascimento, statusPaciente, fkEnfermeiro, fkPulseira) values 
-            ('${nome}', '${dtNascimento}', 1, ${fkEnfermeiro}, ${Number(fkPulseira) + 1});
+        insert into paciente (nome, dataNascimento, sexo, statusPaciente, fkEnfermeiro, fkPulseira) values 
+            ('${nome}', '${dtNascimento}', '${genero}', 1, ${fkEnfermeiro}, ${Number(fkPulseira) + 1});
     `;
     return bd.executar(instrucaoSql);
 }
@@ -36,7 +36,27 @@ function obterTemp(idPaciente) {
         SELECT 
             paciente.nome,
             registroTemperatura.temperatura,
-            registroTemperatura.horaRegistro
+            registroTemperatura.horaRegistro,
+
+            (
+                SELECT MAX(rt.temperatura)
+                FROM registroTemperatura rt
+                    JOIN pulseira p
+                        ON rt.fkPulseira = p.id
+                    JOIN paciente pa
+                        ON pa.fkPulseira = p.id
+                WHERE pa.id = ${idPaciente}
+            ) AS tempMax,
+
+            (
+                SELECT MIN(rt.temperatura)
+                FROM registroTemperatura rt
+                    JOIN pulseira p
+                        ON rt.fkPulseira = p.id
+                    JOIN paciente pa
+                        ON pa.fkPulseira = p.id
+                WHERE pa.id = ${idPaciente}
+            ) AS tempMin
 
         FROM paciente
 

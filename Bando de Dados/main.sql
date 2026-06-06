@@ -82,6 +82,7 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 dataNascimento DATE,
 cpf CHAR(11),
+sexo VARCHAR(9),
 statusPaciente TINYINT,
 fkEnfermeiro INT,
 fkPulseira INT DEFAULT NULL,
@@ -90,6 +91,8 @@ FOREIGN KEY (fkEnfermeiro) REFERENCES usuarios(id),
 CONSTRAINT fk_paciente_pulseira
 FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
+
+ALTER TABLE paciente ADD COLUMN sexo VARCHAR(9);
 
 CREATE TABLE registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,

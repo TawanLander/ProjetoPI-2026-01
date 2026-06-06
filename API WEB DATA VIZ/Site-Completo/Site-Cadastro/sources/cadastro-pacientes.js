@@ -101,7 +101,7 @@ async function cadastrarPaciente() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({nome, dtNascimento, id, fkEnfermeiro}),
+    body: JSON.stringify({nome, dtNascimento, id, fkEnfermeiro, genero}),
   });
 
   const resultado = await cadastro.text();

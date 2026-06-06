@@ -2,18 +2,18 @@ const model = require('../models/pacientesModel');
 
 async function cadastrar(req, res) {
     let nome = req.body.nome;
-    // let genero = req.body.genero;
+    let genero = req.body.genero;
     let dtNascimento = req.body.dtNascimento;
     let enfermeiro = req.body.fkEnfermeiro;
     let pulseira = req.body.id;
 
     if(nome === undefined) return res.status(400).send('Nome undefined');
-    // if(genero === undefined) return res.status(400).send('Genero undefined');
+    if(genero === undefined) return res.status(400).send('Genero undefined');
     if(dtNascimento === undefined) return res.status(400).send('Data Nascimento undefined');
     if(pulseira === undefined) return res.status(400).send('Pulseira undefined');
     if(enfermeiro === undefined) return res.status(400).send('Enfermeiro undefined');
 
-    const resultado = await model.cadastrar(nome, dtNascimento, enfermeiro, pulseira);
+    const resultado = await model.cadastrar(nome, dtNascimento, genero, enfermeiro, pulseira);
     if(!resultado) return res.status(400).send(false)
 
     return res.status(200).send(true);

@@ -35,36 +35,34 @@ function obterTemp(idPaciente) {
     const instrucaoSql = `
         SELECT 
             paciente.nome,
+            paciente.sexo,
             registroTemperatura.temperatura,
             registroTemperatura.horaRegistro,
 
+            TIMESTAMPDIFF(YEAR, paciente.dataNascimento, CURDATE()) AS idade,
             (
-                SELECT MAX(rt.temperatura)
-                FROM registroTemperatura rt
-                    JOIN pulseira p
-                        ON rt.fkPulseira = p.id
-                    JOIN paciente pa
-                        ON pa.fkPulseira = p.id
-                WHERE pa.id = ${idPaciente}
+                SELECT MAX(temperatura)
+                FROM registroTemperatura
+                JOIN pulseira
+                    ON registroTemperatura.fkPulseira = pulseira.id
+                WHERE pulseira.id = paciente.fkPulseira
             ) AS tempMax,
 
             (
-                SELECT MIN(rt.temperatura)
-                FROM registroTemperatura rt
-                    JOIN pulseira p
-                        ON rt.fkPulseira = p.id
-                    JOIN paciente pa
-                        ON pa.fkPulseira = p.id
-                WHERE pa.id = ${idPaciente}
+                SELECT MIN(temperatura)
+                FROM registroTemperatura
+                JOIN pulseira
+                    ON registroTemperatura.fkPulseira = pulseira.id
+                WHERE pulseira.id = paciente.fkPulseira
             ) AS tempMin
 
         FROM paciente
 
-            JOIN pulseira
-                ON paciente.fkPulseira = pulseira.id
+        JOIN pulseira
+            ON paciente.fkPulseira = pulseira.id
 
-            JOIN registroTemperatura
-                ON registroTemperatura.fkPulseira = pulseira.id
+        JOIN registroTemperatura
+            ON registroTemperatura.fkPulseira = pulseira.id
 
         WHERE paciente.id = ${idPaciente}
 

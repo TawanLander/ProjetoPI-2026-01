@@ -81,7 +81,6 @@ CREATE TABLE paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 dataNascimento DATE,
-cpf CHAR(11),
 sexo VARCHAR(9),
 statusPaciente TINYINT,
 fkEnfermeiro INT,
@@ -106,8 +105,8 @@ FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 
 CREATE TABLE alertas (
 id INT PRIMARY KEY AUTO_INCREMENT,
-tempMax DECIMAL(4,2),
-tempMin DECIMAL(4,2),
+tempRegistrada DECIMAL(4,2),
+situacao VARCHAR(9),
 fkRegistro INT,
 CONSTRAINT fk_alerta_registro
 FOREIGN KEY (fkRegistro) REFERENCES registroTemperatura(id)

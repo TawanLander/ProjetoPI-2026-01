@@ -1,8 +1,9 @@
 const bd = require('../database/config');
 
-function cadastrar(nome, dtNascimento, genero, fkPulseira) {
+function cadastrar(nome, dtNascimento, fkEnfermeiro, fkPulseira) {
     var instrucaoSql = `
-        insert into paciente (nome, dtNascimento, genero, fkPulseira) values ('${nome}', '${dtNascimento}', '${genero}', ${Number(fkPulseira) + 1});
+        insert into paciente (nome, dataNascimento, statusPaciente, fkEnfermeiro, fkPulseira) values 
+            ('${nome}', '${dtNascimento}', 1, ${fkEnfermeiro}, ${Number(fkPulseira) + 1});
     `;
     return bd.executar(instrucaoSql);
 }
@@ -32,24 +33,39 @@ function atualizar() {
 function obterTemp(idPaciente) {
 
     const instrucaoSql = `
-        SELECT id, temperatura, horaRegistro
-        FROM registroTemperatura
-        WHERE id = ${idPaciente};
+        SELECT 
+            paciente.nome,
+            registroTemperatura.temperatura,
+            registroTemperatura.horaRegistro
+
+        FROM paciente
+
+            JOIN pulseira
+                ON paciente.fkPulseira = pulseira.id
+
+            JOIN registroTemperatura
+                ON registroTemperatura.fkPulseira = pulseira.id
+
+        WHERE paciente.id = ${idPaciente}
+
+        ORDER BY registroTemperatura.id;
     `;
 
     return bd.executar(instrucaoSql);
 }
 
-async function trazerPulseiras(idEnfermeiro, idHospital) {
+async function trazerPulseiras(idUsuario, idHospital) {
     try {
         let queryMax = `
-        select max(pulseira.id) as maiorID
-            from pulseira 
-                join hospital 
-                    on pulseira.fkHospital = hospital.id
-                join enfermeiro 
-                    on enfermeiro.fkHospital = hospital.id
-            where enfermeiro.id = ${idEnfermeiro} and hospital.id = ${idHospital}`
+        SELECT 
+                MAX(pulseira.id) AS maiorID
+            FROM pulseira
+                JOIN hospital
+                    ON pulseira.fkHospital = hospital.id
+                JOIN usuarios
+                    ON usuarios.fkHospital = hospital.id
+            WHERE usuarios.id = ${idUsuario}
+                AND hospital.id = ${idHospital};`
 
         const rMax = await bd.executar(queryMax);
         if (!rMax) return false;
@@ -57,27 +73,35 @@ async function trazerPulseiras(idEnfermeiro, idHospital) {
         let maxId = rMax.length > 0 && rMax[0].maiorID != null ? rMax[0].maiorID : 0
 
         let query = `
-        select 
-            pulseira.id as id, 
-            pulseira.intervaloMedicao as intervalo, 
-            pulseira.statusPul as stts, 
-            pulseira.fkHospital as hospital,  
-        case 
-            when paciente.fkPulseira is null then 'Livre'
-            else 'Alocada'
-        end as 'situacao',
-        paciente.id AS pacienteId,  
-        paciente.nome AS pacienteNome,      
-        paciente.genero AS pacienteGenero,  
-        paciente.dtNascimento AS pacienteDtNasc
-            from pulseira
-                join hospital 
-                    on pulseira.fkHospital = hospital.id
-                join enfermeiro 
-                    on enfermeiro.fkHospital = hospital.id
-                left join paciente
-                    on pulseira.id = paciente.fkPulseira
-            where enfermeiro.id = ${idEnfermeiro} and hospital.id = ${idHospital}`
+        SELECT 
+                pulseira.id AS id,
+                pulseira.intervaloMedicao AS intervalo,
+                pulseira.statusPul AS stts,
+                pulseira.fkHospital AS hospital,
+
+                CASE
+                    WHEN paciente.fkPulseira IS NULL THEN 'Livre'
+                    ELSE 'Alocada'
+                END AS situacao,
+
+                paciente.id AS pacienteId,
+                paciente.nome AS pacienteNome,
+                paciente.dataNascimento AS pacienteDtNasc,
+                paciente.statusPaciente AS statusPaciente
+
+            FROM pulseira
+
+                JOIN hospital
+                    ON pulseira.fkHospital = hospital.id
+
+                JOIN usuarios
+                    ON usuarios.fkHospital = hospital.id
+
+                LEFT JOIN paciente
+                    ON pulseira.id = paciente.fkPulseira
+
+            WHERE usuarios.id = ${idUsuario}
+                AND hospital.id = ${idHospital};`
 
         const pulseiras = await bd.executar(query)
         if(!pulseiras) return 0;

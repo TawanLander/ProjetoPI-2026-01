@@ -90,12 +90,18 @@ async function cadastrarPaciente() {
   let dtNascimento = document.getElementById('ipt-dtNascimento').value;
   if(nome === '' || dtNascimento === '') return false;
 
+  const enfermeiro = JSON.parse(sessionStorage.getItem("enfermeiro"));
+
+  const fkEnfermeiro = enfermeiro.id;
+
+    console.log(`fkEnfermeiro= ${fkEnfermeiro}`)
+
   const cadastro = await fetch('/pacientes/cadastrar', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({nome, genero, dtNascimento, id}),
+    body: JSON.stringify({nome, dtNascimento, id, fkEnfermeiro}),
   });
 
   const resultado = await cadastro.text();

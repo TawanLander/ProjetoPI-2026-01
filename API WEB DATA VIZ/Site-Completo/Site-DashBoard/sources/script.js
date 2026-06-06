@@ -62,7 +62,7 @@ var tempo = {};
 async function obterDados(grafico, idSensor) {
     // fetch('http://localhost:3300/sensores/' + endpoint)
     try {
-        const resposta = await fetch(`http://localhost:3000/pacientes/obterTemp/${idSensor}`);
+        const resposta = await fetch(`http://127.0.0.1:3333/pacientes/obterTemp/${idSensor}`);
             
             let valores = await resposta.json();
                 if (paginacao[idSensor] == null) {
@@ -83,7 +83,7 @@ async function obterDados(grafico, idSensor) {
                         grafico.data.datasets[0].data.shift();
                     }
     
-                    grafico.data.labels.push(tempo[idSensor]++);
+                    grafico.data.labels.push(temp.horaRegistro);
                     grafico.data.datasets[0].data.push(parseFloat(temp.temperatura));
                     grafico.update();
                 });
@@ -94,4 +94,4 @@ async function obterDados(grafico, idSensor) {
 
 setInterval(() => {
     obterDados(sensorDigital, idPaciente);
-}, 1000);
+}, 5000);

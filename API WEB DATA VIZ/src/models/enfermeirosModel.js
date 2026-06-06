@@ -1,6 +1,7 @@
 const bd = require("../database/config")
 
 function autenticar(email, senha) {
+
     var instrucaoSql = `
         SELECT usuarios.id, usuarios.nome, usuarios.email, IFNULL(usuarios.fkNivelAcesso, 0) AS cargo, hospital.id AS idHospital
         FROM usuarios
@@ -21,15 +22,35 @@ function cadastrar(nome,email,senha, fkHospital, fkNivelAcesso) {
     return bd.executar(instrucaoSql);
 }
 
-function verificarCodigo(codigoHospital) {
+function verificarCodigo(codigo) {
 
-    let instrucaoSql = `
-        SELECT *
-        FROM hospital
-        WHERE codigoHospital = '${codigoHospital}';
-    `;
+    if (codigo == process.env.CODIGO_SUPORTEN1) {
+        return Promise.resolve([{
+            valido:true,
+            nivel:1,
+            id: null
+        }]); 
+    } else if (codigo == process.env.CODIGO_SUPORTEN2) {
+        return Promise.resolve([{
+            valido:true,
+            nivel:2,
+            id: null
+        }]); 
+    } else if (codigo == process.env.CODIGO_SUPORTEN3) {
+        return Promise.resolve([{
+            valido:true,
+            nivel:3,
+            id: null
+        }]); 
+    } else {
+        let instrucaoSql = `
+            SELECT * FROM hospital
+            WHERE codigoHospital = '${codigo}';
+        `;
+    
+        return bd.executar(instrucaoSql);
+    }
 
-    return bd.executar(instrucaoSql);
 }
 
 module.exports = {

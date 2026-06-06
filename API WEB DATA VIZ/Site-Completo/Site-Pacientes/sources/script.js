@@ -16,7 +16,7 @@ async function listarPacientes() {
 
     try {
 
-        const resposta = await fetch('http://localhost:3000/pacientes/listar');
+        const resposta = await fetch('http://127.0.0.1:3333/pacientes/listar');
         const pacientes = await resposta.json();
 
         c_cards.innerHTML = '';

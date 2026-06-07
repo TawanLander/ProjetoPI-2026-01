@@ -1,29 +1,40 @@
 window.onload = async () => {
-  if (!sessionStorage.getItem('enfermeiro')) {
+  if (!sessionStorage.getItem("enfermeiro")) {
     window.location.href = "../../Site-Cadastro/login.html";
     return;
   }
 
   await listarPacientes();
+
+  setInterval(async () => {
+    await listarPacientes();
+  }, 30000);
 };
 
 const c_cards = document.getElementById("c_cards");
 
 async function listarPacientes() {
-  try {
-    const idHospital = JSON.parse(sessionStorage.getItem('enfermeiro')).idHospital;
+  let totalPacientes = 0;
+  let tempAlta = 0;
+  let tempBaixa = 0;
+  let tempNormal = 0;
 
-    const resposta = await fetch("/pacientes/listar", {
+  try {
+    const idHospital = JSON.parse(
+      sessionStorage.getItem("enfermeiro"),
+    ).idHospital;
+
+    const resposta = await fetch("http://127.0.0.1:3333/pacientes/listar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: idHospital
+        id: idHospital,
       }),
     });
-    if(!resposta.ok) return false;
-    
+    if (!resposta.ok) return false;
+
     const pacientes = await resposta.json();
 
     c_cards.innerHTML = "";
@@ -34,22 +45,69 @@ async function listarPacientes() {
     }
 
     for (let i = 0; i < pacientes.length; i++) {
+      totalPacientes++;
+      const paciente = pacientes[i];
+
+      const resposta = await fetch(
+        `http://127.0.0.1:3333/pacientes/obterTemp/${paciente.id}`,
+      );
+
+      const dadosTemp = await resposta.json();
+      console.log(dadosTemp);
+
+      let tempAtual = "--";
+      let tempMax = "--";
+      let tempMin = "--";
+
+      const ultimoRegistro = dadosTemp[dadosTemp.length - 1];
+
+      if (dadosTemp.length > 0) {
+        tempAtual = ultimoRegistro.temperatura;
+        tempMax = dadosTemp[0].tempMax;
+        tempMin = dadosTemp[0].tempMin;
+      }
+
+      if (tempAtual < 35 || tempAtual > 36.7) {
+        let situacao = "";
+
+        if (tempAtual < 35) {
+          situacao = "Baixa";
+        } else {
+          situacao = "Alta";
+        }
+
+        await fetch("http://127.0.0.1:3333/pacientes/cadastrarAlerta", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            temperatura: tempAtual,
+            situacao: situacao,
+            fkRegistro: ultimoRegistro.idRegistro,
+          }),
+        });
+      }
+
       let classe = "";
 
-      if (pacientes[i].temperatura < 35) {
+      if (tempAtual< 35) {
+        tempBaixa++;
         classe = "blue";
-      } else if (pacientes[i].temperatura > 36.7) {
+      } else if (tempAtual> 36.7) {
+        tempAlta++;
         classe = "red";
+      } else if (tempAtual<= 36.7 && tempAtual>= 35) {
+        tempNormal++;
       }
 
       c_cards.innerHTML += `
-                <div class="card ${classe}" onclick="abrirDashboard(${pacientes[i].id})" style="cursor: pointer;">
+                <div class="card ${classe}" onclick="abrirDashboard(${paciente.id})" style="cursor: pointer;">
                     
-                    <h3 class="titulo">Pulseira ${pacientes[i].id}</h3>
+                    <h3 class="titulo">Pulseira ${paciente.fkPulseira}</h3>
 
                     <div class="info">
-                        <p>${pacientes[i].nome}</p>
-                        <p>${pacientes[i].quarto}</p>
+                        <p>${paciente.nome}</p>
                     </div>
 
                     <span class="informacao">Temperatura nas últimas 24 horas</span>
@@ -58,23 +116,28 @@ async function listarPacientes() {
                         
                         <div class="temp-box atual">
                             <span class="label">Temp Atual</span>
-                            <span class="valor">${pacientes[i].temperatura}°</span>
+                            <span class="valor">${tempAtual}°</span>
                         </div>
 
                         <div class="temp-box max">
                             <span class="label">Temp Max</span>
-                            <span class="valor">${pacientes[i].tempMax}°</span>
+                            <span class="valor">${tempMax}°</span>
                         </div>
 
                         <div class="temp-box min">
                             <span class="label">Temp Min</span>
-                            <span class="valor">${pacientes[i].tempMin}°</span>
+                            <span class="valor">${tempMin}°</span>
                         </div>
 
                     </div>
                 </div>
             `;
     }
+
+    document.querySelector("#Kpi1").innerHTML = totalPacientes;
+    document.querySelector("#Kpi2").innerHTML = tempAlta;
+    document.querySelector("#Kpi3").innerHTML = tempBaixa;
+    document.querySelector("#Kpi4").innerHTML = tempNormal;
   } catch (e) {
     c_cards.innerHTML = "<h1>Você não tem pacientes cadastrados</h1>";
     console.log(e);

@@ -19,7 +19,21 @@ function remover(idPulseira) {
 }
 
 function listar(id) {
-    let instrucaoSql = `select * from paciente where fkHospital = ${Number(id)}`
+    let instrucaoSql = `SELECT 
+            paciente.id,
+            paciente.nome,
+            paciente.sexo,
+            paciente.dataNascimento,
+            paciente.fkPulseira
+
+        FROM paciente
+
+        LEFT JOIN usuarios
+            ON paciente.fkEnfermeiro = usuarios.id
+
+        WHERE usuarios.fkHospital = ${Number(id)}
+            AND paciente.statusPaciente = 1;
+    `;
 
     return bd.executar(instrucaoSql);
 }
@@ -36,6 +50,7 @@ function obterTemp(idPaciente) {
         SELECT 
             paciente.nome,
             paciente.sexo,
+            registroTemperatura.id AS idRegistro,
             registroTemperatura.temperatura,
             registroTemperatura.horaRegistro,
 
@@ -93,8 +108,6 @@ async function trazerPulseiras(idUsuario, idHospital) {
         let query = `
         SELECT 
                 pulseira.id AS id,
-                pulseira.intervaloMedicao AS intervalo,
-                pulseira.statusPul AS stts,
                 pulseira.fkHospital AS hospital,
 
                 CASE
@@ -131,11 +144,23 @@ async function trazerPulseiras(idUsuario, idHospital) {
     }
 }
 
+function cadastrarAlerta(temperatura, situacao, fkRegistro) {
+
+    const instrucaoSql = `
+        INSERT INTO alertas(tempRegistrada, situacao, fkRegistro) VALUES
+            (${temperatura}, '${situacao}', ${fkRegistro});
+    `;
+
+    return bd.executar(instrucaoSql);
+}
+
+
 module.exports = {
     cadastrar,
     remover,
     listar,
     obterTemp,
     atualizar,
-    trazerPulseiras
+    trazerPulseiras,
+    cadastrarAlerta
 }

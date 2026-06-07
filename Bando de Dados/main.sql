@@ -1,4 +1,4 @@
--- DROP DATABASE PI2UTI;
+-- DROP DATABASE PI2UTI; 
 CREATE DATABASE PI2UTI;
 USE PI2UTI;
 
@@ -69,9 +69,6 @@ FOREIGN KEY (fkNivelAcesso) REFERENCES nivelAcesso(idNivelAcesso)
 
 CREATE TABLE pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,
-intervaloMedicao INT,
-statusPul VARCHAR(20),
-CONSTRAINT chkPulseira CHECK (statusPul in('Ativa', 'Manutenção', 'Inativa')),
 fkHospital INT,
 CONSTRAINT fk_pulseira_hospital
 FOREIGN KEY (fkHospital) REFERENCES hospital(id)
@@ -90,8 +87,6 @@ FOREIGN KEY (fkEnfermeiro) REFERENCES usuarios(id),
 CONSTRAINT fk_paciente_pulseira
 FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
-
-ALTER TABLE paciente ADD COLUMN sexo VARCHAR(9);
 
 CREATE TABLE registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,

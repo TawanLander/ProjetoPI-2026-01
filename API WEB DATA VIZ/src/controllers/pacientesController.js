@@ -88,11 +88,36 @@ async function trazerPulseiras(req, res) {
     }
 }
 
+
+async function cadastrarAlerta(req, res) {
+
+    const temperatura = req.body.temperatura;
+    const situacao = req.body.situacao;
+    const fkRegistro = req.body.fkRegistro;
+
+    try {
+
+        await model.cadastrarAlerta(
+            temperatura,
+            situacao,
+            fkRegistro
+        );
+
+        res.status(200).send("Alerta registrado");
+
+    } catch (erro) {
+
+        console.log(erro);
+        res.status(500).send(erro);
+    }
+}
+
 module.exports = {
     cadastrar,
     remover,
     listar,
     obterTemp,
     atualizar,
-    trazerPulseiras
+    trazerPulseiras,
+    cadastrarAlerta
 }

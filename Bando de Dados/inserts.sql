@@ -6,6 +6,9 @@ INSERT INTO endereco (logradouro, numero, bairro, cep, complemento) VALUES
 INSERT INTO hospital (nome, email, senha, telefone, cnpj, codigoHospital) VALUES 
 ('TechVita', 'tcontato@techvita.com', '123456', '(11)99999-9999', '42781563000197', 1001);
 
+INSERT INTO hospitalEndereco (fkHospital, fkEndereco) VALUES
+(1,1);
+
 INSERT INTO nivelAcesso (tipo) VALUES 
 ('N1'), ('N2'), ('N3');
 

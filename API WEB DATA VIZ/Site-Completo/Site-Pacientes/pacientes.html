@@ -69,13 +69,14 @@
 
     <div class="mensagemPopUp closed">
       <div class="stylePopUp">
-        <h1>Digite qual o seu problema:</h1><br>
-        <label for="textoChamado">Qual o seu problema?</label>
+        <h1>Acesse o link abaixo:</h1><br>
+        <a href="https://techvita.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
+        <!--<label for="textoChamado">Qual o seu problema?</label>
         <textarea id="textoChamado" maxlength="75"></textarea><br>
         <label for="descChamado">Descreva o seu chamado</label>
         <textarea id="descChamado" maxlength="500"></textarea>
         <button onclick="enviarChamado()">Enviar chamado</button><br><br>
-        <div id="div_mensagem"></div>
+        <div id="div_mensagem"></div>-->
       </div>
     </div>
     </div>
@@ -100,7 +101,7 @@
     document.querySelector('.botaoSuporte').classList.toggle('closed', true);
    }
 
-   async function enviarChamado() {
+   /*async function enviarChamado() {
     let problema = document.getElementById('textoChamado').value
     let descricao = document.getElementById('descChamado').value
     const chamado = await fetch('/ia/cadastrar', {
@@ -124,8 +125,5 @@
     }, 15000)
     
   
-  }
-
-    
-
+  }*/
 </script>

@@ -31,10 +31,11 @@ async function remover(req, res) {
 }
 
 function listar(req, res) {
-    model.listar().then(r => {
+    const id = req.body.id;
+    if(id === undefined) return res.status(400).send('Id Undefined');
 
-        if (r.ok) return res.json(r);
-
+    model.listar(id).then(r => {
+        return res.json(r);
     }).catch(e => {
         return res.status(400).send(`Erro! ${e}`);
     });
@@ -42,9 +43,7 @@ function listar(req, res) {
 
 function atualizar(req, res) {
     model.atualizar().then(r => {
-
-        if (r.ok) return res.json(r);
-
+        return res.json(r);
     }).catch(e => {
         return res.status(400).send(`Erro! ${e}`);
     });

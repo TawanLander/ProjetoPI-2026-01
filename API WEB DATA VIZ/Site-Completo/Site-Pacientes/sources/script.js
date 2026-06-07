@@ -1,42 +1,49 @@
-// window.onload = function () {
-
-//     if (!sessionStorage.ID_USUARIO) {
-//         window.location.href = "../../Site-Cadastro/login.html";
-//         return;
-//     }
-// }
-
-const c_cards = document.getElementById('c_cards');
-
 window.onload = async () => {
-    await listarPacientes();
-}
+  if (!sessionStorage.getItem('enfermeiro')) {
+    window.location.href = "../../Site-Cadastro/login.html";
+    return;
+  }
+
+  await listarPacientes();
+};
+
 
 async function listarPacientes() {
+    const c_cards = document.getElementById("c_cards");
+    
+  try {
+    const idHospital = JSON.parse(sessionStorage.getItem('enfermeiro')).idHospital;
 
-    try {
+    const resposta = await fetch("/pacientes/listar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: idHospital
+      }),
+    });
+    if(!resposta.ok) return false;
+    
+    const pacientes = await resposta.json();
 
-        const resposta = await fetch('http://localhost:3000/pacientes/listar');
-        const pacientes = await resposta.json();
+    c_cards.innerHTML = "";
 
-        c_cards.innerHTML = '';
+    if (!pacientes || pacientes.length == 0) {
+      c_cards.innerHTML = "<h1>Você não tem pacientes cadastrados</h1>";
+      return;
+    }
 
-        if (!pacientes || pacientes.length == 0) {
-            c_cards.innerHTML = '<h1>Você não tem pacientes cadastrados</h1>';
-            return;
-        }
+    for (let i = 0; i < pacientes.length; i++) {
+      let classe = "";
 
-        for (let i = 0; i < pacientes.length; i++) {
+      if (pacientes[i].temperatura < 35) {
+        classe = "blue";
+      } else if (pacientes[i].temperatura > 36.7) {
+        classe = "red";
+      }
 
-            let classe = '';
-
-            if (pacientes[i].temperatura < 35) {
-                classe = 'blue';
-            } else if (pacientes[i].temperatura > 36.7) {
-                classe = 'red';
-            }
-
-            c_cards.innerHTML += `
+      c_cards.innerHTML += `
                 <div class="card ${classe}" onclick="abrirDashboard(${pacientes[i].id})" style="cursor: pointer;">
                     
                     <h3 class="titulo">Pulseira ${pacientes[i].id}</h3>
@@ -68,14 +75,13 @@ async function listarPacientes() {
                     </div>
                 </div>
             `;
-        }
-
-    } catch (e) {
-        c_cards.innerHTML = '<h1>Você não tem pacientes cadastrados</h1>';
-        console.log(e);
     }
+  } catch (e) {
+    c_cards.innerHTML = "<h1>Você não tem pacientes cadastrados</h1>";
+    console.log(e);
+  }
 }
 
 function abrirDashboard(id) {
-    window.location.href = `../Site-DashBoard/dashboard.html?id=${id}`;
+  window.location.href = `../Site-DashBoard/dashboard.html?id=${id}`;
 }

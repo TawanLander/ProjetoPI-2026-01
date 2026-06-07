@@ -11,7 +11,7 @@ router.post('/remover', (req, res) => {
     controller.remover(req, res);
 });
 
-router.get('/listar', (req, res) => {
+router.post('/listar', (req, res) => {
     controller.listar(req, res);
 });
 

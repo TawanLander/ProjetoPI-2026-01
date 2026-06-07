@@ -17,8 +17,8 @@ function remover(idPulseira) {
     return bd.executar(instrucaoSql);
 }
 
-function listar() {
-    let instrucaoSql = `select * from paciente`
+function listar(id) {
+    let instrucaoSql = `select * from paciente where fkHospital = ${Number(id)}`
 
     return bd.executar(instrucaoSql);
 }

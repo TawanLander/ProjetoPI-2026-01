@@ -45,15 +45,15 @@
         <span class="kpi-valor" id="Kpi1">5</span>
       </div>
       <div class="cardKPI kpi-red">
-        <span class="tituloKpi" > Temperatura Alta</span>
+        <span class="tituloKpi" >Pacientes com Temperatura Alta</span>
         <span class="kpi-valor" id="Kpi2">1</span>
       </div>
       <div class="cardKPI kpi-blue">
-        <span class="tituloKpi"> Temperatura Baixa</span>
+        <span class="tituloKpi">Pacientes com Temperatura Baixa</span>
         <span class="kpi-valor" id="Kpi3">1</span>
       </div>
       <div class="cardKPI kpi-green">
-        <span class="tituloKpi">Temperatura Normal</span>
+        <span class="tituloKpi">Pacientes com Temperatura Normal</span>
         <span class="kpi-valor" id="Kpi4">3</span>
       </div>
     </div>
@@ -86,15 +86,6 @@
 </html>
 
 <script>
-   document.querySelector('#Kpi1').innerHTML = document.querySelectorAll('.card').length
-   
-   document.querySelector('#Kpi2').innerHTML = document.querySelectorAll('.max').length
-
-   document.querySelector('#Kpi3').innerHTML = document.querySelectorAll('.min').length
-
-   document.querySelector('#Kpi4').innerHTML = document.querySelectorAll('.atual').length
-
-
    function suporte(){
     document.querySelector('.mensagemPopUp').classList.toggle('closed', false);
 

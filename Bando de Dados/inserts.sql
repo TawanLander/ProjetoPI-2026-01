@@ -9,6 +9,7 @@ INSERT INTO hospital (nome, email, senha, telefone, cnpj, codigoHospital) VALUES
 INSERT INTO nivelAcesso (tipo) VALUES 
 ('N1'), ('N2'), ('N3');
 
+
 INSERT INTO usuarios (nome, email, senha, fkHospital, fkNivelAcesso) VALUES 
 ('Carlos Silva', 'carlos.silva@techvita.com', '123456', 1, 2),
 ('Ana Souza', 'ana.souza@techvita.com', '123456', 1, 1),
@@ -18,13 +19,19 @@ INSERT INTO usuarios (nome, email, senha, fkHospital, fkNivelAcesso) VALUES
 ('Robson Braga', 'robao.silva@techvita.com', '123456', 1, NULL);
 
 INSERT INTO pulseira (intervaloMedicao, statusPul, fkHospital) VALUES 
-(15, 'Ativa', 1);
+(15, 'Inativa', 1);
 
 INSERT INTO paciente (nome, dataNascimento, cpf, fkEnfermeiro, fkPulseira) VALUES 
 ('Mariana Souza', '1995-08-20', '12345678900', 1, 1);
 
 INSERT INTO registroTemperatura (temperatura, dataRegistro, horaRegistro, fkPulseira) VALUES 
 (36.7, '2026-05-20', '14:30:00', 1);
+
+INSERT INTO registroTemperatura (temperatura, dataRegistro, horaRegistro, fkPulseira) VALUES 
+(36.9, '2026-05-20', '15:00:00', 1),
+(37.2, '2026-05-20', '15:30:00', 1),
+(38.9, '2026-05-20', '16:00:00', 1),
+(34.2, '2026-05-20', '14:30:00', 1);
 
 INSERT INTO alertas (tempMax, tempMin, fkRegistro) VALUES 
 (39.0, 35.0, 1);

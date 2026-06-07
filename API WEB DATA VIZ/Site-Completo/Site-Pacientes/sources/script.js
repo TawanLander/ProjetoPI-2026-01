@@ -7,10 +7,9 @@ window.onload = async () => {
   await listarPacientes();
 };
 
+const c_cards = document.getElementById("c_cards");
 
 async function listarPacientes() {
-    const c_cards = document.getElementById("c_cards");
-    
   try {
     const idHospital = JSON.parse(sessionStorage.getItem('enfermeiro')).idHospital;
 

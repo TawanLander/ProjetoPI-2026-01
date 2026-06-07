@@ -3,36 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TechVita - Cadastro</title>
-    <link rel="stylesheet" href="./sources/style.css">
-    <link rel="icon" href="#" />
+
+    <link rel="stylesheet" href="./sources/style-login.css">
+
     <link rel="icon" href="../logo.png" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 <body>
-    <div id="container">
-        <div id="logo">
-            <img src="../imgs/TechVita.png">
+
+<div id="container">
+
+    <div id="logo">
+        <img src="../imgs/TechVita.png">
+    </div>
+
+    <div id="container_campos">
+
+        <h3>FINALIZAR CADASTRO</h3>
+
+        <div>
+            <input type="password"
+                id="input_senha"
+                placeholder="Senha"
+                oninput="verificarSenha(2)">
+
+            <div class="erro sumir" id="erro-senha"></div>
         </div>
 
-        <div id="container_campos">
-            <h3>CADASTRO <br></h3>
-            
-                <input type="text" id="input_senha" placeholder="Senha" oninput="verificarSenha(2)">
-                <div class="erro sumir" id="erro-senha"></div>
-            
-                <input type="text" id="input_repetirSenha" placeholder="Repetir senha" oninput="verificarSenha(1)">
-                <div class="erro sumir" id="erro-repetirSenha">As senha devem coincidir!</div>
-            
-                <button onclick="cadastrar()" id="botao">CADASTRAR</button>
+        <div>
+            <input type="password"
+                id="input_repetirSenha"
+                placeholder="Confirmar senha"
+                oninput="verificarSenha(1)">
 
-                <div id="mensagem"></div>
-
-                <span>Já possui uma conta? <a href="./login.html">Logar</a></span>
+            <div class="erro sumir" id="erro-repetirSenha">
+                As senhas devem coincidir!
+            </div>
         </div>
 
-</body>
-</html>
+        <button onclick="cadastrar()" id="botao">
+            CADASTRAR
+        </button>
+
+        <div id="mensagem"></div>
+
+        <span>
+            Já possui uma conta?
+            <a href="./login.html">Entrar</a>
+        </span>
+
+    </div>
+
+</div>
 
 <script src="./sources/script.js" defer></script>
 
@@ -76,7 +99,7 @@
 
     }
 
-function addClass (e, ...c){
+    function addClass (e, ...c){
     e.classList.add(...c)
 }
 function removeClass (e, ...c){

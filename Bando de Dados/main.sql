@@ -59,8 +59,8 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 email VARCHAR(150),
 senha VARCHAR(250),
-fkHospital INT,
-fkNivelAcesso INT,
+fkHospital INT DEFAULT NULL,
+fkNivelAcesso INT DEFAULT NULL,
 CONSTRAINT fk_usuario_hospital
 FOREIGN KEY (fkHospital) REFERENCES hospital(id),
 CONSTRAINT fk_usuario_nivel
@@ -81,15 +81,17 @@ CREATE TABLE paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60),
 dataNascimento DATE,
-cpf CHAR(11),
+sexo VARCHAR(9),
 statusPaciente TINYINT,
 fkEnfermeiro INT,
-fkPulseira INT,
+fkPulseira INT DEFAULT NULL,
 CONSTRAINT fk_paciente_enfermeiro
 FOREIGN KEY (fkEnfermeiro) REFERENCES usuarios(id),
 CONSTRAINT fk_paciente_pulseira
 FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
+
+ALTER TABLE paciente ADD COLUMN sexo VARCHAR(9);
 
 CREATE TABLE registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -103,8 +105,8 @@ FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 
 CREATE TABLE alertas (
 id INT PRIMARY KEY AUTO_INCREMENT,
-tempMax DECIMAL(4,2),
-tempMin DECIMAL(4,2),
+tempRegistrada DECIMAL(4,2),
+situacao VARCHAR(9),
 fkRegistro INT,
 CONSTRAINT fk_alerta_registro
 FOREIGN KEY (fkRegistro) REFERENCES registroTemperatura(id)

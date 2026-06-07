@@ -16,10 +16,10 @@ async function login() {
         })
     });
 
-    if (!fetchLogin.ok) {
-        document.getElementById('mensagem').innerHTML = "Email ou senha incorretos!";
-        return false;
-    }
+    // if (!fetchLogin.ok) {
+    //     document.getElementById('mensagem').innerHTML = "Email ou senha incorretos!";
+    //     return false;
+    // }
     
     // Não precisa de else por causa do return acima;
     let dados = await fetchLogin.json();

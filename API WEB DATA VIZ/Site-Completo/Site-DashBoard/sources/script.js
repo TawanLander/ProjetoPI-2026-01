@@ -86,11 +86,11 @@ async function obterDados(grafico, idSensor) {
     if (ultimaTemp) {
       const temperaturaAtual = parseFloat(ultimaTemp.temperatura);
 
-      document.getElementById("tempatual").innerHTML = `${temperaturaAtual === null || temperaturaAtual === undefined || isNaN(temperaturaAtual) ? 0 : temperaturaAtual}°`;
+      document.getElementById("tempatual").innerHTML = `${temperaturaAtual === null || temperaturaAtual === undefined || isNaN(temperaturaAtual) ? 'Não Registrado' : temperaturaAtual}°`;
 
-      document.getElementById("tempalta").innerHTML = `${ultimaTemp.tempMax === null || ultimaTemp.tempMax === undefined || ultimaTemp.tempMax === NaN ? 0 : ultimaTemp.tempMax}°`;
+      document.getElementById("tempalta").innerHTML = `${ultimaTemp.tempMax === null || ultimaTemp.tempMax === undefined || ultimaTemp.tempMax === NaN ? 'Não Registrado' : ultimaTemp.tempMax}°`;
 
-      document.getElementById("tempbaixa").innerHTML = `${ultimaTemp.tempMin === null || ultimaTemp.tempMin === undefined || ultimaTemp.tempMin === NaN ? 0 : ultimaTemp.tempMin}°`;
+      document.getElementById("tempbaixa").innerHTML = `${ultimaTemp.tempMin === null || ultimaTemp.tempMin === undefined || ultimaTemp.tempMin === NaN ? 'Não Registrado' : ultimaTemp.tempMin}°`;
 
       const estado = document.getElementById("estado");
 

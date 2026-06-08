@@ -36,7 +36,6 @@ codigoHospital INT NOT NULL
 );
 
 INSERT INTO hospital VALUES (1, 'Casa de Saúde', 'casa@saude.com', '1234', '1191918787', '123123123123123', 0917)
-ON DUPLICATE KEY UPDATE id = id;
 
 CREATE TABLE IF NOT EXISTS link_endereços (
 hospital_id INT,
@@ -53,8 +52,7 @@ fkHospital INT NOT NULL,
 CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
-INSERT INTO enfermeiro VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1)
-ON DUPLICATE KEY UPDATE id = id;
+INSERT INTO enfermeiro VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
 
 CREATE TABLE IF NOT EXISTS pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -73,11 +71,9 @@ fkPulseira INT NOT NULL,
 CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
 
-INSERT INTO pulseira (id, fkHospital) VALUES (1, 1) ON DUPLICATE KEY UPDATE id = id;
-INSERT INTO pulseira (id, fkHospital) VALUES (2, 1) ON DUPLICATE KEY UPDATE id = id;
-INSERT INTO pulseira (id, fkHospital) VALUES (3, 1) ON DUPLICATE KEY UPDATE id = id;
-
-INSERT INTO paciente VALUES (1, 'Teste', '2007-04-02', '12389176525', 1, 2);
+INSERT INTO pulseira (id, fkHospital) VALUES (1, 1);
+INSERT INTO pulseira (id, fkHospital) VALUES (2, 1);
+INSERT INTO pulseira (id, fkHospital) VALUES (3, 1);
 
 CREATE TABLE IF NOT EXISTS registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,

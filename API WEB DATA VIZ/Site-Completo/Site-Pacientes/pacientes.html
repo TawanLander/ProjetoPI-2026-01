@@ -68,8 +68,9 @@
     </div>
 
     <div class="mensagemPopUp closed">
+      <span onclick="fecharPopUp()" class="fechar">✕</span>
       <div class="stylePopUp">
-        <h1>Acesse o link abaixo:</h1><br>
+        <h1>Acesse o link abaixo para acionar o suporte:</h1><br>
         <a href="https://techvita.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
         <!--<label for="textoChamado">Qual o seu problema?</label>
         <textarea id="textoChamado" maxlength="75"></textarea><br>
@@ -91,6 +92,11 @@
 
     document.querySelector('.botaoSuporte').classList.toggle('closed', true);
    }
+
+   function fecharPopUp() {
+    document.querySelector('.mensagemPopUp').classList.toggle('closed', true);
+    document.querySelector('.botaoSuporte').classList.toggle('closed', false);
+}
 
    /*async function enviarChamado() {
     let problema = document.getElementById('textoChamado').value

@@ -78,7 +78,6 @@ INSERT INTO pulseira (id, fkHospital) VALUES (2, 1) ON DUPLICATE KEY UPDATE id =
 INSERT INTO pulseira (id, fkHospital) VALUES (3, 1) ON DUPLICATE KEY UPDATE id = id;
 
 INSERT INTO paciente VALUES (1, 'Teste', '2007-04-02', '12389176525', 1, 2)
-ON DUPLICATE KEY UPDATE id = id;
 
 CREATE TABLE IF NOT EXISTS registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,

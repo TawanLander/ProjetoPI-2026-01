@@ -68,8 +68,6 @@ INSERT INTO usuarios (id, nome, email, senha, fkHospital) VALUES (1, 'Teste', 't
 
 CREATE TABLE IF NOT EXISTS pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,
-intervaloMedicao INT,
-statusPul VARCHAR(20),
 fkHospital INT NOT NULL,
 CONSTRAINT fk_hospital_pulseira FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
@@ -78,7 +76,8 @@ CREATE TABLE IF NOT EXISTS paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 dataNascimento DATE NOT NULL,
-genero VARCHAR(20) NOT NULL,
+sexo VARCHAR(20) NOT NULL,
+statusPaciente TINYINT,
 fkPulseira INT NOT NULL,
 CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
@@ -90,24 +89,19 @@ INSERT INTO pulseira (id, fkHospital) VALUES (3, 1);
 CREATE TABLE IF NOT EXISTS registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,
 temperatura DECIMAL(4,1),
-dtRegistro DATE,
+dataRegistro DATE,
 horaRegistro TIME,
 fkPulseira INT,
 CONSTRAINT fk_pulseira_temperatura FOREIGN KEY (fkPulseira) REFERENCES pulseira(id),
-fkHospital INT,
-CONSTRAINT fk_hospital_id FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
 CREATE TABLE IF NOT EXISTS alertas (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    pulseira_id INT NOT NULL,
-    registroTemperatura_id INT NOT NULL,
-    paciente_id INT NOT NULL,
-    tempMax FLOAT NOT NULL,
-    tempMin FLOAT NOT NULL,
-    CONSTRAINT fk_alerta_pulseira FOREIGN KEY (pulseira_id) REFERENCES pulseira(id),
-    CONSTRAINT fk_alerta_registro FOREIGN KEY (registroTemperatura_id) REFERENCES registroTemperatura(id),
-    CONSTRAINT fk_alerta_paciente FOREIGN KEY (paciente_id) REFERENCES paciente(id)
+   tempRegistrada DECIMAL(4, 2),
+   situacao VARCHAR(9),
+   fkRegistro INT,
+   CONSTRAINT fk_alerta_registro
+   FOREIGN KEY (fkRegistro) REFERENCES registroTemperatura(id)
 );
 
 CREATE TABLE IF NOT EXISTS ia (

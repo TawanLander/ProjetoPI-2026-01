@@ -92,7 +92,7 @@ temperatura DECIMAL(4,1),
 dataRegistro DATE,
 horaRegistro TIME,
 fkPulseira INT,
-CONSTRAINT fk_pulseira_temperatura FOREIGN KEY (fkPulseira) REFERENCES pulseira(id),
+CONSTRAINT fk_pulseira_temperatura FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
 
 CREATE TABLE IF NOT EXISTS alertas (

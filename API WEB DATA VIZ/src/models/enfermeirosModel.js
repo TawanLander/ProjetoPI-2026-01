@@ -13,11 +13,11 @@ function autenticar(email, senha) {
     return bd.executar(instrucaoSql);
 }
 
-function cadastrar(nome,email,senha, fkHospital, fkNivelAcesso) {
+function cadastrar(nome,email,senha, fkHospital) {
 
     var instrucaoSql = `
-        INSERT INTO usuarios (nome, email, senha, fkHospital, fkNivelAcesso) VALUES 
-            ('${nome}', '${email}', '${senha}', ${fkHospital}, ${fkNivelAcesso});
+        INSERT INTO usuarios (nome, email, senha, fkHospital) VALUES 
+            ('${nome}', '${email}', '${senha}', ${fkHospital});
     `;
     return bd.executar(instrucaoSql);
 }

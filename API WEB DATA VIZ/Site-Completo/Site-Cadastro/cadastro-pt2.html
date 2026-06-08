@@ -57,47 +57,13 @@
 
 </div>
 
-<script src="./sources/script.js" defer></script>
+<script src="./sources/script.js"></script>
 
 <script>
-    let passouSenha = false;
     const senha = document.getElementById('input_senha');
     const senhaRepetir = document.getElementById('input_repetirSenha');
     const erroSenha = document.getElementById('erro-senha');
     const erroSenhaRepetir = document.getElementById('erro-repetirSenha');
-
-    async function cadastrar(){
-        if(!passouSenha){
-            return false;
-        }
-
-        let senha = input_senha.value;
-        let dados = JSON.parse(sessionStorage.getItem('dadosUser'));
-        let codigo = dados.codigo;
-        let nome = dados.nome;
-        let email = dados.email;
-        let repetirSenha = input_repetirSenha.value
-
-        
-
-        if(senha == repetirSenha){
-        passouSenha = true
-        const cadastrarUsuario = await fetch('/enfermeiros/cadastrar', {
-            method: "POST",
-            headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nomeServer: nome,
-        emailServer: email,
-        senhaServer: senha,
-      }),
-        })
-        }
-        
-        sessionStorage.removeItem('dadosUser')
-
-    }
 
     function addClass (e, ...c){
     e.classList.add(...c)

@@ -27,11 +27,10 @@ function listar(id) {
             paciente.fkPulseira
 
         FROM paciente
+        JOIN pulseira
+        ON pulseira.id = paciente.fkPulseira
 
-        LEFT JOIN usuarios
-            ON paciente.fkEnfermeiro = usuarios.id
-
-        WHERE usuarios.fkHospital = ${Number(id)}
+        WHERE pulseira.fkHospital = ${Number(id)}
             AND paciente.statusPaciente = 1;
     `;
 
@@ -45,7 +44,6 @@ function atualizar() {
 }
 
 function obterTemp(idPaciente) {
-
     const instrucaoSql = `
         SELECT 
             paciente.nome,

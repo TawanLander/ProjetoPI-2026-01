@@ -36,7 +36,6 @@ function cadastrar(req, res) {
     const email = req.body.emailServer;
     const senha = req.body.senhaServer;
     const idHospital = req.body.hospitalServer;
-    const nivelAcesso = req.body.nivelServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -45,9 +44,11 @@ function cadastrar(req, res) {
         return res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         return res.status(400).send("Sua senha está undefined!");
+    } else if (idHospital == undefined) {
+        return res.status(400).send("Seu hospital está undefined!");
     }
 
-        model.cadastrar(nome, email, senha, idHospital, nivelAcesso)
+        model.cadastrar(nome, email, senha, idHospital)
             .then(
                 function (resultado) {
                     res.json(resultado);

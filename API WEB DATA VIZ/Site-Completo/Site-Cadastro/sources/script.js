@@ -218,8 +218,7 @@ function verificarSenha(tipo){
 }
 
 async function cadastrar(){
-
-    // if(!passouSenha) return;
+    if(!passouSenha) return;
 
     const dados =
         JSON.parse(
@@ -249,8 +248,6 @@ async function cadastrar(){
             emailServer:dados.email,
             senhaServer:senha,
             hospitalServer:dados.idHospital,
-            nivelServer:dados.nivelAcesso
-
         })
 
     });

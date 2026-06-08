@@ -1,4 +1,5 @@
 window.onload = async () => {
+  sessionStorage.removeItem('id-paciente');
   if (!sessionStorage.getItem("enfermeiro")) {
     window.location.href = "../../Site-Cadastro/login.html";
     return;
@@ -91,13 +92,13 @@ async function listarPacientes() {
 
       let classe = "";
 
-      if (tempAtual< 35) {
+      if (tempAtual < 35) {
         tempBaixa++;
         classe = "blue";
-      } else if (tempAtual> 36.7) {
+      } else if (tempAtual > 36.7) {
         tempAlta++;
         classe = "red";
-      } else if (tempAtual<= 36.7 && tempAtual>= 35) {
+      } else if (tempAtual <= 36.7 && tempAtual >= 35) {
         tempNormal++;
       }
 
@@ -145,5 +146,6 @@ async function listarPacientes() {
 }
 
 function abrirDashboard(id) {
-  window.location.href = `../Site-DashBoard/dashboard.html?id=${id}`;
+  sessionStorage.setItem('id-paciente', id);
+  window.location.href = `../Site-DashBoard/dashboard.html`;
 }

@@ -6,9 +6,8 @@
 //     }
 // }
 
-const parametros = new URLSearchParams(window.location.search);
+const idPaciente = sessionStorage.getItem('id-paciente');
 
-const idPaciente = parametros.get("id");
 const Info = document.getElementById("info");
 const TempAlta = document.getElementById("tempalta");
 const TempBaixa = document.getElementById("tempbaixa");
@@ -70,6 +69,7 @@ async function obterDados(grafico, idSensor) {
     );
 
     let valores = await resposta.json();
+    console.log(valores);
 
     const ultimaTemp = valores[valores.length - 1];
     let alertas = 0;

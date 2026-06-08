@@ -86,7 +86,7 @@ async function obterDados(grafico, idSensor) {
     if (ultimaTemp) {
       const temperaturaAtual = parseFloat(ultimaTemp.temperatura);
 
-      document.getElementById("tempatual").innerHTML = `${temperaturaAtual === null || temperaturaAtual === undefined || temperaturaAtual === NaN ? 0 : temperaturaAtual}°`;
+      document.getElementById("tempatual").innerHTML = `${temperaturaAtual === null || temperaturaAtual === undefined || isNaN(temperaturaAtual) ? 0 : temperaturaAtual}°`;
 
       document.getElementById("tempalta").innerHTML = `${ultimaTemp.tempMax === null || ultimaTemp.tempMax === undefined || ultimaTemp.tempMax === NaN ? 0 : ultimaTemp.tempMax}°`;
 

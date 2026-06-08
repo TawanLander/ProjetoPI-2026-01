@@ -44,7 +44,7 @@ function atualizar() {
 }
 
 function obterTemp(idPaciente) {
-    console.log(idPaciente);
+    console.log('ID PACIENTE', idPaciente);
     const instrucaoSql = `
         SELECT 
             paciente.nome,
@@ -75,7 +75,7 @@ function obterTemp(idPaciente) {
         JOIN pulseira
             ON paciente.fkPulseira = pulseira.id
 
-        JOIN registroTemperatura
+        LEFT JOIN registroTemperatura
             ON registroTemperatura.fkPulseira = pulseira.id
 
         WHERE paciente.id = ${idPaciente}

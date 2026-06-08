@@ -5,3 +5,6 @@
 **/.github
 **/.env
 **/.env.dev
+
+**/API DATAQUINO/node_modules
+**/API WEB DATA VIZ/node_modules

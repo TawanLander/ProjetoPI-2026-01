@@ -11,9 +11,9 @@ let temperaturaBase = null;
 let simuladorIniciado = false;
 
 const poolBancoDados = mysql.createPool({
-    host: '127.0.0.1',
+    host: '10.18.33.196',
     user: 'cliente',
-    password: 'Urubu@2026',
+    password: 'Urubu@2025',
     database: 'PI2UTI',
     port: 3307
 }).promise();
@@ -73,7 +73,7 @@ function iniciarSimulacao() {
     setInterval(async () => {
         const base = temperaturaBase ?? (36 + Math.random() * 2);
         for (let id = 2; id <= TOTAL_PULSEIRAS; id++) {
-            const variacao = (Math.random() * 0.8) - 0.4;
+            const variacao = (Math.random() * 2) - 2;
             const temperatura = Number((base + variacao).toFixed(1));
             await poolBancoDados.execute(`
                 INSERT INTO registroTemperatura

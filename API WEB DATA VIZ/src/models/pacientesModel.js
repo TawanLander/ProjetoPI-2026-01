@@ -2,7 +2,7 @@ const bd = require('../database/config');
 
 function cadastrar(nome, dtNascimento, genero, fkPulseira) {
     var instrucaoSql = `
-        insert into paciente (nome, dataNascimento, sexo, statusPaciente fkPulseira) values 
+        insert into paciente (nome, dataNascimento, sexo, statusPaciente, fkPulseira) values 
             ('${nome}', '${dtNascimento}', '${genero}', 1, ${Number(fkPulseira) + 1});
     `;
     return bd.executar(instrucaoSql);

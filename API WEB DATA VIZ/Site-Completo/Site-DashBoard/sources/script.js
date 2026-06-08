@@ -98,6 +98,8 @@ async function obterDados(grafico, idSensor) {
       
       if(isNaN(temperaturaAtual)){
         estado.innerHTML = 'Não Registrado'
+
+        divEstado.style.backgroundColor = "#FFFFFF";
       } else if (temperaturaAtual < 35) {
         estado.innerHTML = "Hipotermia";
 

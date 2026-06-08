@@ -24,8 +24,7 @@ async function listarPacientes() {
     const idHospital = JSON.parse(
       sessionStorage.getItem("enfermeiro"),
     ).idHospital;
-
-    const resposta = await fetch("http://127.0.0.1:3333/pacientes/listar", {
+    const resposta = await fetch("/pacientes/listar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,9 +48,7 @@ async function listarPacientes() {
       totalPacientes++;
       const paciente = pacientes[i];
 
-      const resposta = await fetch(
-        `http://127.0.0.1:3333/pacientes/obterTemp/${paciente.id}`,
-      );
+      const resposta = await fetch(`/pacientes/obterTemp/${paciente.id}`);
 
       const dadosTemp = await resposta.json();
       console.log(dadosTemp);
@@ -77,7 +74,7 @@ async function listarPacientes() {
           situacao = "Alta";
         }
 
-        await fetch("http://127.0.0.1:3333/pacientes/cadastrarAlerta", {
+        await fetch("/pacientes/cadastrarAlerta", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

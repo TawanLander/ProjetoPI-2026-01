@@ -1,4 +1,4 @@
-CREATE DATABASE PI2UTI;
+CREATE DATABASE IF NOT EXISTS PI2UTI;
 USE PI2UTI;
 
 /*
@@ -9,14 +9,14 @@ Leandro Bezerra Mendes – 01261051
 Tawan Lander Da Fonseca Rodrigues De Paula Moura – 01261067
 Vinícius Guimarães Menezes – 01261000
 */
-CREATE TABLE contato (
+CREATE TABLE IF NOT EXISTS contato (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 email VARCHAR(150) NOT NULL,
 mensagem VARCHAR(250) NOT NULL
 );
 
-CREATE TABLE endereco (
+CREATE TABLE IF NOT EXISTS endereco (
 id INT PRIMARY KEY AUTO_INCREMENT,
 logradouro VARCHAR(100) NOT NULL,
 numero VARCHAR(5) NOT NULL,
@@ -25,7 +25,7 @@ cep VARCHAR(10) NOT NULL,
 complemento VARCHAR(100)
 );
 
-CREATE TABLE hospital (
+CREATE TABLE IF NOT EXISTS hospital (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 email VARCHAR(150) NOT NULL,
@@ -35,15 +35,16 @@ cnpj CHAR(15) NOT NULL,
 codigoHospital INT NOT NULL
 );
 
-insert into hospital values (1, 'Casa de Saúde', 'casa@saude.com', '1234', '1191918787', '123123123123123', 0917);
+INSERT INTO hospital VALUES (1, 'Casa de Saúde', 'casa@saude.com', '1234', '1191918787', '123123123123123', 0917)
+ON DUPLICATE KEY UPDATE id = id;
 
-create table link_endereços (
-hospital_id int,
-endereco_id int,
-primary key (hospital_id, endereco_id)
+CREATE TABLE IF NOT EXISTS link_endereços (
+hospital_id INT,
+endereco_id INT,
+PRIMARY KEY (hospital_id, endereco_id)
 );
 
-CREATE TABLE enfermeiro (
+CREATE TABLE IF NOT EXISTS enfermeiro (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 email VARCHAR(150) NOT NULL,
@@ -52,9 +53,18 @@ fkHospital INT NOT NULL,
 CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
-insert into enfermeiro values (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
+INSERT INTO enfermeiro VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1)
+ON DUPLICATE KEY UPDATE id = id;
 
-CREATE TABLE paciente (
+CREATE TABLE IF NOT EXISTS pulseira (
+id INT PRIMARY KEY AUTO_INCREMENT,
+intervaloMedicao INT,
+statusPul VARCHAR(20),
+fkHospital INT NOT NULL,
+CONSTRAINT fk_hospital_pulseira FOREIGN KEY (fkHospital) REFERENCES hospital(id)
+);
+
+CREATE TABLE IF NOT EXISTS paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 dtNascimento DATE NOT NULL,
@@ -63,21 +73,14 @@ fkPulseira INT NOT NULL,
 CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)
 );
 
-insert into paciente values (1, 'Teste', '2007-04-02', '12389176525', 1, 2);
+INSERT INTO pulseira (id, fkHospital) VALUES (1, 1) ON DUPLICATE KEY UPDATE id = id;
+INSERT INTO pulseira (id, fkHospital) VALUES (2, 1) ON DUPLICATE KEY UPDATE id = id;
+INSERT INTO pulseira (id, fkHospital) VALUES (3, 1) ON DUPLICATE KEY UPDATE id = id;
 
-CREATE TABLE pulseira (
-id INT PRIMARY KEY AUTO_INCREMENT,
-intervaloMedicao INT,
-statusPul VARCHAR(20),
-fkHospital INT NOT NULL,
-CONSTRAINT fk_hospital_pulseira FOREIGN KEY (fkHospital) REFERENCES hospital(id)
-);
+INSERT INTO paciente VALUES (1, 'Teste', '2007-04-02', '12389176525', 1, 2)
+ON DUPLICATE KEY UPDATE id = id;
 
-insert into pulseira (id, fkHospital) values (1, 1);
-insert into pulseira (id, fkHospital) values (2, 1);
-insert into pulseira (id, fkHospital) values (3, 1);
-
-CREATE TABLE registroTemperatura (
+CREATE TABLE IF NOT EXISTS registroTemperatura (
 id INT PRIMARY KEY AUTO_INCREMENT,
 temperatura DECIMAL(4,1),
 dtRegistro DATE,
@@ -88,7 +91,7 @@ fkHospital INT,
 CONSTRAINT fk_hospital_id FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 );
 
-CREATE TABLE alertas (
+CREATE TABLE IF NOT EXISTS alertas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     pulseira_id INT NOT NULL,
     registroTemperatura_id INT NOT NULL,
@@ -100,15 +103,7 @@ CREATE TABLE alertas (
     CONSTRAINT fk_alerta_paciente FOREIGN KEY (paciente_id) REFERENCES paciente(id)
 );
 
-CREATE TABLE chamados (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(75) NOT NULL,
-    descc VARCHAR(500) NOT NULL,
-    statuss TINYINT NOT NULL DEFAULT 0,
-    dthr DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE ia (
+CREATE TABLE IF NOT EXISTS ia (
     id INT AUTO_INCREMENT PRIMARY KEY,
     dthr DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     resposta VARCHAR(1000) NOT NULL

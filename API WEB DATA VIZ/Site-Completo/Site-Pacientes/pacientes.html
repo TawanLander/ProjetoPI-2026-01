@@ -42,19 +42,19 @@
     <div class="c_kpis"> 
       <div class="cardKPI">
         <span class="tituloKpi">Total de Pacientes</span>
-        <span class="kpi-valor" id="Kpi1">5</span>
+        <span class="kpi-valor" id="Kpi1">0</span>
       </div>
       <div class="cardKPI kpi-red">
-        <span class="tituloKpi" > Temperatura Alta</span>
-        <span class="kpi-valor" id="Kpi2">1</span>
+        <span class="tituloKpi" >Pacientes com Temperatura Alta</span>
+        <span class="kpi-valor" id="Kpi2">0</span>
       </div>
       <div class="cardKPI kpi-blue">
-        <span class="tituloKpi"> Temperatura Baixa</span>
-        <span class="kpi-valor" id="Kpi3">1</span>
+        <span class="tituloKpi">Pacientes com Temperatura Baixa</span>
+        <span class="kpi-valor" id="Kpi3">0</span>
       </div>
       <div class="cardKPI kpi-green">
-        <span class="tituloKpi">Temperatura Normal</span>
-        <span class="kpi-valor" id="Kpi4">3</span>
+        <span class="tituloKpi">Pacientes com Temperatura Normal</span>
+        <span class="kpi-valor" id="Kpi4">0</span>
       </div>
     </div>
 
@@ -69,13 +69,14 @@
 
     <div class="mensagemPopUp closed">
       <div class="stylePopUp">
-        <h1>Digite qual o seu problema:</h1><br>
-        <label for="textoChamado">Qual o seu problema?</label>
+        <h1>Acesse o link abaixo:</h1><br>
+        <a href="https://techvita.atlassian.net/servicedesk/customer/portal/1">Suporte</a>
+        <!--<label for="textoChamado">Qual o seu problema?</label>
         <textarea id="textoChamado" maxlength="75"></textarea><br>
         <label for="descChamado">Descreva o seu chamado</label>
         <textarea id="descChamado" maxlength="500"></textarea>
         <button onclick="enviarChamado()">Enviar chamado</button><br><br>
-        <div id="div_mensagem"></div>
+        <div id="div_mensagem"></div>-->
       </div>
     </div>
     </div>
@@ -85,22 +86,13 @@
 </html>
 
 <script>
-   document.querySelector('#Kpi1').innerHTML = document.querySelectorAll('.card').length
-   
-   document.querySelector('#Kpi2').innerHTML = document.querySelectorAll('.max').length
-
-   document.querySelector('#Kpi3').innerHTML = document.querySelectorAll('.min').length
-
-   document.querySelector('#Kpi4').innerHTML = document.querySelectorAll('.atual').length
-
-
    function suporte(){
     document.querySelector('.mensagemPopUp').classList.toggle('closed', false);
 
     document.querySelector('.botaoSuporte').classList.toggle('closed', true);
    }
 
-   async function enviarChamado() {
+   /*async function enviarChamado() {
     let problema = document.getElementById('textoChamado').value
     let descricao = document.getElementById('descChamado').value
     const chamado = await fetch('/ia/cadastrar', {
@@ -124,8 +116,5 @@
     }, 15000)
     
   
-  }
-
-    
-
+  }*/
 </script>

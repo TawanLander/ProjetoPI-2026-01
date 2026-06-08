@@ -14,7 +14,7 @@ const poolBancoDados = mysql.createPool({
     host: '127.0.0.1',
     user: 'cliente',
     password: 'Urubu@2026',
-    database: 'sensor',
+    database: 'PI2UTI',
     port: 3307
 }).promise();
 

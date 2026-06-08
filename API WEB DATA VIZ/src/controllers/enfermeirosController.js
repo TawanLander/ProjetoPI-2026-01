@@ -66,9 +66,9 @@ function cadastrar(req, res) {
 
 function verificarCodigo(req, res) {
 
-    let codigoHospital = req.body.codigoHospital;
+    let codigo = req.body.codigo;
 
-    model.verificarCodigo(codigoHospital)
+    model.verificarCodigo(codigo)
     .then(
         function(resultado) {
             res.json(resultado);

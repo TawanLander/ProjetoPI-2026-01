@@ -37,22 +37,29 @@ codigoHospital INT NOT NULL
 
 INSERT INTO hospital VALUES (1, 'Casa de Saúde', 'casa@saude.com', '1234', '1191918787', '123123123123123', 0917);
 
-CREATE TABLE IF NOT EXISTS link_endereços (
+CREATE TABLE IF NOT EXISTS link_enderecos (
 hospital_id INT,
 endereco_id INT,
 PRIMARY KEY (hospital_id, endereco_id)
 );
 
-CREATE TABLE IF NOT EXISTS enfermeiro (
+CREATE TABLE IF NOT EXISTS nivelAcesso(
+    idNivelAcesso INT PRIMARY KEY AUTO_INCREMENT,
+    tipo char(2),
+)
+
+CREATE TABLE IF NOT EXISTS usuarios (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
 email VARCHAR(150) NOT NULL,
 senha VARCHAR(20) NOT NULL,
 fkHospital INT NOT NULL,
-CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id)
+CONSTRAINT fk_hospital FOREIGN KEY (fkHospital) REFERENCES hospital(id),
+fkNivelAcesso INT DEFAULT NULL,
+CONSTRAINT fk_nivel_acesso FOREIGN KEY (fkNivelAcesso) REFERENCES nivelAcesso(idNivelAcesso)
 );
 
-INSERT INTO enfermeiro VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
+INSERT INTO usuarios VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
 
 CREATE TABLE IF NOT EXISTS pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,

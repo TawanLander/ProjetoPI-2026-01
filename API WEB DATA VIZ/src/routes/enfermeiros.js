@@ -7,6 +7,10 @@ router.post("/cadastrar", (req, res) => {
     controller.cadastrar(req, res);
 });
 
+router.post("/verificarCodigo", (req, res) => {
+    controller.verificarCodigo(req, res);
+});
+
 router.post("/autenticar", (req, res) => {
     controller.autenticar(req, res);
 });

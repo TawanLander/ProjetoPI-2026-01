@@ -9,6 +9,26 @@ async function cadastrar(titulo, desc){
     return resultado;
 }
 
+async function salvarResposta(resposta) {
+    const query = `insert into ia (resposta) values ('${resposta}')`
+
+    const resultado = await bd.executar(query)
+    if(!resultado) return false;
+
+    return resultado;
+}
+
+async function pegarRespostas() {
+    const query = `select * from ia`
+
+    const resultado = await bd.executar(query)
+    if(!resultado) return false;
+
+    return resultado;
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    salvarResposta,
+    pegarRespostas
 }

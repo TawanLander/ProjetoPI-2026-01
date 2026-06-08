@@ -43,6 +43,11 @@ async function verificarPulseira() {
     document.getElementById('erro').classList.remove('sumir');
     document.getElementById('info').classList.add('sumir');
 
+    document.getElementById('span-nome').textContent = pulseira.pacienteNome;
+    document.getElementById('span-genero').textContent = pulseira.pacienteGenero;
+    let dtNasc = new Date(pulseira.pacienteDtNasc);
+    document.getElementById('span-nascimento').textContent = dtNasc.toLocaleDateString('pt-BR');
+
     return;
   }
   document.getElementById('erro').classList.add('sumir');
@@ -52,8 +57,30 @@ async function verificarPulseira() {
 }
 
 async function desvincularPaciente() {
-  let id = sessionStorage.getItem('paciente-selecionado');
+    let id = sessionStorage.getItem('paciente-selecionado');
+    if (id === null) return false;
 
+    const resposta = await fetch('/pacientes/remover', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: Number(id) }),
+    });
+
+    const resultado = await resposta.text();
+
+    if (resultado === 'true') {
+        pulseiras[Number(id)].situacao = 'Livre';
+        pulseiras[Number(id)].pacienteNome = null;
+        document.getElementById('erro').classList.add('sumir');
+        document.getElementById('info').classList.remove('sumir');
+        document.getElementById('ipt-nome').value = '';
+        document.getElementById('ipt-dtNascimento').value = '';
+
+    } else {
+        alert('Erro ao desvincular paciente!');
+    }
 }
 
 async function cadastrarPaciente() {
@@ -63,15 +90,33 @@ async function cadastrarPaciente() {
   let dtNascimento = document.getElementById('ipt-dtNascimento').value;
   if(nome === '' || dtNascimento === '') return false;
 
+  const enfermeiro = JSON.parse(sessionStorage.getItem("enfermeiro"));
+
+  const fkEnfermeiro = enfermeiro.id;
+
+    console.log(`fkEnfermeiro= ${fkEnfermeiro}`)
+
   const cadastro = await fetch('/pacientes/cadastrar', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({nome, genero, dtNascimento, id}),
+    body: JSON.stringify({nome, dtNascimento, id, fkEnfermeiro, genero}),
   });
 
   const resultado = await cadastro.text();
+
+  if (resultado === 'true') {
+        const numeroPulseira = Number(id) + 1;
+
+        document.getElementById('msg-sucesso').innerHTML = 
+            `Paciente ${nome} cadastrado com sucesso! <br> Pulseira ${numeroPulseira} agora está em uso`;
+        document.getElementById('info').classList.add('sumir');
+        document.getElementById('sucesso').classList.remove('sumir');
+
+    } else {
+        alert('Erro ao cadastrar paciente!');
+    }
 
   console.log(resultado)
 }

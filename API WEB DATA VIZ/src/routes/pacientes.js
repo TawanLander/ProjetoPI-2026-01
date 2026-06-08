@@ -7,11 +7,15 @@ router.post('/cadastrar', (req, res) => {
     controller.cadastrar(req, res);
 });
 
+router.post('/cadastrarAlerta', (req, res) => {
+    controller.cadastrarAlerta(req, res);
+});
+
 router.post('/remover', (req, res) => {
     controller.remover(req, res);
 });
 
-router.get('/listar', (req, res) => {
+router.post('/listar', (req, res) => {
     controller.listar(req, res);
 });
 

@@ -45,8 +45,13 @@ PRIMARY KEY (hospital_id, endereco_id)
 
 CREATE TABLE IF NOT EXISTS nivelAcesso(
     idNivelAcesso INT PRIMARY KEY AUTO_INCREMENT,
-    tipo char(2),
-)
+    tipo char(2)
+);
+
+insert into nivelAcesso (tipo) values 
+('N1'),
+('N2'),
+('N3');
 
 CREATE TABLE IF NOT EXISTS usuarios (
 id INT PRIMARY KEY AUTO_INCREMENT,
@@ -59,7 +64,7 @@ fkNivelAcesso INT DEFAULT NULL,
 CONSTRAINT fk_nivel_acesso FOREIGN KEY (fkNivelAcesso) REFERENCES nivelAcesso(idNivelAcesso)
 );
 
-INSERT INTO usuarios VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
+INSERT INTO usuarios (id, nome, email, senha, fkHospital) VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
 
 CREATE TABLE IF NOT EXISTS pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,

@@ -1,20 +1,16 @@
 #! bin/bash
 
-git clone https://github.com/TawanLander/ProjetoPI-2026-01;
-
-cd ProjetoPI-2026-01;
-
 cd API\ WEB\ DATA\ VIZ
 
-cat > .env <<EOF
+cat > .env.dev <<EOF
 
-AMBIENTE_PROCESSO=producao
+AMBIENTE_PROCESSO=desenvolvimento
 
 DB_HOST= '127.0.0.1'
 DB_DATABASE='PI2UTI'
 DB_USER=${1}
 DB_PASSWORD=${2}
-DB_PORT= 3307 
+DB_PORT= 3306
 
 APP_PORT= 3333
 APP_HOST= '127.0.0.1

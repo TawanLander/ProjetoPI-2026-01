@@ -44,6 +44,7 @@ function atualizar() {
 }
 
 function obterTemp(idPaciente) {
+    console.log(idPaciente);
     const instrucaoSql = `
         SELECT 
             paciente.nome,

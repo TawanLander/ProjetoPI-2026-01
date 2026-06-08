@@ -65,7 +65,7 @@ var tempo = {};
 async function obterDados(grafico, idSensor) {
   try {
     const resposta = await fetch(
-      `http://127.0.0.1:3333/pacientes/obterTemp/${idSensor}`,
+      `/pacientes/obterTemp/${idSensor}`,
     );
 
     let valores = await resposta.json();

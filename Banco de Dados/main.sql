@@ -77,7 +77,7 @@ CONSTRAINT fk_hospital_pulseira FOREIGN KEY (fkHospital) REFERENCES hospital(id)
 CREATE TABLE IF NOT EXISTS paciente (
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(60) NOT NULL,
-dtNascimento DATE NOT NULL,
+dataNascimento DATE NOT NULL,
 genero VARCHAR(20) NOT NULL,
 fkPulseira INT NOT NULL,
 CONSTRAINT fk_pulseira FOREIGN KEY (fkPulseira) REFERENCES pulseira(id)

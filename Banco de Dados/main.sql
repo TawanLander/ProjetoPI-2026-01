@@ -35,7 +35,7 @@ cnpj CHAR(15) NOT NULL,
 codigoHospital INT NOT NULL
 );
 
-INSERT INTO hospital VALUES (1, 'Casa de Saúde', 'casa@saude.com', '1234', '1191918787', '123123123123123', 0917)
+INSERT INTO hospital VALUES (1, 'Casa de Saúde', 'casa@saude.com', '1234', '1191918787', '123123123123123', 0917);
 
 CREATE TABLE IF NOT EXISTS link_endereços (
 hospital_id INT,

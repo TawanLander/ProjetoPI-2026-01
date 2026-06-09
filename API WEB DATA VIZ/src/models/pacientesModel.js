@@ -1,25 +1,24 @@
-const bd = require('../database/config');
+const bd = require("../database/config");
 
 function cadastrar(nome, dtNascimento, genero, fkPulseira) {
-    var instrucaoSql = `
+  var instrucaoSql = `
         insert into paciente (nome, dataNascimento, sexo, statusPaciente, fkPulseira) values 
             ('${nome}', '${dtNascimento}', '${genero}', 1, ${Number(fkPulseira) + 1});
     `;
-    return bd.executar(instrucaoSql);
+  return bd.executar(instrucaoSql);
 }
 
-function remover(idPulseira) {
-    let instrucaoSql = `
-    UPDATE paciente
-    SET fkPulseira = NULL, statusPaciente = 0
-    WHERE fkPulseira = ${idPulseira + 1};
-    `;
-    // NOTA: Essa query ja esta atualizada para a nova modelagem, não precisa mexer denovo quando for reajustar as querys!!!
-    return bd.executar(instrucaoSql);
+function remover(idPulseira, idHospital) {
+  let instrucaoSql = `
+    DELETE paciente FROM paciente
+        JOIN pulseira ON pulseira.id = paciente.fkPulseira
+    WHERE paciente.fkPulseira = ${idPulseira}
+        AND pulseira.fkHospital = ${idHospital};`;
+  return bd.executar(instrucaoSql);
 }
 
 function listar(id) {
-    let instrucaoSql = `SELECT 
+  let instrucaoSql = `SELECT 
             paciente.id,
             paciente.nome,
             paciente.sexo,
@@ -34,18 +33,18 @@ function listar(id) {
             AND paciente.statusPaciente = 1;
     `;
 
-    return bd.executar(instrucaoSql);
+  return bd.executar(instrucaoSql);
 }
 
 function atualizar() {
-    let instrucaoSql = `update pacientes set ? = ? where idPaciente = ?`
+  let instrucaoSql = `update pacientes set ? = ? where idPaciente = ?`;
 
-    return bd.executar(instrucaoSql);
+  return bd.executar(instrucaoSql);
 }
 
 function obterTemp(idPaciente) {
-    console.log('ID PACIENTE', idPaciente);
-    const instrucaoSql = `
+  console.log("ID PACIENTE", idPaciente);
+  const instrucaoSql = `
         SELECT 
             paciente.nome,
             paciente.sexo,
@@ -83,12 +82,12 @@ function obterTemp(idPaciente) {
         ORDER BY registroTemperatura.id;
     `;
 
-    return bd.executar(instrucaoSql);
+  return bd.executar(instrucaoSql);
 }
 
 async function trazerPulseiras(idUsuario, idHospital) {
-    try {
-        let queryMax = `
+  try {
+    let queryMax = `
         SELECT 
                 MAX(pulseira.id) AS maiorID
             FROM pulseira
@@ -97,14 +96,15 @@ async function trazerPulseiras(idUsuario, idHospital) {
                 JOIN usuarios
                     ON usuarios.fkHospital = hospital.id
             WHERE usuarios.id = ${idUsuario}
-                AND hospital.id = ${idHospital};`
+                AND hospital.id = ${idHospital};`;
 
-        const rMax = await bd.executar(queryMax);
-        if (!rMax) return false;
+    const rMax = await bd.executar(queryMax);
+    if (!rMax) return false;
 
-        let maxId = rMax.length > 0 && rMax[0].maiorID != null ? rMax[0].maiorID : 0
+    let maxId =
+      rMax.length > 0 && rMax[0].maiorID != null ? rMax[0].maiorID : 0;
 
-        let query = `
+    let query = `
         SELECT 
                 pulseira.id AS id,
                 pulseira.fkHospital AS hospital,
@@ -117,7 +117,8 @@ async function trazerPulseiras(idUsuario, idHospital) {
                 paciente.id AS pacienteId,
                 paciente.nome AS pacienteNome,
                 paciente.dataNascimento AS pacienteDtNasc,
-                paciente.statusPaciente AS statusPaciente
+                paciente.statusPaciente AS statusPaciente,
+                paciente.sexo as pacienteGenero
 
             FROM pulseira
 
@@ -131,35 +132,32 @@ async function trazerPulseiras(idUsuario, idHospital) {
                     ON pulseira.id = paciente.fkPulseira
 
             WHERE usuarios.id = ${idUsuario}
-                AND hospital.id = ${idHospital};`
+                AND hospital.id = ${idHospital};`;
 
-        const pulseiras = await bd.executar(query)
-        if(!pulseiras) return 0;
+    const pulseiras = await bd.executar(query);
+    if (!pulseiras) return 0;
 
-        return [maxId, pulseiras];
-    }
-    catch (error) {
-        console.log(error);
-    }
+    return [maxId, pulseiras];
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function cadastrarAlerta(temperatura, situacao, fkRegistro) {
-
-    const instrucaoSql = `
+  const instrucaoSql = `
         INSERT INTO alertas(tempRegistrada, situacao, fkRegistro) VALUES
             (${temperatura}, '${situacao}', ${fkRegistro});
     `;
 
-    return bd.executar(instrucaoSql);
+  return bd.executar(instrucaoSql);
 }
-
 
 module.exports = {
-    cadastrar,
-    remover,
-    listar,
-    obterTemp,
-    atualizar,
-    trazerPulseiras,
-    cadastrarAlerta
-}
+  cadastrar,
+  remover,
+  listar,
+  obterTemp,
+  atualizar,
+  trazerPulseiras,
+  cadastrarAlerta,
+};

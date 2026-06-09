@@ -19,10 +19,12 @@ async function cadastrar(req, res) {
 
 async function remover(req, res) {
     const idPulseira = req.body.id;
+    const idHospital = req.body.hospital;
     if (idPulseira === undefined) return res.status(400).send('Id Pulseira Undefined');
+    if (idHospital === undefined) return res.status(400).send('Id Hospital Undefined');
 
     try {
-        const resultado = await model.remover(idPulseira);
+        const resultado = await model.remover(idPulseira, idHospital);
         if (!resultado) return res.status(400).send(false);
         return res.status(200).send(true);
     } catch(e) {

@@ -65,7 +65,7 @@ CONSTRAINT fk_nivel_acesso FOREIGN KEY (fkNivelAcesso) REFERENCES nivelAcesso(id
 );
 
 INSERT INTO usuarios (id, nome, email, senha, fkHospital) VALUES (1, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1);
-
+INSERT INTO usuarios (id, nome, email, senha, fkHospital, fkNivelAcesso) VALUES (3, 'Teste', 'teste@usuario.com', 'SenhaMegaforte1#', 1, 3);
 CREATE TABLE IF NOT EXISTS pulseira (
 id INT PRIMARY KEY AUTO_INCREMENT,
 fkHospital INT NOT NULL,
@@ -109,3 +109,6 @@ CREATE TABLE IF NOT EXISTS ia (
     dthr DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     resposta VARCHAR(1000) NOT NULL
 );
+
+CREATE VIEW vw_ctt AS 
+SELECT contato.nome AS 'Nome', contato.email AS 'Email', contato.mensagem AS 'Mensagem', contato.id AS 'Id' FROM contato;

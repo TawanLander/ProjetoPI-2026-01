@@ -11,4 +11,8 @@ router.post('/pacientes/atualizar', (req, res) => {
     controller.atualizar(req, res);
 });
 
+router.post('/cadastrar', (req, res) => {
+    controller.cadastrar(req, res);
+});
+
 module.exports = router

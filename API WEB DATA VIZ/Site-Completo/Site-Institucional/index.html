@@ -8,6 +8,7 @@
     <link rel="icon" href="../logo.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
+<script defer src="./sources/script.js"></script>
 <body>
     <div id="container_header">
         <img src="../imgs/TechVita.png">
@@ -71,9 +72,11 @@
     </div>
     <center>
     <div id="container_contato">
-        <input type="text" id="ipt_contato" placeholder="Digite o e-mail aqui">
-        <button id="botao" onclick="botao()"><b>Cadastre seu Hospital</b></button>
-        </div>
+        <input type="text" id="ipt-nome" placeholder="Digite o nome do hospital aqui">
+        <input type="text" id="ipt-email" placeholder="Digite o e-mail aqui">
+        <textarea id="ipt-mensagem" placeholder="Digite sua mensagem aqui"></textarea>
+        <button id="botao" onclick="verificarInput()"><b>Cadastre seu Hospital</b></button>
+    </div>
     </center>
 </body>
 

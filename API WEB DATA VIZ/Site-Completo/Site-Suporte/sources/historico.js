@@ -6,6 +6,8 @@ window.onload = function () {
         window.location.href = "../../Site-Cadastro/login.html";
         return;
     }
+
+    buscar()
 }
 
 async function buscar() {

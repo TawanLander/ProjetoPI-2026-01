@@ -124,17 +124,17 @@ async function listarPacientes() {
                         
                         <div class="temp-box atual">
                             <span class="label">Temp Atual</span>
-                            <span class="valor">${tempAtual}°</span>
+                            <span class="valor">${tempAtual === null ? 0 : tempAtual}°</span>
                         </div>
 
                         <div class="temp-box max">
                             <span class="label">Temp Max</span>
-                            <span class="valor">${tempMax}°</span>
+                            <span class="valor">${tempMax === null ? 0 : tempMax}°</span>
                         </div>
 
                         <div class="temp-box min">
                             <span class="label">Temp Min</span>
-                            <span class="valor">${tempMin}°</span>
+                            <span class="valor">${tempMin === null ? 0 : tempMin}°</span>
                         </div>
 
                     </div>

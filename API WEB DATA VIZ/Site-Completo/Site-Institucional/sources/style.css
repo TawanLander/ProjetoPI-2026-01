@@ -82,7 +82,7 @@ body {
   margin: 0 auto 56px;
 }
 
-#container_contato input {
+#container_contato input, textarea {
   background: #f0f4f8;
   border: 1.5px solid #dde5ef;
   border-radius: 8px;
@@ -96,6 +96,11 @@ body {
   margin-bottom: 12px;
   display: block;
   box-sizing: border-box;
+}
+
+textarea{
+  height: 200px;
+  resize: none;
 }
 
 #container_contato input:focus { border-color: #0a6ebd; box-shadow: 0 0 0 3px rgba(10,110,189,0.10); background: #fff; }

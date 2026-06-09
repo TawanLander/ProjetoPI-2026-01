@@ -57,10 +57,17 @@ async function pegarRespostas(req, res) {
     return res.status(200).json(resultado);
 }
 
+async function contatos(req, res) {
+    const resultado = await model.contatos();
+    if(!resultado) return res.status(400).send('Não houve resposta do banco');
+
+    return res.status(200).json(resultado);
+}
 
 module.exports = {
     gerarResposta,
     cadastrar,
     salvarResposta,
-    pegarRespostas
+    pegarRespostas,
+    contatos
 }

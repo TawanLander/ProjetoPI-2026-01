@@ -36,4 +36,8 @@ router.get('/pegarRespostas', (req, res) => {
   controller.pegarRespostas(req, res);
 })
 
+router.get('/contatos', (req, res) => {
+  controller.contatos(req, res);
+});
+
 module.exports = router;

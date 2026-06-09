@@ -27,8 +27,17 @@ async function pegarRespostas() {
     return resultado;
 }
 
+async function contatos() {
+    const query = 'select * from vw_ctt';
+    const resultado = await bd.executar(query)
+    if(!resultado) return false;
+
+    return resultado;
+}
+
 module.exports = {
     cadastrar,
     salvarResposta,
-    pegarRespostas
+    pegarRespostas,
+    contatos
 }

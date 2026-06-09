@@ -11,58 +11,98 @@ SELECT
     endereco.logradouro,
     endereco.numero,
     endereco.bairro,
-    endereco.cep
-FROM hospital 
-JOIN endereco ON hospital.fkEndereco = endereco.id;
-    
+    endereco.cep,
+    endereco.complemento
+FROM link_enderecos
+JOIN hospital
+    ON link_enderecos.hospital_id = hospital.id
+JOIN endereco
+    ON link_enderecos.endereco_id = endereco.id;
+
+-- usuarios cadastrados e suas afiliacoes
 SELECT
-    enfermeiro.nome AS NomeEnfermeiro,
-    enfermeiro.cracha,
+    usuarios.nome AS NomeUsuario,
+    nivelAcesso.tipo AS NivelAcesso,
     hospital.nome AS NomeHospital
-FROM enfermeiro 
-JOIN hospital ON enfermeiro.fkHospital = hospital.id;
-    
+FROM usuarios
+JOIN hospital 
+    ON usuarios.fkHospital = hospital.id
+LEFT JOIN nivelAcesso 
+    ON usuarios.fkNivelAcesso = nivelAcesso.idNivelAcesso;
+
+-- select do paciente e do enfermeiro que cadastrou ele
+-- NECESSITA da coluna fkEnfermeiro na tabela paciente
 SELECT 
     paciente.nome AS NomePaciente,
-    enfermeiro.nome AS NomeEnfermeiro
+    usuarios.nome AS NomeEnfermeiro
 FROM paciente
-LEFT JOIN enfermeiro ON paciente.fkEnfermeiro = enfermeiro.id;
-    
+LEFT JOIN usuarios 
+    ON paciente.fkEnfermeiro = usuarios.id;
+
+-- select do paciente e a pulseira que ele está utilizadno
 SELECT 
     paciente.nome AS NomePaciente,
-    pulseira.id AS IdPulseira,
-    pulseira.intervaloMedicao,
-    pulseira.statusPul
-FROM paciente LEFT JOIN pulseira
+    pulseira.id AS IdPulseira
+FROM paciente
+LEFT JOIN pulseira
     ON paciente.fkPulseira = pulseira.id;
 
+-- temperaturas dos pacientes
 SELECT 
     paciente.nome AS NomePaciente,
     registroTemperatura.temperatura,
-    registroTemperatura.dtRegistro,
+    registroTemperatura.dataRegistro,
     registroTemperatura.horaRegistro
 FROM registroTemperatura 
-JOIN pulseira ON registroTemperatura.fkPulseira = pulseira.id
-JOIN paciente ON paciente.fkPulseira = pulseira.id;
-    
+JOIN pulseira 
+    ON registroTemperatura.fkPulseira = pulseira.id
+JOIN paciente 
+    ON paciente.fkPulseira = pulseira.id;
+
+-- alertas dos pacientes
 SELECT 
     paciente.nome AS NomePaciente,
-    alertas.tempMax,
-    alertas.tempMin
-FROM alertas 
-JOIN pulseira ON alertas.fkPulseira = pulseira.id
-JOIN paciente ON paciente.fkPulseira = pulseira.id;
+    alertas.tempRegistrada,
+    alertas.situacao
+FROM alertas
+JOIN registroTemperatura 
+    ON alertas.fkRegistro = registroTemperatura.id
+JOIN pulseira 
+    ON registroTemperatura.fkPulseira = pulseira.id
+JOIN paciente 
+    ON paciente.fkPulseira = pulseira.id;
 
+-- pacientes que tiveram a temperatura acima de 37
 SELECT 
     paciente.nome,
     registroTemperatura.temperatura
 FROM registroTemperatura
-JOIN pulseira ON registroTemperatura.fkPulseira = pulseira.id
-JOIN paciente ON paciente.fkPulseira = pulseira.id
-WHERE registroTemperatura.temperatura > 30;
+JOIN pulseira 
+    ON registroTemperatura.fkPulseira = pulseira.id
+JOIN paciente 
+    ON paciente.fkPulseira = pulseira.id
+WHERE registroTemperatura.temperatura > 37;
 
+-- pacientes que tiveram a temperatura abaixo de 35
+SELECT 
+    paciente.nome,
+    registroTemperatura.temperatura
+FROM registroTemperatura
+JOIN pulseira 
+    ON registroTemperatura.fkPulseira = pulseira.id
+JOIN paciente 
+    ON paciente.fkPulseira = pulseira.id
+WHERE registroTemperatura.temperatura < 35;
+
+-- select das mensagens de contato
 SELECT
     contato.nome,
     contato.email,
     contato.mensagem
 FROM contato;
+
+-- select das respostas da ia
+SELECT
+    ia.dthr,
+    ia.resposta
+FROM ia;

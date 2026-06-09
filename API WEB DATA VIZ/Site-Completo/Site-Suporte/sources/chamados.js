@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = async function () {
 
     const enfermeiro = sessionStorage.getItem("enfermeiro");
 
@@ -6,6 +6,8 @@ window.onload = function () {
         window.location.href = "../../Site-Cadastro/login.html";
         return;
     }
+
+    await trazerContatos()
 }
 
 async function trazerContatos() {

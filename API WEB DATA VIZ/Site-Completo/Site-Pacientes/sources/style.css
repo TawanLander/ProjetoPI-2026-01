@@ -11,29 +11,16 @@ body {
   font-family: Arial, sans-serif;
 }
 
-ul,
-ol {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 img {
   max-width: 100%;
   height: auto;
 }
 
-.sidebar {
-  display: flex;
+.sidebar{
+    width:260px;
 
-  flex-direction: column;
-  width: 200px;
-  height: 100vh;
-
-  border-right: 2px solid #eeeeee;
+    background:white;
+    border-right:1px solid #dde5ef;
 }
 
 .navbar {
@@ -62,11 +49,15 @@ img {
   justify-content: start;
   align-items: center;
   gap: 10px;
-  margin-top: 20%;
+  margin-top: 10%;
   width: 100%;
   height: 100%;
   padding-left: 10%;
-  transition: 0.5s;
+  transition: .2s;
+  border-radius:10px;
+  color:#5a6a82;
+  padding: 12px;
+
 }
 
 .nav:hover {
@@ -149,11 +140,11 @@ img {
 
 /* Cores */
 .atual {
-  background: #39d400;
+  background: #379966;
 }
 
 .max {
-  background: #ff3b3b;
+  background: #b60000;
 }
 
 .min {
@@ -225,7 +216,7 @@ img {
 
 .kpi-red {
   background-color: hsl(0, 100%, 89%);
-  border-color: #f09595;
+  
 }
 .kpi-red .tituloKpi { 
   color: #a32d2d; 
@@ -257,14 +248,27 @@ img {
   color: #3a6919; 
 }
 
-.botaoSuporte{
-  display: flex;
+.botaoSuporte button {
+  width: 65px; height: 65px;
+  border-radius: 50%;
+  background: #0a6ebd;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(10, 110, 189, 0.35);
+  transition: background 0.2s, transform 0.15s;
   position: fixed;
-  right: 20px;
-  bottom: 20px;
-  border-radius: 50%;
-  width: 100px;
-  border-radius: 50%;
+  right: 20px; bottom: 20px;
+}
+
+.botaoSuporte button:hover {
+  background: #084f8a;
+  transform: scale(1.08);
+}
+
+.botaoSuporte button span {
+  font-size: 26px;
+  color: white;
 }
 
 .mensagemPopUp{
@@ -318,4 +322,6 @@ img {
 .fechar:hover {
   opacity: 0.7;
 }
+
+
 

@@ -1,3 +1,13 @@
+window.onload = function () {
+
+    const enfermeiro = sessionStorage.getItem("enfermeiro");
+
+    if (!enfermeiro) {
+        window.location.href = "../../Site-Cadastro/login.html";
+        return;
+    }
+}
+
 const erro = document.getElementById("erro");
 const resultado = document.getElementById("resultado");
 

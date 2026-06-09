@@ -1,3 +1,13 @@
+window.onload = function () {
+
+    const enfermeiro = sessionStorage.getItem("enfermeiro");
+
+    if (!enfermeiro) {
+        window.location.href = "../../Site-Cadastro/login.html";
+        return;
+    }
+}
+
 async function buscar() {
     const res = await fetch('/ia/pegarRespostas');
 

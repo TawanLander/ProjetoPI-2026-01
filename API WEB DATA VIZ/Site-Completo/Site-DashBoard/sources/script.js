@@ -1,10 +1,18 @@
-// window.onload = function () {
+window.onload = function () {
 
-//     if (!sessionStorage.ID_USUARIO) {
-//         window.location.href = "../../Site-Cadastro/login.html";
-//         return;
-//     }
-// }
+    const enfermeiro = sessionStorage.getItem("enfermeiro");
+
+    if (!enfermeiro) {
+        window.location.href = "../../Site-Cadastro/login.html";
+        return;
+    }
+}
+
+function sair() {
+    sessionStorage.clear();
+
+    window.location.href = "../../Site-Institucional/index.html";
+}
 
 const idPaciente = sessionStorage.getItem('id-paciente');
 

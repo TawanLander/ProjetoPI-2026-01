@@ -1,9 +1,19 @@
+
+function sair() {
+    sessionStorage.clear();
+
+    window.location.href = "../../Site-Institucional/index.html";
+}
+
 window.onload = async () => {
-  sessionStorage.removeItem('id-paciente');
-  if (!sessionStorage.getItem("enfermeiro")) {
-    window.location.href = "../../Site-Cadastro/login.html";
-    return;
-  }
+  let enfermeiro = sessionStorage.getItem("enfermeiro");
+
+    console.log(enfermeiro);
+
+    if (!enfermeiro) {
+        window.location.href = "../../Site-Cadastro/login.html";
+        return;
+    }
 
   await listarPacientes();
 
